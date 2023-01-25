@@ -43,7 +43,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur4-XJ-PjR">
                                                 <rect key="frame" x="344" y="0.0" width="49" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="49" id="HRF-1H-vWc"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="HRF-1H-vWc"/>
                                                     <constraint firstAttribute="height" constant="44" id="gd7-wg-09x"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
@@ -72,7 +72,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="oiE-IU-Qst">
                                         <rect key="frame" x="24" y="12.999999999999996" width="345.33333333333331" height="54.666666666666657"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ru5-4u-5Ow" userLabel="main">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ru5-4u-5Ow" userLabel="main">
                                                 <rect key="frame" x="0.0" y="0.0" width="54.666666666666664" height="54.666666666666664"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uj9-Ps-qSg">
@@ -88,7 +88,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ie7-Qe-5qX" userLabel="basket">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ie7-Qe-5qX" userLabel="basket">
                                                 <rect key="frame" x="100.66666666666667" y="0.0" width="54.000000000000014" height="54.666666666666664"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcN-6f-P8B">
@@ -104,7 +104,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kOE-0Q-iL1" userLabel="liked">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kOE-0Q-iL1" userLabel="liked">
                                                 <rect key="frame" x="200.66666666666666" y="0.0" width="50.666666666666657" height="54.666666666666664"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bR6-Ci-cg7">
@@ -120,7 +120,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="33g-ih-MsG" userLabel="account">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="33g-ih-MsG" userLabel="account">
                                                 <rect key="frame" x="297.33333333333331" y="0.0" width="48" height="54.666666666666664"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Shm-Rg-cdO">
@@ -137,6 +137,9 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="33g-ih-MsG" firstAttribute="leading" secondItem="oiE-IU-Qst" secondAttribute="leading" constant="297.33333333333331" id="Hzf-Oa-DGh"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -146,16 +149,33 @@
                                     <constraint firstItem="oiE-IU-Qst" firstAttribute="leading" secondItem="7iS-gZ-JP3" secondAttribute="leading" constant="24" id="mtC-u1-BDq"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJ7-Lo-e5Q">
+                                <rect key="frame" x="0.0" y="157" width="102" height="580"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pyq-cL-Wb3">
+                                <rect key="frame" x="102" y="157" width="291" height="580"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wJ7-Lo-e5Q" secondAttribute="bottom" constant="115" id="72M-zM-HYc"/>
                             <constraint firstItem="T5a-7X-2zA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HHa-cP-o42"/>
+                            <constraint firstItem="7iS-gZ-JP3" firstAttribute="top" secondItem="Pyq-cL-Wb3" secondAttribute="bottom" id="ISQ-Zn-X1Q"/>
+                            <constraint firstItem="wJ7-Lo-e5Q" firstAttribute="top" secondItem="T5a-7X-2zA" secondAttribute="bottom" id="Kl9-nN-JNx"/>
+                            <constraint firstItem="Pyq-cL-Wb3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VbR-J3-gS3"/>
+                            <constraint firstItem="Pyq-cL-Wb3" firstAttribute="top" secondItem="T5a-7X-2zA" secondAttribute="bottom" id="aU5-an-1xf"/>
                             <constraint firstItem="7iS-gZ-JP3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="e4d-Lv-gIg"/>
                             <constraint firstItem="7iS-gZ-JP3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lWu-LZ-cME"/>
                             <constraint firstItem="T5a-7X-2zA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o1l-Da-PS1"/>
+                            <constraint firstItem="Pyq-cL-Wb3" firstAttribute="leading" secondItem="wJ7-Lo-e5Q" secondAttribute="trailing" id="ouQ-vP-kNV"/>
+                            <constraint firstItem="Pyq-cL-Wb3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="102" id="pSo-1x-bAs"/>
                             <constraint firstItem="T5a-7X-2zA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="quf-Ls-Mbt"/>
                             <constraint firstItem="7iS-gZ-JP3" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="usg-mh-6Zv"/>
+                            <constraint firstItem="wJ7-Lo-e5Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wLg-Jp-yp5"/>
+                            <constraint firstItem="7iS-gZ-JP3" firstAttribute="top" secondItem="wJ7-Lo-e5Q" secondAttribute="bottom" id="z2z-j7-I8o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wc0-L1-VBf"/>
@@ -192,6 +212,12 @@
         <image name="person" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
