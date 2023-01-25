@@ -14,6 +14,14 @@
 		9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */; };
 		9D41E7432981A3C4001D24F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E7422981A3C4001D24F7 /* Assets.xcassets */; };
 		9D41E7462981A3C4001D24F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */; };
+		9D41E74F2981A4BA001D24F7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E74E2981A4BA001D24F7 /* FirebaseAnalytics */; };
+		9D41E7512981A4BA001D24F7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7502981A4BA001D24F7 /* FirebaseAuth */; };
+		9D41E7532981A4BA001D24F7 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7522981A4BA001D24F7 /* FirebaseDatabase */; };
+		9D41E7552981A4BA001D24F7 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7542981A4BA001D24F7 /* FirebaseDatabaseSwift */; };
+		9D41E7572981A4BA001D24F7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7562981A4BA001D24F7 /* FirebaseFirestore */; };
+		9D41E7592981A4BA001D24F7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7582981A4BA001D24F7 /* FirebaseMessaging */; };
+		9D41E75B2981A4BA001D24F7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E75A2981A4BA001D24F7 /* FirebaseStorage */; };
+		9D41E75D2981A5CE001D24F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +34,7 @@
 		9D41E7422981A3C4001D24F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D41E7452981A3C4001D24F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D41E7472981A3C4001D24F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +42,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D41E7592981A4BA001D24F7 /* FirebaseMessaging in Frameworks */,
+				9D41E7552981A4BA001D24F7 /* FirebaseDatabaseSwift in Frameworks */,
+				9D41E7532981A4BA001D24F7 /* FirebaseDatabase in Frameworks */,
+				9D41E74F2981A4BA001D24F7 /* FirebaseAnalytics in Frameworks */,
+				9D41E75B2981A4BA001D24F7 /* FirebaseStorage in Frameworks */,
+				9D41E7572981A4BA001D24F7 /* FirebaseFirestore in Frameworks */,
+				9D41E7512981A4BA001D24F7 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +82,7 @@
 				9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */,
 				9D41E7472981A3C4001D24F7 /* Info.plist */,
 				9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */,
+				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
 			);
 			path = "The Tasarım";
 			sourceTree = "<group>";
@@ -86,6 +103,15 @@
 			dependencies = (
 			);
 			name = "The Tasarım";
+			packageProductDependencies = (
+				9D41E74E2981A4BA001D24F7 /* FirebaseAnalytics */,
+				9D41E7502981A4BA001D24F7 /* FirebaseAuth */,
+				9D41E7522981A4BA001D24F7 /* FirebaseDatabase */,
+				9D41E7542981A4BA001D24F7 /* FirebaseDatabaseSwift */,
+				9D41E7562981A4BA001D24F7 /* FirebaseFirestore */,
+				9D41E7582981A4BA001D24F7 /* FirebaseMessaging */,
+				9D41E75A2981A4BA001D24F7 /* FirebaseStorage */,
+			);
 			productName = "The Tasarım";
 			productReference = 9D41E7332981A3C3001D24F7 /* The Tasarım.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +140,9 @@
 				Base,
 			);
 			mainGroup = 9D41E72A2981A3C3001D24F7;
+			packageReferences = (
+				9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9D41E7342981A3C3001D24F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -129,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D41E7462981A3C4001D24F7 /* LaunchScreen.storyboard in Resources */,
+				9D41E75D2981A5CE001D24F7 /* GoogleService-Info.plist in Resources */,
 				9D41E7432981A3C4001D24F7 /* Assets.xcassets in Resources */,
 				9D41E73E2981A3C3001D24F7 /* Main.storyboard in Resources */,
 			);
@@ -299,12 +329,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.secret.The-Tasar-m";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.secret.The-Tasarim";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -327,12 +358,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.secret.The-Tasar-m";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.secret.The-Tasarim";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -362,6 +394,55 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D41E74E2981A4BA001D24F7 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		9D41E7502981A4BA001D24F7 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9D41E7522981A4BA001D24F7 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		9D41E7542981A4BA001D24F7 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		9D41E7562981A4BA001D24F7 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		9D41E7582981A4BA001D24F7 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		9D41E75A2981A4BA001D24F7 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */ = {

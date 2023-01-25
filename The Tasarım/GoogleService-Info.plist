@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>141772805439-1qalmbb38tf81f1rtk94slu8um7kqtuc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.141772805439-1qalmbb38tf81f1rtk94slu8um7kqtuc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCZtX8bPznw1pCzNEMW18BQUtsJLB14D6U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>141772805439</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.secret.The-Tasarim</string>
+	<key>PROJECT_ID</key>
+	<string>the-tasarim-b6963</string>
+	<key>STORAGE_BUCKET</key>
+	<string>the-tasarim-b6963.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:141772805439:ios:7739fc355085f24c776f8a</string>
+</dict>
+</plist>
