@@ -22,6 +22,10 @@
 		9D41E7592981A4BA001D24F7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E7582981A4BA001D24F7 /* FirebaseMessaging */; };
 		9D41E75B2981A4BA001D24F7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E75A2981A4BA001D24F7 /* FirebaseStorage */; };
 		9D41E75D2981A5CE001D24F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */; };
+		9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76129824EBA001D24F7 /* LoginViewController.swift */; };
+		9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76329824ED3001D24F7 /* RegisterViewController.swift */; };
+		9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76529824EEF001D24F7 /* AccountViewController.swift */; };
+		9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76729824F23001D24F7 /* DeveloperViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		9D41E7452981A3C4001D24F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D41E7472981A3C4001D24F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9D41E76129824EBA001D24F7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9D41E76329824ED3001D24F7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9D41E76529824EEF001D24F7 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		9D41E76729824F23001D24F7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +82,11 @@
 		9D41E7352981A3C3001D24F7 /* The Tasarım */ = {
 			isa = PBXGroup;
 			children = (
+				9D41E75E29824DEE001D24F7 /* Model */,
+				9D41E76029824E07001D24F7 /* Controller */,
+				9D41E75F29824DF9001D24F7 /* View */,
 				9D41E7362981A3C3001D24F7 /* AppDelegate.swift */,
 				9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */,
-				9D41E73A2981A3C3001D24F7 /* ViewController.swift */,
-				9D41E73C2981A3C3001D24F7 /* Main.storyboard */,
 				9D41E7422981A3C4001D24F7 /* Assets.xcassets */,
 				9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */,
 				9D41E7472981A3C4001D24F7 /* Info.plist */,
@@ -85,6 +94,33 @@
 				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
 			);
 			path = "The Tasarım";
+			sourceTree = "<group>";
+		};
+		9D41E75E29824DEE001D24F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9D41E75F29824DF9001D24F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D41E73C2981A3C3001D24F7 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9D41E76029824E07001D24F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9D41E73A2981A3C3001D24F7 /* ViewController.swift */,
+				9D41E76129824EBA001D24F7 /* LoginViewController.swift */,
+				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
+				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
+				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +209,11 @@
 			files = (
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
+				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
+				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
+				9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */,
+				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
