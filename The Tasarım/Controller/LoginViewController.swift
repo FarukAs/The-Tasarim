@@ -6,24 +6,47 @@
 //
 
 import UIKit
-
+import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
 class LoginViewController: UIViewController {
 
+    @IBOutlet var signUpButtonOutlet: UIButton!
+    @IBOutlet var signInButtonOutlet: UIButton!
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        hideKeyboardWhenTappedAround()
+        signInButtonOutlet.layer.cornerRadius = 18
+        signInButtonOutlet.layer.shadowColor = UIColor.black.cgColor
+        signInButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
+        signInButtonOutlet.layer.shadowRadius = 10
+        signInButtonOutlet.layer.shadowOpacity = 0.3
+        signUpButtonOutlet.layer.cornerRadius = 18
+        signUpButtonOutlet.layer.shadowColor = UIColor.black.cgColor
+        signUpButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
+        signUpButtonOutlet.layer.shadowRadius = 10
+        signUpButtonOutlet.layer.shadowOpacity = 0.3
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signInButton(_ sender: UIButton) {
+        if let email = emailTextField.text , let password = passwordTextField.text {
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in if let e = error {
+                print(e)
+            } else {
+                self.performSegue(withIdentifier: "loginToAccount", sender: nil)
+                return
+            }
+            }
+        }
     }
-    */
-
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

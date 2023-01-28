@@ -26,6 +26,18 @@
 		9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76329824ED3001D24F7 /* RegisterViewController.swift */; };
 		9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76529824EEF001D24F7 /* AccountViewController.swift */; };
 		9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76729824F23001D24F7 /* DeveloperViewController.swift */; };
+		9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7692982A132001D24F7 /* ProductViewController.swift */; };
+		9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76B2982A1BE001D24F7 /* Brain.swift */; };
+		9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76D2982A1F0001D24F7 /* Content.swift */; };
+		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
+		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
+		9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */; };
+		9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F62983C47000FF650C /* GameViewController.swift */; };
+		9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F82983F50900FF650C /* UsersViewController.swift */; };
+		9DBDB9FB2984576100FF650C /* AdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FA2984576100FF650C /* AdressViewController.swift */; };
+		9DBDB9FE298458C500FF650C /* AdressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */; };
+		9DBDB9FF298458C500FF650C /* AdressCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */; };
+		9DBDBA012984612100FF650C /* AddAdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDBA002984612100FF650C /* AddAdressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +55,18 @@
 		9D41E76329824ED3001D24F7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9D41E76529824EEF001D24F7 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		9D41E76729824F23001D24F7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		9D41E7692982A132001D24F7 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		9D41E76B2982A1BE001D24F7 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		9D41E76D2982A1F0001D24F7 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
+		9DBDB9F62983C47000FF650C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		9DBDB9F82983F50900FF650C /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		9DBDB9FA2984576100FF650C /* AdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressViewController.swift; sourceTree = "<group>"; };
+		9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdressCollectionViewCell.xib; sourceTree = "<group>"; };
+		9DBDBA002984612100FF650C /* AddAdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +123,8 @@
 		9D41E75E29824DEE001D24F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9D41E76B2982A1BE001D24F7 /* Brain.swift */,
+				9D41E76D2982A1F0001D24F7 /* Content.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				9D41E73C2981A3C3001D24F7 /* Main.storyboard */,
+				9DBDB9F12982E60300FF650C /* TableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +146,15 @@
 				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
 				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
 				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
+				9D41E7692982A132001D24F7 /* ProductViewController.swift */,
+				9DBDB9F02982E60300FF650C /* TableViewCell.swift */,
+				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
+				9DBDB9F62983C47000FF650C /* GameViewController.swift */,
+				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
+				9DBDB9FA2984576100FF650C /* AdressViewController.swift */,
+				9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */,
+				9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */,
+				9DBDBA002984612100FF650C /* AddAdressViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,6 +230,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D41E7462981A3C4001D24F7 /* LaunchScreen.storyboard in Resources */,
+				9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */,
+				9DBDB9FF298458C500FF650C /* AdressCollectionViewCell.xib in Resources */,
 				9D41E75D2981A5CE001D24F7 /* GoogleService-Info.plist in Resources */,
 				9D41E7432981A3C4001D24F7 /* Assets.xcassets in Resources */,
 				9D41E73E2981A3C3001D24F7 /* Main.storyboard in Resources */,
@@ -207,14 +245,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */,
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
+				9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */,
+				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
+				9DBDB9FB2984576100FF650C /* AdressViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
+				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
+				9DBDBA012984612100FF650C /* AddAdressViewController.swift in Sources */,
 				9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */,
+				9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */,
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
+				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
+				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
+				9DBDB9FE298458C500FF650C /* AdressCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
