@@ -68,7 +68,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             let bellButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(bellButtonTapped))
             navigationItem.rightBarButtonItem = bellButton
             
-        let docRef = db.collection("users").document(user!)
+        let docRef = db.collection(user!).document("userInfo")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()

@@ -25,17 +25,19 @@ class AddAdressViewController: UIViewController ,UIPickerViewDelegate,UIPickerVi
         picker.delegate = self
         picker.dataSource = self
         navigationItem.title = "Adres Ekle"
+        hideKeyboardWhenTappedAround()
         
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
         
         if let adres = textView.text , let phone = phoneNumber.text ,  let name1 = name.text , let surname1 = surname.text, let title1 = titleText.text {
-            self.db.collection("users").document(user!).setData(["address" : adres ,"phoneNumber":phone, "name": "\(name1)\(surname1)","city":cityArray, "title": title1]) { (error) in
+            self.db.collection(user!).document("address").setData(["address" : adres ,"phoneNumber":phone, "name": "\(name1)\(surname1)","city":cityArray, "title": title1]) { (error) in
                 if let error = error {
                     print("Error adding user: \(error)")
                 } else {
                     print("User added successfully!")
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         } else {
@@ -44,10 +46,6 @@ class AddAdressViewController: UIViewController ,UIPickerViewDelegate,UIPickerVi
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         }
-        
-        
-        
-        
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -61,6 +59,14 @@ class AddAdressViewController: UIViewController ,UIPickerViewDelegate,UIPickerVi
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         cityArray = city[row]
+    }
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

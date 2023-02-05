@@ -27,7 +27,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
-        
+        hideKeyboardWhenTappedAround()
         navigationItem.title = "Geri Bildirim"
         
         sendButton.layer.cornerRadius = 18
@@ -115,5 +115,13 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
         
         
         
+    }
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
