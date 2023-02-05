@@ -24,6 +24,7 @@ class AddAdressViewController: UIViewController ,UIPickerViewDelegate,UIPickerVi
         super.viewDidLoad()
         picker.delegate = self
         picker.dataSource = self
+        navigationItem.title = "Adres Ekle"
         
     }
     
