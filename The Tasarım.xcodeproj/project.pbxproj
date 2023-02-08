@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
 		9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7362981A3C3001D24F7 /* AppDelegate.swift */; };
 		9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */; };
 		9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E73A2981A3C3001D24F7 /* ViewController.swift */; };
@@ -34,13 +35,13 @@
 		9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */; };
 		9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F62983C47000FF650C /* GameViewController.swift */; };
 		9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F82983F50900FF650C /* UsersViewController.swift */; };
-		9DBDB9FB2984576100FF650C /* AdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FA2984576100FF650C /* AdressViewController.swift */; };
-		9DBDB9FE298458C500FF650C /* AdressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */; };
-		9DBDB9FF298458C500FF650C /* AdressCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */; };
-		9DBDBA012984612100FF650C /* AddAdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDBA002984612100FF650C /* AddAdressViewController.swift */; };
+		9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FA2984576100FF650C /* AddressViewController.swift */; };
+		9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */; };
+		9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDBA002984612100FF650C /* AddAddressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		9D41E7332981A3C3001D24F7 /* The Tasarım.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Tasarım.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D41E7362981A3C3001D24F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,10 +64,9 @@
 		9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
 		9DBDB9F62983C47000FF650C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9DBDB9F82983F50900FF650C /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
-		9DBDB9FA2984576100FF650C /* AdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressViewController.swift; sourceTree = "<group>"; };
-		9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressCollectionViewCell.swift; sourceTree = "<group>"; };
-		9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdressCollectionViewCell.xib; sourceTree = "<group>"; };
-		9DBDBA002984612100FF650C /* AddAdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdressViewController.swift; sourceTree = "<group>"; };
+		9DBDB9FA2984576100FF650C /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DBDBA002984612100FF650C /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,10 +151,10 @@
 				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
 				9DBDB9F62983C47000FF650C /* GameViewController.swift */,
 				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
-				9DBDB9FA2984576100FF650C /* AdressViewController.swift */,
-				9DBDB9FC298458C500FF650C /* AdressCollectionViewCell.swift */,
-				9DBDB9FD298458C500FF650C /* AdressCollectionViewCell.xib */,
-				9DBDBA002984612100FF650C /* AddAdressViewController.swift */,
+				9DBDB9FA2984576100FF650C /* AddressViewController.swift */,
+				9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */,
+				9DBDBA002984612100FF650C /* AddAddressViewController.swift */,
+				9D419C562993C4C4008F7568 /* EditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,7 +231,6 @@
 			files = (
 				9D41E7462981A3C4001D24F7 /* LaunchScreen.storyboard in Resources */,
 				9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */,
-				9DBDB9FF298458C500FF650C /* AdressCollectionViewCell.xib in Resources */,
 				9D41E75D2981A5CE001D24F7 /* GoogleService-Info.plist in Resources */,
 				9D41E7432981A3C4001D24F7 /* Assets.xcassets in Resources */,
 				9D41E73E2981A3C3001D24F7 /* Main.storyboard in Resources */,
@@ -249,20 +248,21 @@
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
+				9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */,
 				9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */,
 				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
-				9DBDB9FB2984576100FF650C /* AdressViewController.swift in Sources */,
+				9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
 				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
-				9DBDBA012984612100FF650C /* AddAdressViewController.swift in Sources */,
+				9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */,
 				9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */,
 				9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */,
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
 				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
-				9DBDB9FE298458C500FF650C /* AdressCollectionViewCell.swift in Sources */,
+				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,10 +412,11 @@
 				DEVELOPMENT_TEAM = 6TVQSAB3DR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "The Tasarım/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -441,10 +442,11 @@
 				DEVELOPMENT_TEAM = 6TVQSAB3DR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "The Tasarım/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

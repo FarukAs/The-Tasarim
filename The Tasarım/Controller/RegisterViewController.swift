@@ -31,6 +31,8 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
         signUpButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
         signUpButtonOutlet.layer.shadowRadius = 10
         signUpButtonOutlet.layer.shadowOpacity = 0.3
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -64,5 +66,18 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 }

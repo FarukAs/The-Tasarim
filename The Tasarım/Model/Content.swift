@@ -30,5 +30,20 @@ class UserInfo {
         ]
     }
 }
+class UserAddress{
+    let address: String
+    let city: String
+    let name: String
+    let phoneNumber: String
+    let title : String
+    
+    init(address: String, city: String, name: String, phoneNumber: String, title: String) {
+        self.address = address
+        self.city = city
+        self.name = name
+        self.phoneNumber = phoneNumber
+        self.title = title
+    }
+}
 
 
