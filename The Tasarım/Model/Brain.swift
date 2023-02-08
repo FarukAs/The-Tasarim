@@ -15,7 +15,7 @@ let city = ["İstanbul","İzmir","Ankara","Adana", "Adıyaman", "Afyonkarahisar"
 var User = [
     UserInfo(name: "", surname: "", phoneNumber: "", email: "")
 ]
-var UsersAddress = [UserAddress(address: "", city: "", name: "", phoneNumber: "", title: "")]
+var UsersAddress = [UserAddress(address: "", city: "", name: "",surname: "", phoneNumber: "", title: "")]
 
 
 //Kullanıcının adresleri

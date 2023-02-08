@@ -40,7 +40,8 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
             db.collection(user!).document("address").collection(userID!).document(adres).setData([
                 "address": adres,
                 "city": cityArray,
-                "name": "\(name) \(surname)",
+                "name": name,
+                "surname": surname,
                 "phoneNumber": phone,
                 "title": title
             ]) { (error) in
@@ -97,7 +98,7 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    let address = UserAddress(address: data["address"] as! String, city: data["city"] as! String, name: data["name"] as! String, phoneNumber: data["phoneNumber"] as! String, title: data["title"] as! String)
+                    let address = UserAddress(address: data["address"] as! String, city: data["city"] as! String, name: data["name"] as! String, surname: data["surname"] as! String, phoneNumber: data["phoneNumber"] as! String, title: data["title"] as! String)
                     addresses.append(address)
                     NotificationCenter.default.post(name: NSNotification.Name("ReloadCollectionView"), object: nil)
                         self.dismiss(animated: true)

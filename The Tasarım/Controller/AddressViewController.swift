@@ -22,7 +22,8 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
     let userID = Auth.auth().currentUser?.uid
-    var selectedIndex = ""
+    var selectedIndex = 0
+    var editAddress = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -72,7 +73,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    let address = UserAddress(address: data["address"] as! String, city: data["city"] as! String, name: data["name"] as! String, phoneNumber: data["phoneNumber"] as! String, title: data["title"] as! String)
+                    let address = UserAddress(address: data["address"] as! String, city: data["city"] as! String, name: data["name"] as! String, surname: data["surname"] as! String, phoneNumber: data["phoneNumber"] as! String, title: data["title"] as! String)
                     addresses.append(address)
                     self.reloadData()
                 }
@@ -113,13 +114,16 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
     @objc func editItem(sender: UIButton) {
         let indexPath = IndexPath(item: sender.tag, section: 0)
         let index = indexPath.item
-        selectedIndex = "\(index)"
+        selectedIndex = index
+        editAddress = addresses[index].address
         self.performSegue(withIdentifier: "addressToEdit", sender: nil)
+
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "addressToEdit" {
                 let destinationVC = segue.destination as! EditViewController
                 destinationVC.index = self.selectedIndex
+                destinationVC.newAddress = editAddress
             }
     }
 }

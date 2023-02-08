@@ -34,13 +34,15 @@ class UserAddress{
     let address: String
     let city: String
     let name: String
+    let surname : String
     let phoneNumber: String
     let title : String
     
-    init(address: String, city: String, name: String, phoneNumber: String, title: String) {
+    init(address: String, city: String, name: String,surname:String, phoneNumber: String, title: String) {
         self.address = address
         self.city = city
         self.name = name
+        self.surname = surname
         self.phoneNumber = phoneNumber
         self.title = title
     }
