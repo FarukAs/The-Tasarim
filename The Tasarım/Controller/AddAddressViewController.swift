@@ -35,10 +35,13 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        
-        if let adres = self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
-            db.collection(user!).document("address").collection(userID!).document(adres).setData([
-                "address": adres,
+        let address = self.textView.text
+        let words = address!.split(separator: " ")
+        let firstTwoWords = words.prefix(2)
+
+        if address == self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
+            db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").setData([
+                "address": address!,
                 "city": cityArray,
                 "name": name,
                 "surname": surname,

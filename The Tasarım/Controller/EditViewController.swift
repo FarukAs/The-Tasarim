@@ -25,22 +25,21 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     @IBOutlet var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        picker.delegate = self
-        picker.dataSource = self
-        loadData()
-        print(index)
         textView.text = addresses[index].address
         titleText.text = addresses[index].title
         name.text = addresses[index].name
         surname.text = addresses[index].surname
-        
-    
-        
+        picker.delegate = self
+        picker.dataSource = self
+        loadData()
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
+        let address = self.textView.text
+        let words = address!.split(separator: " ")
+        let firstTwoWords = words.prefix(2)
         
-        db.collection(user!).document("address").collection(userID!).document("\(addresses[index].address)").delete() { err in
+        db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -49,9 +48,9 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         }
         
         
-        if let adres = self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
-            db.collection(user!).document("address").collection(userID!).document(adres).setData([
-                "address": adres,
+        if address == self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
+            db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").setData([
+                "address": address!,
                 "city": cityArray,
                 "name": name,
                 "surname": surname,
@@ -71,6 +70,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
 
     }
     func loadData() {
+        addresses = []
         db.collection(user!).document("address").collection(userID!).getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -84,6 +84,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                 }
             }
         }
+        
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -100,3 +101,10 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         print(cityArray)
     }
 }
+
+
+// uygulamada çok hızlı işlemler yapınca bu hatayı alıyorum
+
+
+
+
