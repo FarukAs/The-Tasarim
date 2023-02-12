@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
 		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
+		9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C5B29962687008F7568 /* CouponViewController.swift */; };
 		9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7362981A3C3001D24F7 /* AppDelegate.swift */; };
 		9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */; };
 		9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E73A2981A3C3001D24F7 /* ViewController.swift */; };
@@ -41,7 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		9D419C5B29962687008F7568 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		9D41E7332981A3C3001D24F7 /* The Tasarım.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Tasarım.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D41E7362981A3C3001D24F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D419C5829956ED2008F7568 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				9DBDB9FA2984576100FF650C /* AddressViewController.swift */,
+				9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */,
+				9DBDBA002984612100FF650C /* AddAddressViewController.swift */,
+				9D419C562993C4C4008F7568 /* EditViewController.swift */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		9D419C5929956F0D008F7568 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				9DBDB9F62983C47000FF650C /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		9D419C5A29956F16008F7568 /* FeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
+			);
+			path = FeedBack;
+			sourceTree = "<group>";
+		};
+		9D419C5D299626BC008F7568 /* Coupon */ = {
+			isa = PBXGroup;
+			children = (
+				9D419C5B29962687008F7568 /* CouponViewController.swift */,
+				9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */,
+			);
+			path = Coupon;
+			sourceTree = "<group>";
+		};
 		9D41E72A2981A3C3001D24F7 = {
 			isa = PBXGroup;
 			children = (
@@ -148,13 +188,11 @@
 				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
 				9D41E7692982A132001D24F7 /* ProductViewController.swift */,
 				9DBDB9F02982E60300FF650C /* TableViewCell.swift */,
-				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
-				9DBDB9F62983C47000FF650C /* GameViewController.swift */,
 				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
-				9DBDB9FA2984576100FF650C /* AddressViewController.swift */,
-				9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */,
-				9DBDBA002984612100FF650C /* AddAddressViewController.swift */,
-				9D419C562993C4C4008F7568 /* EditViewController.swift */,
+				9D419C5829956ED2008F7568 /* Address */,
+				9D419C5D299626BC008F7568 /* Coupon */,
+				9D419C5929956F0D008F7568 /* Game */,
+				9D419C5A29956F16008F7568 /* FeedBack */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +286,7 @@
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
+				9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */,
 				9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */,
 				9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */,
 				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
@@ -256,6 +295,7 @@
 				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
 				9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */,
+				9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */,
 				9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */,
 				9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */,
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,

@@ -58,6 +58,9 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             gradientLayer.endPoint = CGPoint(x: 1, y: 1)
             topView.layer.addSublayer(gradientLayer)
             animateGradient()
+            coupon = []
+            getCouponData()
+            getNumberOfCoupons()
             stackView.layer.zPosition = 1
             button.layer.cornerRadius = 10
             
@@ -112,6 +115,9 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         if selectedRow == 2 {
             performSegue(withIdentifier: "accountToAdress", sender: nil)
         }
+        if selectedRow == 3 {
+            performSegue(withIdentifier: "accountToCoupon", sender: nil)
+        }
         if selectedRow == 4 {
             performSegue(withIdentifier: "accountToGame", sender: nil)
         }
@@ -140,7 +146,32 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         animation.autoreverses = true
         gradientLayer.add(animation, forKey: "gradientChange")
     }
-
-
+    func getCouponData(){
+        db.collection(user!).document("Coupons").collection("CouponsData").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let safeData = Coupons(category: data["category"] as! String, limit: data["limit"] as! String, price: data["price"] as! String)
+                    coupon.append(safeData)
+                }
+            }
+        }
+        
     }
+    func getNumberOfCoupons(){
+        let docRef = db.collection(user!).document("NumberOfCoupons")
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let safeData = data!["number"] as! Int
+                numberOfData = safeData
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+
+}
 

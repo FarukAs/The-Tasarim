@@ -20,3 +20,10 @@ var UsersAddress = [UserAddress(address: "", city: "", name: "",surname: "", pho
 
 //Kullanıcının adresleri
 var addresses = [UserAddress]()
+
+var coupon = [Coupons(category: "Tüm ürünlerde geçerli", limit: "100 TL ve üzerine", price: "5 TL"),
+Coupons(category: "Mutfak gereçlerinde geçerli", limit: "150 TL ve üzerine.", price: "20 TL"),
+Coupons(category: "Banyo gereçlerinde geçerli", limit: "200 TL ve üzerine", price: "40 TL")]
+
+
+var numberOfData = 0

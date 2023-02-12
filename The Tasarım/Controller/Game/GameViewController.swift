@@ -9,6 +9,24 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    
+    
+    
+    
+    
+    
+    // en yüksek skora databaseye kaydedilecek
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     var score = 0
     var timer = Timer()
     var counter = 0

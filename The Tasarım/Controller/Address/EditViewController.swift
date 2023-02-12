@@ -29,9 +29,13 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         titleText.text = addresses[index].title
         name.text = addresses[index].name
         surname.text = addresses[index].surname
+        phoneNumber.text = addresses[index].phoneNumber
         picker.delegate = self
         picker.dataSource = self
         loadData()
+        hideKeyboardWhenTappedAround()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
@@ -100,6 +104,40 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         cityArray = city[row]
         print(cityArray)
     }
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+            if name.isFirstResponder {
+                return
+            }
+        if surname.isFirstResponder {
+            return
+        }
+        if phoneNumber.isFirstResponder {
+            return
+        }
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+
+        @objc func keyboardWillHide(notification: NSNotification) {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+
+        deinit {
+            NotificationCenter.default.removeObserver(self)
+        }
 }
 
 

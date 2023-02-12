@@ -24,7 +24,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "TableViewCell" , for: indexPath) as! TableViewCell?)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell" , for: indexPath) as! TableViewCell
         cell.label.text = "selasdssa"
         return cell
     }

@@ -34,9 +34,9 @@ class UserAddress{
     let address: String
     let city: String
     let name: String
-    let surname : String
+    let surname: String
     let phoneNumber: String
-    let title : String
+    let title: String
     
     init(address: String, city: String, name: String,surname:String, phoneNumber: String, title: String) {
         self.address = address
@@ -47,5 +47,17 @@ class UserAddress{
         self.title = title
     }
 }
+class Coupons{
+    let category: String
+    let limit: String
+    let price: String
+    
+    init(category: String, limit: String, price: String) {
+        self.category = category
+        self.limit = limit
+        self.price = price
+    }
+}
+
 
 
