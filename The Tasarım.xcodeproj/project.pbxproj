@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
 		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
 		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
 		9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C5B29962687008F7568 /* CouponViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		9D419C5B29962687008F7568 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9D41E73A2981A3C3001D24F7 /* ViewController.swift */,
+				9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */,
 				9D41E76129824EBA001D24F7 /* LoginViewController.swift */,
 				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
 				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
@@ -284,6 +287,7 @@
 			files = (
 				9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */,
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
+				9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
 				9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */,
