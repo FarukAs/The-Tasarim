@@ -12,7 +12,7 @@ import FirebaseFirestore
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
 
     @IBOutlet var categoryCollectionView: UICollectionView!
-
+    
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var accountStackView: UIStackView!
     let db = Firestore.firestore()
@@ -21,6 +21,8 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
@@ -33,13 +35,27 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if collectionView == self.collectionView {
+            return 10
+        }else{
+            return 10
+        }
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductReusableCell", for: indexPath as IndexPath) as! ProductCollectionViewCell
+        if collectionView == self.collectionView {
+            let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ProductReusableCell", for: indexPath as IndexPath) as! ProductCollectionViewCell
            
             return cell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryReusableCell", for: indexPath as IndexPath) as! CategoryCollectionViewCell
+           
+            return cell
+        }
+            
+        
+        
     }
     @objc func goToLogin() {
         if Auth.auth().currentUser != nil {

@@ -33,6 +33,7 @@
 		9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7692982A132001D24F7 /* ProductViewController.swift */; };
 		9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76B2982A1BE001D24F7 /* Brain.swift */; };
 		9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76D2982A1F0001D24F7 /* Content.swift */; };
+		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
 		9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */; };
@@ -65,6 +66,7 @@
 		9D41E7692982A132001D24F7 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		9D41E76B2982A1BE001D24F7 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		9D41E76D2982A1F0001D24F7 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				9D41E73A2981A3C3001D24F7 /* ViewController.swift */,
 				9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */,
+				9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */,
 				9D41E76129824EBA001D24F7 /* LoginViewController.swift */,
 				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
 				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
@@ -301,6 +304,7 @@
 				9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */,
 				9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */,
 				9D41E76829824F23001D24F7 /* DeveloperViewController.swift in Sources */,
+				9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */,
 				9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */,
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
