@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 let AccountMenu = ["📦 Siparişlerim","💛 Beğendiklerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","💬 Geri Bildirim","🚪 Çıkış Yap"]
 
@@ -26,5 +27,12 @@ var coupon = [Coupons(category: "Tüm ürünlerde geçerli", limit: "100 TL ve �
 Coupons(category: "Mutfak gereçlerinde geçerli", limit: "150 TL ve üzerine.", price: "20 TL"),
 Coupons(category: "Banyo gereçlerinde geçerli", limit: "200 TL ve üzerine", price: "40 TL")]
 
-
 var numberOfData = 0
+//
+//var categoryNames = [String]()
+//var categoryImages = [UIImage]()
+
+var categoryArray = [categorBrain(categoryName: "", categoryImage: UIImage(named: "logo")!)]
+var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+
+var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]

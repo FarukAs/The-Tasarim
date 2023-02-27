@@ -70,7 +70,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     @IBAction func sendFeedBack(_ sender: UIButton) {
         let timestamp = String(Int(Date().timeIntervalSince1970))
-        self.db.collection(userEmail!).document(timestamp).setData([timestamp: textView.text!]) { (error) in
+        self.db.collection("Feedbacks").document(userEmail!).collection(timestamp).document("Feedback").setData([timestamp: textView.text!]) { (error) in
             if let error = error {
                 print("Error adding user: \(error)")
             } else {
@@ -78,19 +78,19 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 if let newImage = self.myImage {
                     let storageRef = self.storage.reference()
-                    let imagesRef = storageRef.child(self.userEmail!)
-                    let images1Ref = imagesRef.child(timestamp)
+                    let imagesRef = storageRef.child("Feedbacks")
+                    let images1Ref = imagesRef.child(self.userEmail!)
+                    let images2Ref = images1Ref.child(timestamp)
 
                     guard let imageData = newImage.jpegData(compressionQuality: 0.8) else {
                 return
                 }
                     // Fotoğrafı yükleyin
-                    let uploadTask = images1Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                    images2Ref.putData(imageData, metadata: nil) { (metadata, error) in
                         guard let _ = metadata else {
-                            print("metadata error \(error)")
+                            print("metadata error \(String(describing: error))")
                             return
                         }
-                        // Fotoğraf yükleme işlemi başarılıysa, metadataları kullanabilirsiniz
                     }
                 }
                 

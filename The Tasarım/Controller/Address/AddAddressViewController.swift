@@ -18,18 +18,19 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
     var cityArray = ""
     let ref = Database.database().reference().child("address")
     let addressVC = AddressViewController()
+    
     @IBOutlet var titleText: UITextField!
-    @IBOutlet var picker: UIPickerView!
+    @IBOutlet var country: UITextField!
     @IBOutlet var textView: UITextView!
     @IBOutlet var phoneNumber: UITextField!
     @IBOutlet var surname: UITextField!
     @IBOutlet var name: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        picker.delegate = self
-        picker.dataSource = self
         navigationItem.title = "Adres Ekle"
         hideKeyboardWhenTappedAround()
+        setupPicker()
+        dissmissAndClosePickerView()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -57,10 +58,28 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
             }
         }
     }
+    func dissmissAndClosePickerView(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let button = UIBarButtonItem(title: "Done", style: .plain,target: self,action: #selector(self.dissmissAction))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        self.country.inputAccessoryView = toolBar
+    }
+    @objc func dissmissAction(){
+        self.view.endEditing(true)
+    }
+    func setupPicker(){
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        country.inputView = pickerView
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return city.count
     }
@@ -68,7 +87,9 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
         return city[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        cityArray = city[row]
+        let selectedCountry = city[row]
+        country.text = selectedCountry
+        cityArray = selectedCountry
         print(cityArray)
     }
     func hideKeyboardWhenTappedAround() {

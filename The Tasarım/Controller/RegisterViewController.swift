@@ -53,6 +53,8 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
                             self.performSegue(withIdentifier: "registerToAccount", sender: nil)
                         }
                     }
+                    self.db.collection(email).document("NumberOfCoupons").setData(["number" : 0])
+                    
                 }
             }
         }

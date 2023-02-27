@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */; };
+		9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */; };
 		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
 		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
 		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
@@ -33,6 +35,9 @@
 		9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7692982A132001D24F7 /* ProductViewController.swift */; };
 		9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76B2982A1BE001D24F7 /* Brain.swift */; };
 		9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E76D2982A1F0001D24F7 /* Content.swift */; };
+		9D4B8AD4299B944E0020F602 /* ProductEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */; };
+		9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */; };
+		9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
@@ -45,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +73,9 @@
 		9D41E7692982A132001D24F7 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		9D41E76B2982A1BE001D24F7 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		9D41E76D2982A1F0001D24F7 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEditViewController.swift; sourceTree = "<group>"; };
+		9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -192,6 +202,11 @@
 				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
 				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
 				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
+				9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */,
+				9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */,
+				9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */,
+				9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */,
+				9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */,
 				9D41E7692982A132001D24F7 /* ProductViewController.swift */,
 				9DBDB9F02982E60300FF650C /* TableViewCell.swift */,
 				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
@@ -288,17 +303,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D4B8AD4299B944E0020F602 /* ProductEditViewController.swift in Sources */,
 				9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */,
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
+				9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */,
+				9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */,
 				9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */,
 				9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */,
 				9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */,
 				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
 				9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
+				9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */,
 				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
 				9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */,
@@ -309,6 +328,7 @@
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
 				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
+				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
 			);

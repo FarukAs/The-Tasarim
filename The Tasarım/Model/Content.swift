@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class UserInfo {
@@ -56,6 +57,34 @@ class Coupons{
         self.category = category
         self.limit = limit
         self.price = price
+    }
+}
+class categorBrain{
+    let categoryName: String
+    let categoryImage: UIImage
+    
+    init(categoryName: String, categoryImage: UIImage) {
+        self.categoryName = categoryName
+        self.categoryImage = categoryImage
+    }
+}
+class productBrain{
+    var productCategory: String
+    var productName: String
+    var productDetail: String
+    var productPrice: String
+    var image1: UIImage
+    var image2: UIImage
+    var image3: UIImage
+    
+    init(productCategory: String, productName: String, productDetail: String, productPrice: String, image1: UIImage, image2: UIImage, image3: UIImage) {
+        self.productCategory = productCategory
+        self.productName = productName
+        self.productDetail = productDetail
+        self.productPrice = productPrice
+        self.image1 = image1
+        self.image2 = image2
+        self.image3 = image3
     }
 }
 
