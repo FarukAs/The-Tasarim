@@ -76,17 +76,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
     }
     
     func getProductData(){
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        ///
         let storageRef = self.storage.reference()
         let imagesRef = storageRef.child(self.user!)
         let images1Ref = imagesRef.child("Products")
@@ -122,8 +111,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                 
                         let productName = prefix1.name
                         
-                        var product = productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
-                        
+                        let product = productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
                         
                         self.db.collection(self.user!).document("Products").collection(categoryName).document(productName).getDocument { (document, error) in
                             if let document = document, document.exists {
@@ -158,6 +146,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                         image2.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                             if let error = error {
                                 print("Error downloading image: \(error.localizedDescription)")
+                                product.image2 = UIImage(named: "logo")!
                             } else {
                                 let image2 = UIImage(data: data!)
                                 product.image2 = image2!
@@ -166,6 +155,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                         image3.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                             if let error = error {
                                 print("Error downloading image: \(error.localizedDescription)")
+                                product.image3 = UIImage(named: "logo")!
                             } else {
                                 let image3 = UIImage(data: data!)
                                 product.image3 = image3!
@@ -173,12 +163,10 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                         }
                         productArray.append(product)
                         
+                        
+                        
                     }
                 }
-                
-
-                
-                
             }
         }
     }

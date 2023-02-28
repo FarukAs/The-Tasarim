@@ -58,8 +58,6 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
                 }
             }
         }
-        
-        
     }
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -76,7 +74,6 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
             }
         }
     }
-    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0

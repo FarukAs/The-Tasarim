@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
 
     @IBOutlet var categoryCollectionView: UICollectionView!
@@ -17,6 +18,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     @IBOutlet var accountStackView: UIStackView!
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
+    let storage = Storage.storage()
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -26,6 +28,8 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
+        productCategories = []
+        addProductCategories()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -84,5 +88,23 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     }
     @objc func likeButton(sender: UIButton) {
         print("Like Button pressed")
+    }
+    func addProductCategories(){
+        //
+        let storageRef = storage.reference()
+        let imagesRef = storageRef.child(user!)
+        let images1Ref = imagesRef.child("Category")
+        productCategories.append("")
+        images1Ref.listAll { (result, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            for prefix in result!.prefixes {
+                let categoryName = prefix.name
+                productCategories.append(categoryName)
+            }
+        }
+        
     }
 }

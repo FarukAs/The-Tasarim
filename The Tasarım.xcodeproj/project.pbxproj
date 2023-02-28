@@ -10,6 +10,7 @@
 		9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */; };
 		9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */; };
 		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
+		9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */; };
 		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
 		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
 		9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C5B29962687008F7568 /* CouponViewController.swift */; };
@@ -53,6 +54,7 @@
 		9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController1.swift; sourceTree = "<group>"; };
 		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		9D419C5B29962687008F7568 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */,
 				9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */,
 				9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */,
+				9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */,
 				9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */,
 				9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */,
 				9D41E7692982A132001D24F7 /* ProductViewController.swift */,
@@ -328,6 +331,7 @@
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
 				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
+				9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */,
 				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,

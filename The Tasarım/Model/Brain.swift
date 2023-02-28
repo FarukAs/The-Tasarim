@@ -36,3 +36,5 @@ var categoryArray = [categorBrain(categoryName: "", categoryImage: UIImage(named
 var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
 var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+
+var productCategories = [""]

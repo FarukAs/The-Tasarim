@@ -15,6 +15,5 @@ class EditProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet var scrollView: UIScrollView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 }

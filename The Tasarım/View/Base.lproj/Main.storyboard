@@ -328,11 +328,11 @@
                                     <size key="itemSize" width="129" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EditCategoryReusableCell" id="uDm-jg-1fK" customClass="EditCategoryCollectionViewCell" customModule="The_Tasarım" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="14" width="130" height="145"/>
+                                        <rect key="frame" x="5" y="11.666666666666666" width="130" height="145"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iSn-NZ-hkN">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="145"/>
@@ -387,7 +387,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EditProductReusableCell" id="3oe-eU-ben" customClass="EditProductCollectionViewCell" customModule="The_Tasarım" customModuleProvider="target">
                                         <rect key="frame" x="20" y="10" width="142" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OnL-WX-0Su">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OnL-WX-0Su">
                                             <rect key="frame" x="0.0" y="0.0" width="142" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -476,6 +476,7 @@
                         <outlet property="collectionView" destination="c3M-eM-eya" id="qVY-gS-Ppe"/>
                         <segue destination="3HR-av-XcZ" kind="show" identifier="productEditToAddCategory" id="xTM-Em-RE5"/>
                         <segue destination="oho-TF-UpC" kind="show" identifier="productEditToAddProduct" id="Wen-DB-qHU"/>
+                        <segue destination="tt9-3T-JeS" kind="show" identifier="ProductEditToEdit1" id="Any-AI-EVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubQ-sI-57a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -608,20 +609,120 @@
             </objects>
             <point key="canvasLocation" x="6309" y="1625"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Product View Controller1-->
         <scene sceneID="g2N-Fl-Mr1">
             <objects>
-                <viewController id="tt9-3T-JeS" sceneMemberID="viewController">
+                <viewController id="tt9-3T-JeS" customClass="EditProductViewController1" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1rZ-2v-dev">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pc-bH-3d7">
+                                <rect key="frame" x="60" y="103" width="272" height="203"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Mhs-LL-fEV"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="azo-3C-DI8"/>
+                            </scrollView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün ismi girin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-JC-5t8">
+                                <rect key="frame" x="16" y="451" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ürün Detaylarını girin." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SkG-8p-FoF">
+                                <rect key="frame" x="16" y="527" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ürün fiyatını girin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ba5-D7-Opf">
+                                <rect key="frame" x="16" y="675" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kategori Girin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wgk-JP-vHJ">
+                                <rect key="frame" x="16" y="392" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e65-mo-E6q">
+                                <rect key="frame" x="16" y="355" width="111" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Delete first img">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteImage1:" destination="tt9-3T-JeS" eventType="touchUpInside" id="RtF-Gn-vKj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-rb-zVh">
+                                <rect key="frame" x="131" y="355" width="130" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Delete second img">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteImage2:" destination="tt9-3T-JeS" eventType="touchUpInside" id="bSK-Zv-lL3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-3e-byL">
+                                <rect key="frame" x="262" y="355" width="115" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Delete third img">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteImage3:" destination="tt9-3T-JeS" eventType="touchUpInside" id="2om-1k-ITK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w2-mb-eMm">
+                                <rect key="frame" x="124" y="314" width="137" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Fotoğraf Ekle"/>
+                                <connections>
+                                    <action selector="addPhoto:" destination="oho-TF-UpC" eventType="touchUpInside" id="b5B-9f-Mkg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqJ-nG-5Ni">
+                                <rect key="frame" x="158" y="735" width="77" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Kaydet"/>
+                                <connections>
+                                    <action selector="addProduct:" destination="oho-TF-UpC" eventType="touchUpInside" id="orY-WX-9tq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Rsg-WN-baJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lmt-sE-JCe">
+                        <barButtonItem key="rightBarButtonItem" title="Delete Product" id="bVf-Fo-Q82">
+                            <color key="tintColor" red="0.61960786580000005" green="0.1215686351" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deleteImageButton1" destination="e65-mo-E6q" id="VeG-7e-q6T"/>
+                        <outlet property="deleteImageButton2" destination="ca0-rb-zVh" id="yq1-q2-fOw"/>
+                        <outlet property="deleteImageButton3" destination="Tt8-3e-byL" id="yiL-Q1-rTZ"/>
+                        <outlet property="productCategoryTextField" destination="wgk-JP-vHJ" id="EhP-fN-6qH"/>
+                        <outlet property="productDetailTextView" destination="SkG-8p-FoF" id="g0O-nz-55l"/>
+                        <outlet property="productNameTextField" destination="cP9-JC-5t8" id="Sj8-4M-eEg"/>
+                        <outlet property="productPriceTextField" destination="ba5-D7-Opf" id="rLh-Se-aAy"/>
+                        <outlet property="scrollView" destination="8Pc-bH-3d7" id="kxm-ml-mZ0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgM-UV-lh1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5433" y="1625"/>
+            <point key="canvasLocation" x="5432.8244274809158" y="1624.6478873239437"/>
         </scene>
         <!--Users View Controller-->
         <scene sceneID="FHA-5J-YwS">
@@ -1178,7 +1279,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="CNu-mQ-oU8">
-                                <rect key="frame" x="-3" y="-9" width="386" height="784"/>
+                                <rect key="frame" x="-4" y="-9" width="386" height="784"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDa-KK-MHd">
