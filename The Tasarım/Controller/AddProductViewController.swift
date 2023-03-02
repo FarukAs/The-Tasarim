@@ -179,6 +179,12 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                             }
                         }
                     }
+                    let alertController = UIAlertController(title: "Buton Eklendi.", message: nil, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                           self.navigationController?.popViewController(animated: true)
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
             

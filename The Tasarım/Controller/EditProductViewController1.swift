@@ -1,10 +1,17 @@
-
 import UIKit
+import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseDatabase
+import FirebaseStorage
 
-class EditProductViewController1: UIViewController {
-
-    var selectedItem = 1000
+class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollViewDelegate {
     
+    
+    
+    
+    @IBOutlet var pageLabel: UILabel!
+    @IBOutlet var pageControl: UIPageControl!
     var productName = ""
     var productPrice = ""
     var productCategory = ""
@@ -13,19 +20,24 @@ class EditProductViewController1: UIViewController {
     var image2 = UIImage(named: "logo")
     var image3 = UIImage(named: "logo")
     
-    @IBOutlet var deleteImageButton3: UIButton!
-    @IBOutlet var deleteImageButton2: UIButton!
-    @IBOutlet var deleteImageButton1: UIButton!
     @IBOutlet var productPriceTextField: UITextField!
     @IBOutlet var productDetailTextView: UITextView!
     @IBOutlet var productCategoryTextField: UITextField!
     @IBOutlet var productNameTextField: UITextField!
     
     @IBOutlet var scrollView: UIScrollView!
+    let documentID = collectionViewData[selectedItem].productName
+    let user = Auth.auth().currentUser?.email
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
     
+    var numberOfPage = 3 // toplam sayfa sayısı
+    var currentPage = 0
+    var photoCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        scrollView.delegate = self
         productNameTextField.text = collectionViewData[selectedItem].productName
         productPriceTextField.text = collectionViewData[selectedItem].productPrice
         productDetailTextView.text = collectionViewData[selectedItem].productDetail
@@ -35,7 +47,7 @@ class EditProductViewController1: UIViewController {
         image2 = collectionViewData[selectedItem].image2
         image3 = collectionViewData[selectedItem].image3
         
-        var photoCount = 0
+        
         
         if image1 != UIImage(named: "logo") {
             photoCount += 1
@@ -58,6 +70,7 @@ class EditProductViewController1: UIViewController {
         if let image1 = image1 {
             let newImageView1 = UIImageView(image: image1)
             newImageView1.frame = CGRect(x: xCoordinate, y: 0, width: imageViewWidth, height: imageViewHeight)
+            newImageView1.contentMode = .scaleAspectFit
             scrollView.addSubview(newImageView1)
             xCoordinate += imageViewWidth
         }
@@ -65,6 +78,7 @@ class EditProductViewController1: UIViewController {
         if let image2 = image2 {
             let newImageView2 = UIImageView(image: image2)
             newImageView2.frame = CGRect(x: xCoordinate, y: 0, width: imageViewWidth, height: imageViewHeight)
+            newImageView2.contentMode = .scaleAspectFit
             scrollView.addSubview(newImageView2)
             xCoordinate += imageViewWidth
         }
@@ -72,14 +86,314 @@ class EditProductViewController1: UIViewController {
         if let image3 = image3 {
             let newImageView3 = UIImageView(image: image3)
             newImageView3.frame = CGRect(x: xCoordinate, y: 0, width: imageViewWidth, height: imageViewHeight)
+            newImageView3.contentMode = .scaleAspectFit
             scrollView.addSubview(newImageView3)
         }
+        numberOfPage = photoCount
+        pageControl.numberOfPages = numberOfPage
+        pageControl.currentPage = currentPage
+        pageLabel.text = "\(currentPage + 1) / \(numberOfPage)"
+        print(photoCount)
+        
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = Int(round(scrollView.contentOffset.x / scrollView.frame.width))
+        currentPage = pageIndex
+        pageControl.currentPage = currentPage
+        pageLabel.text = "\(currentPage + 1) / \(numberOfPage)"
     }
     
-    @IBAction func deleteImage3(_ sender: UIButton) {
-    }
-    @IBAction func deleteImage2(_ sender: UIButton) {
+    @IBAction func deleteProduct(_ sender: UIBarButtonItem) {
+        // Delete from storage
+        let storageRef = self.storage.reference()
+        let imagesRef = storageRef.child(self.user!)
+        let images1Ref = imagesRef.child("Products")
+        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+        let images3Ref = images2Ref.child(self.documentID)
+        
+        images3Ref.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                // File deleted successfully
+                print("file deleted")
+            }
+        }
+        
+        // Delete from Database
+        db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     @IBAction func deleteImage1(_ sender: UIButton) {
+        if pageControl.currentPage == 0 {
+            image1 = UIImage(named: "logo")
+            let subviews = scrollView.subviews.filter { $0 is UIImageView }
+            if let imageView1 = subviews.first {
+                
+                
+                if photoCount == 3 {
+                    // Scroll View sıralaması ayarlama
+                    let imageView2  = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst().first as? UIImageView
+                    imageView2!.frame = CGRect(x: (imageView2?.frame.maxX)! - (imageView2?.frame.width)! - (imageView2?.frame.width)! , y: 0, width: (imageView2?.frame.width)!, height: (imageView2?.frame.height)!)
+                    let imageView3 = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst(2).first as? UIImageView
+                    imageView3?.frame = CGRect(x: (imageView3?.frame.minX)! - (imageView3?.frame.width)! , y: 0, width: (imageView3?.frame.width)!, height: (imageView3?.frame.height)!)
+                    imageView1.removeFromSuperview()
+                    scrollView.contentSize = CGSize(width: scrollView.contentSize.width - imageView1.frame.width , height: scrollView.contentSize.height)
+                    numberOfPage = 2
+                    pageControl.numberOfPages = 2
+                    //Eski fotoğrafları silme
+                    let storageRef = self.storage.reference()
+                    let imagesRef = storageRef.child(self.user!)
+                    let images1Ref = imagesRef.child("Products")
+                    let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                    let images3Ref = images2Ref.child(self.documentID)
+                    let images4Ref = images3Ref.child("image2")
+                    let images5Ref = images3Ref.child("image3")
+                    let images6Ref = images3Ref.child("image1")
+                    // Delete the file
+                    images6Ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                            print("file deleted")
+                        }
+                    }
+                    images5Ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                            print("file deleted")
+                        }
+                    }
+                    images4Ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                            print("file deleted")
+                        }
+                    }
+                    
+                    
+                    // Yeni fotoğrafları yükleme
+                    // İlk fotoğraf
+                    if let imageone = self.image2 {
+                        let storageRef = self.storage.reference()
+                        let imagesRef = storageRef.child(self.user!)
+                        let images1Ref = imagesRef.child("Products")
+                        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                        let images3Ref = images2Ref.child(self.documentID)
+                        let images4Ref = images3Ref.child("image1")
+                        
+                        guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
+                            return
+                        }
+                        // Fotoğrafı yükleyin
+                        _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                            guard let _ = metadata else {
+                                print("metadata error \(String(describing: error))")
+                                return
+                            }
+                        }
+                    }
+                    // İkinci fotoğraf
+                    if let imagethree = self.image3 {
+                        let storageRef = self.storage.reference()
+                        let imagesRef = storageRef.child(self.user!)
+                        let images1Ref = imagesRef.child("Products")
+                        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                        let images3Ref = images2Ref.child(self.documentID)
+                        let images4Ref = images3Ref.child("image2")
+                        
+                        guard let imageData = imagethree.jpegData(compressionQuality: 0.8) else {
+                            return
+                        }
+                        // Fotoğrafı yükleyin
+                        _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                            guard let _ = metadata else {
+                                print("metadata error \(String(describing: error))")
+                                return
+                            }
+                        }
+                    }
+                    pageControl.numberOfPages = photoCount - 1
+                    pageLabel.text = "\(currentPage + 1) / \(photoCount - 1)"
+                    
+                }
+                if photoCount == 2 {
+                    // Scroll View sıralaması ayarlama
+                    let imageView2  = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst().first as? UIImageView
+                    imageView2!.frame = CGRect(x: (imageView2?.frame.maxX)! - (imageView2?.frame.width)! - (imageView2?.frame.width)! , y: 0, width: (imageView2?.frame.width)!, height: (imageView2?.frame.height)!)
+                    let imageView3 = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst(2).first as? UIImageView
+                    imageView3?.frame = CGRect(x: (imageView3?.frame.minX)! - (imageView3?.frame.width)! , y: 0, width: (imageView3?.frame.width)!, height: (imageView3?.frame.height)!)
+                    imageView1.removeFromSuperview()
+                    scrollView.contentSize = CGSize(width: scrollView.contentSize.width - imageView1.frame.width , height: scrollView.contentSize.height)
+                    numberOfPage = 2
+                    pageControl.numberOfPages = 2
+                    //Eski fotoğrafları silme
+                    let storageRef = self.storage.reference()
+                    let imagesRef = storageRef.child(self.user!)
+                    let images1Ref = imagesRef.child("Products")
+                    let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                    let images3Ref = images2Ref.child(self.documentID)
+                    let images4Ref = images3Ref.child("image2")
+                    let images6Ref = images3Ref.child("image1")
+                    // Delete the file
+                    images6Ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                            print("file deleted")
+                        }
+                    }
+                    images4Ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                            print("file deleted")
+                        }
+                    }
+                    // Yeni fotoğrafları yükleme
+                    if let imageone = self.image2 {
+                        let storageRef = self.storage.reference()
+                        let imagesRef = storageRef.child(self.user!)
+                        let images1Ref = imagesRef.child("Products")
+                        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                        let images3Ref = images2Ref.child(self.documentID)
+                        let images4Ref = images3Ref.child("image1")
+                        
+                        guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
+                            return
+                        }
+                        // Fotoğrafı yükleyin
+                        _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                            guard let _ = metadata else {
+                                print("metadata error \(String(describing: error))")
+                                return
+                            }
+                        }
+                    }
+                    pageControl.numberOfPages = photoCount - 1
+                    pageLabel.text = "\(currentPage + 1) / \(photoCount - 1)"
+                }
+                if photoCount == 1 {
+                    let alert = UIAlertController(title: "Emin misin?", message: "Ürünü tek fotoğrafını silmek üzeresin, Ürün uygulamadan silinecek.", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+                    let okAction = UIAlertAction(title: "Onayla", style: .default) { _ in
+                        // Scroll View sıralaması ayarlama
+                        let imageView2  = self.scrollView.subviews.filter({ $0 is UIImageView }).dropFirst().first as? UIImageView
+                        imageView2!.frame = CGRect(x: (imageView2?.frame.maxX)! - (imageView2?.frame.width)! - (imageView2?.frame.width)! , y: 0, width: (imageView2?.frame.width)!, height: (imageView2?.frame.height)!)
+                        let imageView3 = self.scrollView.subviews.filter({ $0 is UIImageView }).dropFirst(2).first as? UIImageView
+                        imageView3?.frame = CGRect(x: (imageView3?.frame.minX)! - (imageView3?.frame.width)! , y: 0, width: (imageView3?.frame.width)!, height: (imageView3?.frame.height)!)
+                        imageView1.removeFromSuperview()
+                        self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width - imageView1.frame.width , height: self.scrollView.contentSize.height)
+                        self.numberOfPage = 2
+                        self.pageControl.numberOfPages = 2
+                        //Eski fotoğrafları storageden silme
+                        let storageRef = self.storage.reference()
+                        let imagesRef = storageRef.child(self.user!)
+                        let images1Ref = imagesRef.child("Products")
+                        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+                        let images3Ref = images2Ref.child(self.documentID)
+                        let images6Ref = images3Ref.child("image1")
+                        // Delete the file
+                        images6Ref.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // File deleted successfully
+                                print("file deleted")
+                            }
+                        }
+                        // Delete from Database
+                        self.db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                print("Document successfully removed!")
+                            }
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    photoCount += 1
+                    alert.addAction(cancelAction)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                photoCount -= 1
+            }
+        }
+        if pageControl.currentPage == 1 {
+            image2 = UIImage(named: "logo")
+            if let imageView2  = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst().first as? UIImageView {
+                let imageView3 = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst(2).first as? UIImageView
+                imageView3!.frame = CGRect(x: (imageView3?.frame.minX)! - (imageView3?.frame.width)! , y: 0, width: (imageView3?.frame.width)!, height: (imageView3?.frame.height)!)
+                imageView2.removeFromSuperview()
+                scrollView.contentSize = CGSize(width: scrollView.contentSize.width - imageView3!.frame.width , height: scrollView.contentSize.height)
+                pageControl.numberOfPages = 2
+                numberOfPage = 2
+            }
+            photoCount -= 1
+        }
+        if pageControl.currentPage == 2 {
+            image3 = UIImage(named: "logo")
+            if let imageView3 = scrollView.subviews.filter({ $0 is UIImageView }).dropFirst(2).first as? UIImageView {
+                imageView3.removeFromSuperview()
+                scrollView.contentSize = CGSize(width: scrollView.contentSize.width - imageView3.frame.width , height: scrollView.contentSize.height)
+                pageControl.numberOfPages = 2
+                numberOfPage = 2
+            }
+            photoCount -= 1
+        }
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    @IBAction func saveChanges(_ sender: UIButton) {
+        // Update the product information and images in the database
+        if let name = productNameTextField.text, let price = productPriceTextField.text, let detail = productDetailTextView.text, let category = productCategoryTextField.text {
+            // Update the product information
+            db.collection(user!).document("Products").collection(category).document(documentID).setData([
+                "name": name,
+                "price": price,
+                "detail": detail
+            ], merge: true) { error in
+                if let error = error {
+                    print("Error updating product information: \(error.localizedDescription)")
+                    
+                    // Display an error message if the update failed
+                    let alert = UIAlertController(title: "Error", message: "Failed to update product information.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    print("Product information updated successfully.")
+                }
+            }
+            // Display a success message and return to the previous view controller
+            let alert = UIAlertController(title: "Success", message: "Product information updated successfully.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
+    }
+    
+    
 }

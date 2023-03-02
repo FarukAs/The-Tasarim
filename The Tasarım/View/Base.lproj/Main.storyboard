@@ -618,7 +618,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pc-bH-3d7">
-                                <rect key="frame" x="60" y="103" width="272" height="203"/>
+                                <rect key="frame" x="60" y="103" width="272" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Mhs-LL-fEV"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="azo-3C-DI8"/>
@@ -649,39 +649,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e65-mo-E6q">
-                                <rect key="frame" x="16" y="355" width="111" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqJ-nG-5Ni">
+                                <rect key="frame" x="158" y="735" width="77" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Delete first img">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="filled" title="Kaydet"/>
                                 <connections>
-                                    <action selector="deleteImage1:" destination="tt9-3T-JeS" eventType="touchUpInside" id="RtF-Gn-vKj"/>
+                                    <action selector="addProduct:" destination="oho-TF-UpC" eventType="touchUpInside" id="orY-WX-9tq"/>
+                                    <action selector="saveChanges:" destination="tt9-3T-JeS" eventType="touchUpInside" id="xKz-Sb-M5i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-rb-zVh">
-                                <rect key="frame" x="131" y="355" width="130" height="29"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-ub-fIp">
+                                <rect key="frame" x="134" y="287" width="116" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Delete second img">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="deleteImage2:" destination="tt9-3T-JeS" eventType="touchUpInside" id="bSK-Zv-lL3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-3e-byL">
-                                <rect key="frame" x="262" y="355" width="115" height="29"/>
+                            </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjT-jH-EY4">
+                                <rect key="frame" x="148" y="290" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Delete third img">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="deleteImage3:" destination="tt9-3T-JeS" eventType="touchUpInside" id="2om-1k-ITK"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6w2-mb-eMm">
                                 <rect key="frame" x="124" y="314" width="137" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -691,13 +679,15 @@
                                     <action selector="addPhoto:" destination="oho-TF-UpC" eventType="touchUpInside" id="b5B-9f-Mkg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqJ-nG-5Ni">
-                                <rect key="frame" x="158" y="735" width="77" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e65-mo-E6q">
+                                <rect key="frame" x="147" y="355" width="99" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Kaydet"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Delete image">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="addProduct:" destination="oho-TF-UpC" eventType="touchUpInside" id="orY-WX-9tq"/>
+                                    <action selector="deleteImage1:" destination="tt9-3T-JeS" eventType="touchUpInside" id="IeN-0N-b2y"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -707,12 +697,14 @@
                     <navigationItem key="navigationItem" id="lmt-sE-JCe">
                         <barButtonItem key="rightBarButtonItem" title="Delete Product" id="bVf-Fo-Q82">
                             <color key="tintColor" red="0.61960786580000005" green="0.1215686351" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="deleteProduct:" destination="tt9-3T-JeS" id="Rjv-h2-GYf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="deleteImageButton1" destination="e65-mo-E6q" id="VeG-7e-q6T"/>
-                        <outlet property="deleteImageButton2" destination="ca0-rb-zVh" id="yq1-q2-fOw"/>
-                        <outlet property="deleteImageButton3" destination="Tt8-3e-byL" id="yiL-Q1-rTZ"/>
+                        <outlet property="pageControl" destination="jYr-ub-fIp" id="XUj-9s-s0d"/>
+                        <outlet property="pageLabel" destination="kjT-jH-EY4" id="muZ-Qa-ftz"/>
                         <outlet property="productCategoryTextField" destination="wgk-JP-vHJ" id="EhP-fN-6qH"/>
                         <outlet property="productDetailTextView" destination="SkG-8p-FoF" id="g0O-nz-55l"/>
                         <outlet property="productNameTextField" destination="cP9-JC-5t8" id="Sj8-4M-eEg"/>

@@ -36,8 +36,9 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView{
-            selectedProduct = indexPath.item
+            selectedItem = indexPath.item
             performSegue(withIdentifier: "ProductEditToEdit1", sender: nil)
+            
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
             categoryClicked()
@@ -57,12 +58,7 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
            return cell
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ProductEditToEdit1" {
-            let destinationVC = segue.destination as! EditProductViewController1
-            destinationVC.selectedItem = selectedProduct
-        }
-    }
+
     @IBAction func addButton(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Ne eklemek istersin", message: "Categori veya ürün seç", preferredStyle: UIAlertController.Style.alert)
         let category = UIAlertAction(title: "Kategori Ekle", style: UIAlertAction.Style.default) { [self]  UIAlertAction in

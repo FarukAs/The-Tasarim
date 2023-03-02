@@ -38,3 +38,5 @@ var productArray = [productBrain(productCategory: "", productName: "", productDe
 var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
 var productCategories = [""]
+
+var selectedItem = 1000
