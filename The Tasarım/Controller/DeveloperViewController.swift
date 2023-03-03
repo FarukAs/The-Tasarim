@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource {
-
+    
     @IBOutlet var tableView: UITableView!
     let storage = Storage.storage()
     let db = Firestore.firestore()
@@ -70,7 +70,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                         print("cc\(image.debugDescription)")
                     }
                 }
-                    
+                
             }
         }
     }
@@ -107,8 +107,8 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                     // burası bir ürün
                     
                     for prefix1 in result1!.prefixes {
-
-                
+                        
+                        
                         let productName = prefix1.name
                         
                         let product = productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
@@ -120,7 +120,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                                 product.productName = data!["name"] as! String
                                 product.productDetail = data!["detail"] as! String
                                 product.productPrice = data!["price"] as! String
-                               
+                                
                             } else {
                                 print("Document does not exist")
                             }
@@ -170,5 +170,5 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
             }
         }
     }
-
+    
 }

@@ -23,7 +23,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
     
     
     var gradientLayer: CAGradientLayer!
-       var currentGradient = 0
+    var currentGradient = 0
     var gradientColors: [[CGColor]] = [
         [UIColor(red: 0.973, green: 0.769, blue: 0.345, alpha: 1.0).cgColor, UIColor(red: 1.000, green: 0.498, blue: 0.314, alpha: 1.0).cgColor],
         [UIColor(red: 0.933, green: 0.137, blue: 0.161, alpha: 1.0).cgColor, UIColor(red: 0.667, green: 0.224, blue: 0.478, alpha: 1.0).cgColor],
@@ -41,36 +41,36 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         [UIColor(red: 0.933, green: 0.137, blue: 0.161, alpha: 1.0).cgColor, UIColor(red: 0.667, green: 0.224, blue: 0.478, alpha: 1.0).cgColor],
         [UIColor(red: 0.224, green: 0.722, blue: 0.906, alpha: 1.0).cgColor, UIColor(red: 0.086, green: 0.329, blue: 0.973, alpha: 1.0).cgColor],
         [UIColor(red: 0.906, green: 0.902, blue: 0.133, alpha: 1.0).cgColor, UIColor(red: 0.902, green: 0.557, blue: 0.098, alpha: 1.0).cgColor]
-        ]
-
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
-            profile.clipsToBounds = true
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
-            navigationItem.title = "Hesabım"
-            gradientLayer = CAGradientLayer()
-            gradientLayer.frame = topView.bounds
-            gradientLayer.colors = gradientColors[currentGradient]
-            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-            topView.layer.addSublayer(gradientLayer)
-            animateGradient()
-            coupon = []
-            getCouponData()
-            getNumberOfCoupons()
-            stackView.layer.zPosition = 1
-            button.layer.cornerRadius = 10
-            
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dev))
-            topView.addGestureRecognizer(tapGestureRecognizer)
+    ]
     
-            
-            let bellButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(bellButtonTapped))
-            navigationItem.rightBarButtonItem = bellButton
-            
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
+        profile.clipsToBounds = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        navigationItem.title = "Hesabım"
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = topView.bounds
+        gradientLayer.colors = gradientColors[currentGradient]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        topView.layer.addSublayer(gradientLayer)
+        animateGradient()
+        coupon = []
+        getCouponData()
+        getNumberOfCoupons()
+        stackView.layer.zPosition = 1
+        button.layer.cornerRadius = 10
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dev))
+        topView.addGestureRecognizer(tapGestureRecognizer)
+        
+        
+        let bellButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(bellButtonTapped))
+        navigationItem.rightBarButtonItem = bellButton
+        
         let docRef = db.collection(user!).document("userInfo")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -86,7 +86,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
                 self.profile.setAttributedTitle(attributedTitle, for: .normal)
                 self.userInfo.text = "\(user.name) \(user.surname)"
                 
- 
+                
             } else {
                 print("Document does not exist")
             }
@@ -172,6 +172,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             }
         }
     }
-
+    
 }
 

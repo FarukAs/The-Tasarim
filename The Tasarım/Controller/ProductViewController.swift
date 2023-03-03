@@ -6,19 +6,8 @@
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseAuth
-import FirebaseFirestore
 class ProductViewController: UIViewController {
-
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-   
 }

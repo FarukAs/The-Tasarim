@@ -54,7 +54,7 @@ class CouponViewController: UIViewController , UICollectionViewDelegate,UICollec
         numberOfCoupons.layer.shadowOffset = CGSize(width: 2, height: 2)
         numberOfCoupons.layer.shadowColor = UIColor.darkGray.cgColor
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfData
     }
@@ -66,7 +66,7 @@ class CouponViewController: UIViewController , UICollectionViewDelegate,UICollec
         cell.useCoupon.tag = indexPath.item
         useButtonLayout(useCoupon: cell.useCoupon)
         
-       
+        
         
         cell.category.text = coupon[indexPath.item].category
         cell.limit.text = coupon[indexPath.item].limit

@@ -17,7 +17,8 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     let user = Auth.auth().currentUser?.email
     let userID = Auth.auth().currentUser?.uid
     var cityArray = ""
-    @IBOutlet var picker: UIPickerView!
+    
+    @IBOutlet var cityText: UITextField!
     @IBOutlet var surname: UITextField!
     @IBOutlet var titleText: UITextField!
     @IBOutlet var name: UITextField!
@@ -25,19 +26,19 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     @IBOutlet var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPicker()
+        dissmissAndClosePickerView()
         textView.text = addresses[index].address
         titleText.text = addresses[index].title
         name.text = addresses[index].name
         surname.text = addresses[index].surname
         phoneNumber.text = addresses[index].phoneNumber
-        picker.delegate = self
-        picker.dataSource = self
+        cityText.text = addresses[index].city
         loadData()
         hideKeyboardWhenTappedAround()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
     @IBAction func saveButton(_ sender: UIButton) {
         let address = self.textView.text
         let words = address!.split(separator: " ")
@@ -50,8 +51,6 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                 print("Document removed")
             }
         }
-        
-        
         if address == self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
             db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").setData([
                 "address": address!,
@@ -71,7 +70,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                 }
             }
         }
-
+        
     }
     func loadData() {
         addresses = []
@@ -84,7 +83,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
                     let address = UserAddress(address: data["address"] as! String, city: data["city"] as! String, name: data["name"] as! String, surname: data["surname"] as! String, phoneNumber: data["phoneNumber"] as! String, title: data["title"] as! String)
                     addresses.append(address)
                     NotificationCenter.default.post(name: NSNotification.Name("ReloadCollectionView"), object: nil)
-                        
+                    
                 }
             }
         }
@@ -102,8 +101,39 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         cityArray = city[row]
+        cityText.text = cityArray
         print(cityArray)
     }
+    func dissmissAndClosePickerView(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let button = UIBarButtonItem(title: "Done", style: .plain,target: self,action: #selector(self.dissmissAction))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        self.cityText.inputAccessoryView = toolBar
+    }
+    @objc func dissmissAction(){
+        self.view.endEditing(true)
+    }
+    func setupPicker(){
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        cityText.inputView = pickerView
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -113,31 +143,31 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         view.endEditing(true)
     }
     @objc func keyboardWillShow(notification: NSNotification) {
-            if name.isFirstResponder {
-                return
-            }
+        if name.isFirstResponder {
+            return
+        }
         if surname.isFirstResponder {
             return
         }
         if phoneNumber.isFirstResponder {
             return
         }
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
             }
         }
-
-        @objc func keyboardWillHide(notification: NSNotification) {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
-
-        deinit {
-            NotificationCenter.default.removeObserver(self)
-        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 

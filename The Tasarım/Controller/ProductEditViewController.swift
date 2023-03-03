@@ -50,19 +50,19 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
             cell.imageView.image = collectionViewData[indexPath.item].image1
             cell.productName.text = collectionViewData[indexPath.item].productName
             cell.productPrice.text = "\(collectionViewData[indexPath.item].productPrice) TL"
-           return cell
+            return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditCategoryReusableCell", for: indexPath as IndexPath) as! EditCategoryCollectionViewCell
             cell.categoryTitle.text = categoryArray[indexPath.item].categoryName
             cell.imageView.image = categoryArray[indexPath.item].categoryImage
-           return cell
+            return cell
         }
     }
-
+    
     @IBAction func addButton(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Ne eklemek istersin", message: "Categori veya ürün seç", preferredStyle: UIAlertController.Style.alert)
         let category = UIAlertAction(title: "Kategori Ekle", style: UIAlertAction.Style.default) { [self]  UIAlertAction in
-           performSegue(withIdentifier: "productEditToAddCategory", sender: nil)
+            performSegue(withIdentifier: "productEditToAddCategory", sender: nil)
         }
         let product = UIAlertAction(title: "Ürün Ekle", style: UIAlertAction.Style.default) { [self]  UIAlertAction in
             performSegue(withIdentifier: "productEditToAddProduct", sender: nil)

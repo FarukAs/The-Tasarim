@@ -8,7 +8,7 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
+    
     
     
     
@@ -119,7 +119,7 @@ class GameViewController: UIViewController {
             timer.invalidate()
             btimer.invalidate()
             bhideTimer.invalidate()
-           
+            
             score = 0
             scoreLabel.text = "Score: \(score)"
             
@@ -140,7 +140,7 @@ class GameViewController: UIViewController {
             hideTimer.invalidate()
             btimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
             bhideTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(bhideKeny), userInfo: nil, repeats: true)
-
+            
             
             
             score = 0
@@ -157,9 +157,9 @@ class GameViewController: UIViewController {
                 highScoreLabel.text = "Highscore: \(self.highScore)"
                 UserDefaults.standard.set(self.highScore, forKey: "highScore1")
             }
-    }
-
-
+        }
+        
+        
     }
     @objc func bhideKeny(){
         for keny in pArray {
@@ -258,12 +258,12 @@ class GameViewController: UIViewController {
             alert.addAction(okButton)
             alert.addAction(replayButton)
             self.present(alert, animated: true, completion: nil)
-    }
+        }
         
-   
-    
-    
-    
-    
+        
+        
+        
+        
+        
     }
 }

@@ -1238,7 +1238,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ülke" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VgV-j3-ZjT">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Şehir" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VgV-j3-ZjT">
                                 <rect key="frame" x="16" y="354" width="356" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1249,7 +1249,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="country" destination="VgV-j3-ZjT" id="5tP-yj-TFk"/>
+                        <outlet property="cityText" destination="VgV-j3-ZjT" id="iLY-eQ-FMs"/>
                         <outlet property="name" destination="k8C-tw-tcS" id="MS4-9q-jE2"/>
                         <outlet property="phoneNumber" destination="V5n-SS-t0h" id="X35-rJ-HPj"/>
                         <outlet property="surname" destination="ibQ-4z-nBL" id="nso-X1-Ze6"/>
@@ -1363,7 +1363,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ülke" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="htl-SY-vc3">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Şehir" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="htl-SY-vc3">
                                         <rect key="frame" x="8" y="342" width="356" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1378,6 +1378,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="cityText" destination="htl-SY-vc3" id="vWy-GI-C7I"/>
                         <outlet property="name" destination="bDa-KK-MHd" id="9oR-HI-xXE"/>
                         <outlet property="phoneNumber" destination="oNe-fz-fLJ" id="8Tx-vI-7jp"/>
                         <outlet property="surname" destination="beJ-yI-sul" id="qZT-aq-pne"/>

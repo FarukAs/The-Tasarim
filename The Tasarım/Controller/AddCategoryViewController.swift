@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 class AddCategoryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate ,UITextFieldDelegate {
-
+    
     @IBOutlet var categoryTextField: UITextField!
     
     let storage = Storage.storage()
@@ -41,15 +41,15 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func addCategory(_ sender: UIButton) {
         
         if let category = self.categoryTextField.text {
             db.collection(self.user!).document("Products").collection(category).document("category").setData([
                 "üğpoıujklşömnb": "üğpoıujklşömnb"
             ])
-             { (error) in
+            { (error) in
                 if let error = error {
                     print("Error adding document: \(error)")
                 } else {
@@ -64,8 +64,8 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
                         let images3Ref = images2Ref.child("categoryImage")
                         
                         guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
-                    return
-                    }
+                            return
+                        }
                         // Fotoğrafı yükleyin
                         let uploadTask = images3Ref.putData(imageData, metadata: nil) { (metadata, error) in
                             guard let _ = metadata else {

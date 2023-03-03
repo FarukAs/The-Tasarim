@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FirebaseDatabase
 class AddressViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
     
- 
+    
     @IBOutlet var currentAddressView: UIView!
     @IBOutlet var currentAddressTitle: UILabel!
     @IBOutlet var currentAddress: UILabel!
@@ -83,7 +83,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
             }
         }
     }
-  
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return addresses.count
     }
@@ -104,10 +104,10 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
     }
     @objc func reloadData() {
         collectionView.reloadData()
-      }
+    }
     deinit {
         NotificationCenter.default.removeObserver(self)
-      }
+    }
     
     // Adres silme
     
@@ -155,14 +155,14 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
         selectedIndex = index
         editAddress = addresses[index].address
         self.performSegue(withIdentifier: "addressToEdit", sender: nil)
-
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "addressToEdit" {
-                let destinationVC = segue.destination as! EditViewController
-                destinationVC.index = self.selectedIndex
-                destinationVC.newAddress = editAddress
-            }
+        if segue.identifier == "addressToEdit" {
+            let destinationVC = segue.destination as! EditViewController
+            destinationVC.index = self.selectedIndex
+            destinationVC.newAddress = editAddress
+        }
     }
     func currentAddressViewLayout(){
         currentAddressView.layer.borderWidth = 1.0
@@ -174,7 +174,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
         currentAddressView.layer.shadowColor = UIColor.darkGray.cgColor
     }
     
-   // Uygulama açıldığında mevcut adres kısmının databaseden veri çekilerek doldurulması
+    // Uygulama açıldığında mevcut adres kısmının databaseden veri çekilerek doldurulması
     func loadCurrentAddress(){
         let docRef = db.collection(user!).document("TD_current_Address")
         docRef.getDocument { (document, error) in
@@ -189,5 +189,5 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
             }
         }
     }
- 
+    
 }

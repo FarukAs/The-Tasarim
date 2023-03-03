@@ -24,7 +24,4 @@ class UsersViewController: UIViewController {
             }
         }
     }
-    
-    
-
 }

@@ -44,7 +44,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
                 } else {
                     User = []
                     let user1 = UserInfo(name: name, surname: surname, phoneNumber: phoneNumber, email: email)
-
+                    
                     self.db.collection(email).document("userInfo").setData(user1.toDictionary()) { (error) in
                         if let error = error {
                             print("Error adding user: \(error)")

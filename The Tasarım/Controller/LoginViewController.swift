@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet var signUpButtonOutlet: UIButton!
     @IBOutlet var signInButtonOutlet: UIButton!
     @IBOutlet var emailTextField: UITextField!

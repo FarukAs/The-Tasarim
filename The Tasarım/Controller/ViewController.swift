@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
-
+    
     @IBOutlet var categoryCollectionView: UICollectionView!
     
     @IBOutlet var collectionView: UICollectionView!
@@ -72,10 +72,10 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryReusableCell", for: indexPath as IndexPath) as! CategoryCollectionViewCell
-           
+            
             return cell
         }
-            
+        
         
         
     }

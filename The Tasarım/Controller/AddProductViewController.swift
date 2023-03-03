@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 class AddProductViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate,UITextFieldDelegate , UIPickerViewDelegate ,UIPickerViewDataSource {
-
+    
     @IBOutlet var priceTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var detailTextView: UITextView!
@@ -50,7 +50,8 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let photoCount = scrollView.subviews.filter { $0 is UIImageView }.count
         if photoCount == 0 {
-            if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if var userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+       
                 let newImageView = UIImageView(image: userPickedImage)
                 image1 = userPickedImage
                 print(photoCount)
@@ -103,9 +104,9 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
-        }
- 
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func addProduct(_ sender: UIButton) {
         
         if  let name = nameTextField.text , let detail = detailTextView.text , let price = priceTextField.text {
@@ -131,8 +132,8 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images4Ref = images3Ref.child("image1")
                         
                         guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
-                    return
-                    }
+                            return
+                        }
                         // Fotoğrafı yükleyin
                         images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
                             guard let _ = metadata else {
@@ -148,10 +149,10 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images2Ref = images1Ref.child(self.selectedCategory)
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image2")
-
+                        
                         guard let imageData = imagetwo.jpegData(compressionQuality: 0.8) else {
-                    return
-                    }
+                            return
+                        }
                         // Fotoğrafı yükleyin
                         _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
                             guard let _ = metadata else {
@@ -167,10 +168,10 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images2Ref = images1Ref.child(self.selectedCategory)
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image3")
-
+                        
                         guard let imageData = imagethree.jpegData(compressionQuality: 0.8) else {
-                    return
-                    }
+                            return
+                        }
                         // Fotoğrafı yükleyin
                         _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
                             guard let _ = metadata else {
@@ -179,9 +180,9 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                             }
                         }
                     }
-                    let alertController = UIAlertController(title: "Buton Eklendi.", message: nil, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Ürün Eklendi.", message: nil, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                           self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
@@ -232,7 +233,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return productCategories.count
     }
@@ -245,7 +246,22 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         selectedCategory = selectedCat
         print(selectedCategory)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func compressImage(image: UIImage, compressionQuality: CGFloat) -> Data? {
+        guard let data = image.jpegData(compressionQuality: compressionQuality) else { return nil }
+        return data
+    }
+
 }
 
-    
+
 

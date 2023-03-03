@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate {
-
+    
     @IBOutlet var successLabel: UILabel!
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var textView: UITextView!
@@ -61,13 +61,13 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
         imagePicker.dismiss(animated: true)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
+    }
     func textViewDidBeginEditing(_ textView: UITextView) {
-            if textView.text == "Düşünceleriniz" {
-                textView.text = ""
-            }
+        if textView.text == "Düşünceleriniz" {
+            textView.text = ""
         }
+    }
     @IBAction func sendFeedBack(_ sender: UIButton) {
         let timestamp = String(Int(Date().timeIntervalSince1970))
         self.db.collection("Feedbacks").document(userEmail!).collection(timestamp).document("Feedback").setData([timestamp: textView.text!]) { (error) in
@@ -81,10 +81,10 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                     let imagesRef = storageRef.child("Feedbacks")
                     let images1Ref = imagesRef.child(self.userEmail!)
                     let images2Ref = images1Ref.child(timestamp)
-
+                    
                     guard let imageData = newImage.jpegData(compressionQuality: 0.8) else {
-                return
-                }
+                        return
+                    }
                     // Fotoğrafı yükleyin
                     images2Ref.putData(imageData, metadata: nil) { (metadata, error) in
                         guard let _ = metadata else {
@@ -102,19 +102,14 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.textView.text = ""
                 self.successLabel.isHidden = true
                 self.sendButton.backgroundColor = .green
-                    
-                    // 1 saniye sonra eski rengine dön
-                    UIView.animate(withDuration: 6) {
-                        self.sendButton.backgroundColor = .lightGray
-                    }
+                
+                // 1 saniye sonra eski rengine dön
+                UIView.animate(withDuration: 6) {
+                    self.sendButton.backgroundColor = .lightGray
+                }
                 
             }
-        }
-       
-        
-        
-        
-        
+        } 
     }
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
