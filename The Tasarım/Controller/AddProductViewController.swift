@@ -60,6 +60,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                 let xCoordinate = CGFloat(photoCount) * imageViewWidth
                 let yCoordinate: CGFloat = 0.0
                 newImageView.frame = CGRect(x: xCoordinate, y: yCoordinate, width: imageViewWidth, height: imageViewHeight)
+                newImageView.contentMode = .scaleAspectFit
                 scrollView.addSubview(newImageView)
                 print(photoCount)
                 let contentWidth = imageViewWidth * CGFloat(photoCount + 1)
@@ -77,6 +78,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                 let xCoordinate = CGFloat(photoCount) * imageViewWidth
                 let yCoordinate: CGFloat = 0.0
                 newImageView.frame = CGRect(x: xCoordinate, y: yCoordinate, width: imageViewWidth, height: imageViewHeight)
+                newImageView.contentMode = .scaleAspectFit
                 scrollView.addSubview(newImageView)
                 print(photoCount)
                 let contentWidth = imageViewWidth * CGFloat(photoCount + 1)
@@ -94,6 +96,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                 let xCoordinate = CGFloat(photoCount) * imageViewWidth
                 let yCoordinate: CGFloat = 0.0
                 newImageView.frame = CGRect(x: xCoordinate, y: yCoordinate, width: imageViewWidth, height: imageViewHeight)
+                newImageView.contentMode = .scaleAspectFit
                 scrollView.addSubview(newImageView)
                 print(photoCount)
                 let contentWidth = imageViewWidth * CGFloat(photoCount + 1)
