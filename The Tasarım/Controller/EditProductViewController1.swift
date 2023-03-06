@@ -119,8 +119,10 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         let images1Ref = imagesRef.child("Products")
         let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
         let images3Ref = images2Ref.child(self.documentID)
-        
-        images3Ref.delete { error in
+        let images4Ref = images3Ref.child("image1")
+        let images5Ref = images3Ref.child("image2")
+        let images6Ref = images3Ref.child("image3")
+        images4Ref.delete { error in
             if let error = error {
                 print(error)
             } else {
@@ -128,7 +130,22 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 print("file deleted")
             }
         }
-        
+        images5Ref.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                // File deleted successfully
+                print("file deleted")
+            }
+        }
+        images6Ref.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                // File deleted successfully
+                print("file deleted")
+            }
+        }
         // Delete from Database
         db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
             if let err = err {
@@ -314,11 +331,12 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                         let imagesRef = storageRef.child(self.user!)
                         let images1Ref = imagesRef.child("Products")
                         let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
-                        print("ccc\(collectionViewData[selectedItem].productCategory)")
-                        let images3Ref = images2Ref.child("\(self.documentID)/")
-                        print(self.documentID)
-                        //Delete the folder
-                        images3Ref.delete { error in
+                        let images3Ref = images2Ref.child(self.documentID)
+                        let images4Ref = images3Ref.child("image1")
+                        let images5Ref = images3Ref.child("image2")
+                        let images6Ref = images3Ref.child("image3")
+                        
+                        images4Ref.delete { error in
                             if let error = error {
                                 print(error)
                             } else {
@@ -326,7 +344,22 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                                 print("file deleted")
                             }
                         }
-                        let images4Ref = images3Ref.child("image1")
+                        images5Ref.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // File deleted successfully
+                                print("file deleted")
+                            }
+                        }
+                        images6Ref.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // File deleted successfully
+                                print("file deleted")
+                            }
+                        }
                         // Delete from Database
                         self.db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
                             if let err = err {

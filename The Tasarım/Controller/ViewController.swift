@@ -28,9 +28,10 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
+        
         productCategories = []
         addProductCategories()
-        
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -90,21 +91,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         print("Like Button pressed")
     }
     func addProductCategories(){
-        //
-        let storageRef = storage.reference()
-        let imagesRef = storageRef.child(user!)
-        let images1Ref = imagesRef.child("Category")
-        productCategories.append("")
-        images1Ref.listAll { (result, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            for prefix in result!.prefixes {
-                let categoryName = prefix.name
-                productCategories.append(categoryName)
+        db.collection("Category").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    productCategories.append(document.documentID)
+                }
             }
         }
-        
     }
 }

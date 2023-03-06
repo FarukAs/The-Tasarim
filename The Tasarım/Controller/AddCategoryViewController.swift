@@ -46,36 +46,35 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func addCategory(_ sender: UIButton) {
         
         if let category = self.categoryTextField.text {
-            db.collection(self.user!).document("Products").collection(category).document("category").setData([
-                "üğpoıujklşömnb": "üğpoıujklşömnb"
-            ])
-            { (error) in
-                if let error = error {
-                    print("Error adding document: \(error)")
-                } else {
-                    print("Document added successfully")
-                    //Fotoğraf kaydetme
-                    
-                    if let imageone = self.image {
-                        let storageRef = self.storage.reference()
-                        let imagesRef = storageRef.child(self.user!)
-                        let images1Ref = imagesRef.child("Category")
-                        let images2Ref = images1Ref.child(category)
-                        let images3Ref = images2Ref.child("categoryImage")
-                        
-                        guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
-                            return
-                        }
-                        // Fotoğrafı yükleyin
-                        let uploadTask = images3Ref.putData(imageData, metadata: nil) { (metadata, error) in
-                            guard let _ = metadata else {
-                                print("metadata error \(error)")
-                                return
-                            }
-                        }
+            let newRef = db.collection("Category").document(category)
+            
+            newRef.setData(["9999" : "9999"])
+            //Fotoğraf kaydetme
+            
+            if let imageone = self.image {
+                let storageRef = self.storage.reference()
+                let imagesRef = storageRef.child(self.user!)
+                let images1Ref = imagesRef.child("Category")
+                let images2Ref = images1Ref.child(category)
+                let images3Ref = images2Ref.child("categoryImage")
+                
+                guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
+                    return
+                }
+                // Fotoğrafı yükleyin
+                let uploadTask = images3Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                    guard let _ = metadata else {
+                        print("metadata error \(error)")
+                        return
                     }
                 }
             }
+            let alertController = UIAlertController(title: "Ürün Eklendi.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     func hideKeyboardWhenTappedAround() {

@@ -183,7 +183,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                             }
                         }
                     }
-                    let alertController = UIAlertController(title: "Ürün Eklendi.", message: nil, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Ürün Eklendi, Lütfen uygulamayı yeniden başlatın.", message: nil, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                         self.navigationController?.popViewController(animated: true)
                     }

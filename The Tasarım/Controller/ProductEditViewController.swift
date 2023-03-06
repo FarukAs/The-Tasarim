@@ -12,20 +12,20 @@ import FirebaseFirestore
 import FirebaseStorage
 class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource{
     
-    var selectedCategory = categoryArray[0].categoryName
+    
     @IBOutlet var categoryCollectionView: UICollectionView!
     @IBOutlet var collectionView: UICollectionView!
     let storage = Storage.storage()
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
     var selectedProduct = 0
+    var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        categoryClicked()
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView{

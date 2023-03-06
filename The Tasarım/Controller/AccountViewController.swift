@@ -59,8 +59,10 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         topView.layer.addSublayer(gradientLayer)
         animateGradient()
         coupon = []
+        products = []
         getCouponData()
         getNumberOfCoupons()
+        getProductNames()
         stackView.layer.zPosition = 1
         button.layer.cornerRadius = 10
         
@@ -169,6 +171,21 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
                 numberOfData = safeData
             } else {
                 print("Document does not exist")
+            }
+        }
+    }
+    func getProductNames(){
+        for index in 0..<productCategories.count {
+            let ref = self.db.collection(self.user!).document("Products").collection(productCategories[index])
+            ref.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print(error)
+                }else {
+                    for document in querySnapshot!.documents {
+                        products.append("\(document.documentID)")
+                        print(products)
+                    }
+                }
             }
         }
     }
