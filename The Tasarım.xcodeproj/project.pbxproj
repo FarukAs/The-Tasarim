@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */; };
 		9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */; };
+		9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */; };
 		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
 		9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */; };
 		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
@@ -39,6 +40,7 @@
 		9D4B8AD4299B944E0020F602 /* ProductEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */; };
 		9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */; };
 		9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */; };
+		9D54E84E29B729B200DD8839 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9D54E84D29B729B200DD8839 /* MBProgressHUD */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
@@ -53,6 +55,7 @@
 /* Begin PBXFileReference section */
 		9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBacksViewController.swift; sourceTree = "<group>"; };
 		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController1.swift; sourceTree = "<group>"; };
 		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 			files = (
 				9D41E7592981A4BA001D24F7 /* FirebaseMessaging in Frameworks */,
 				9D41E7552981A4BA001D24F7 /* FirebaseDatabaseSwift in Frameworks */,
+				9D54E84E29B729B200DD8839 /* MBProgressHUD in Frameworks */,
 				9D41E7532981A4BA001D24F7 /* FirebaseDatabase in Frameworks */,
 				9D41E74F2981A4BA001D24F7 /* FirebaseAnalytics in Frameworks */,
 				9D41E75B2981A4BA001D24F7 /* FirebaseStorage in Frameworks */,
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
+				9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				9D41E7562981A4BA001D24F7 /* FirebaseFirestore */,
 				9D41E7582981A4BA001D24F7 /* FirebaseMessaging */,
 				9D41E75A2981A4BA001D24F7 /* FirebaseStorage */,
+				9D54E84D29B729B200DD8839 /* MBProgressHUD */,
 			);
 			productName = "The Tasarım";
 			productReference = 9D41E7332981A3C3001D24F7 /* The Tasarım.app */;
@@ -276,6 +282,7 @@
 			mainGroup = 9D41E72A2981A3C3001D24F7;
 			packageReferences = (
 				9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9D54E84C29B729B200DD8839 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 			);
 			productRefGroup = 9D41E7342981A3C3001D24F7 /* Products */;
 			projectDirPath = "";
@@ -335,6 +342,7 @@
 				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
+				9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +574,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		9D54E84C29B729B200DD8839 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -603,6 +619,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		9D54E84D29B729B200DD8839 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D54E84C29B729B200DD8839 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 

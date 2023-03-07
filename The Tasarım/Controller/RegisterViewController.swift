@@ -54,7 +54,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
                         }
                     }
                     self.db.collection(email).document("NumberOfCoupons").setData(["number" : 0])
-                    
+                    self.db.collection("users").document(email).setData(["name" : name,"surname":surname,"phoneNumber": phoneNumber,"email":email,"address": "","addressTitle": "","city": "" ])
                 }
             }
         }
@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= keyboardSize.height / 2
             }
         }
     }

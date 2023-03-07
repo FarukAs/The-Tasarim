@@ -113,48 +113,56 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     }
     
     @IBAction func deleteProduct(_ sender: UIBarButtonItem) {
-        // Delete from storage
-        let storageRef = self.storage.reference()
-        let imagesRef = storageRef.child(self.user!)
-        let images1Ref = imagesRef.child("Products")
-        let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
-        let images3Ref = images2Ref.child(self.documentID)
-        let images4Ref = images3Ref.child("image1")
-        let images5Ref = images3Ref.child("image2")
-        let images6Ref = images3Ref.child("image3")
-        images4Ref.delete { error in
-            if let error = error {
-                print(error)
-            } else {
-                // File deleted successfully
-                print("file deleted")
+        let alert = UIAlertController(title: "Emin misin?", message: "Ürün Silinecek", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+        let okAction = UIAlertAction(title: "Onayla", style: .default) { _ in
+            // Delete from storage
+            let storageRef = self.storage.reference()
+            let imagesRef = storageRef.child(self.user!)
+            let images1Ref = imagesRef.child("Products")
+            let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
+            let images3Ref = images2Ref.child(self.documentID)
+            let images4Ref = images3Ref.child("image1")
+            let images5Ref = images3Ref.child("image2")
+            let images6Ref = images3Ref.child("image3")
+            images4Ref.delete { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    // File deleted successfully
+                    print("file deleted")
+                }
+            }
+            images5Ref.delete { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    // File deleted successfully
+                    print("file deleted")
+                }
+            }
+            images6Ref.delete { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    // File deleted successfully
+                    print("file deleted")
+                }
+            }
+            // Delete from Database
+            self.db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
-        images5Ref.delete { error in
-            if let error = error {
-                print(error)
-            } else {
-                // File deleted successfully
-                print("file deleted")
-            }
-        }
-        images6Ref.delete { error in
-            if let error = error {
-                print(error)
-            } else {
-                // File deleted successfully
-                print("file deleted")
-            }
-        }
-        // Delete from Database
-        db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func deleteImage1(_ sender: UIButton) {
         if pageControl.currentPage == 0 {

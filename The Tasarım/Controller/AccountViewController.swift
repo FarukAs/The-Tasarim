@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import MBProgressHUD
 class AccountViewController: UIViewController, UITableViewDelegate , UITableViewDataSource {
     
     @IBOutlet var devView: UIView!
@@ -45,6 +46,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoader()
         profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
         profile.clipsToBounds = true
         tableView.delegate = self
@@ -85,15 +87,14 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
                 let secondLetter = String(user.surname.prefix(1))
                 let currentAttributes = self.profile.titleLabel?.attributedText?.attributes(at: 0, effectiveRange: nil)
                 let attributedTitle = NSAttributedString(string: "\(firstLetter)\(secondLetter)", attributes: currentAttributes)
+
                 self.profile.setAttributedTitle(attributedTitle, for: .normal)
                 self.userInfo.text = "\(user.name) \(user.surname)"
-                
-                
+                self.hideLoader()
             } else {
                 print("Document does not exist")
             }
         }
-        
     }
     @objc func dev() {
         if user == "developer@gmail.com" {
@@ -189,6 +190,35 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             }
         }
     }
+//    func loader(){
+//        let blurEffect = UIBlurEffect(style: .light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        view.addSubview(blurEffectView)
+//        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+//        hud.label.text = "Yükleniyor..."
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+//            blurEffectView.removeFromSuperview()
+//            hud.hide(animated: true)
+//        }
+//    }
     
+    func showLoader() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        view.addSubview(blurEffectView)
+        
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        hud.label.text = "Yükleniyor..."
+    }
+    func hideLoader() {
+        for subview in view.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+        MBProgressHUD.hide(for: view, animated: true)
+    }
 }
 
