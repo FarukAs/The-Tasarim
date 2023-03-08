@@ -732,16 +732,17 @@
             </objects>
             <point key="canvasLocation" x="5433" y="2370"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed Backs View Controller-->
         <scene sceneID="5p9-qL-Hb4">
             <objects>
-                <viewController id="Lj1-PD-jgK" sceneMemberID="viewController">
+                <viewController id="Lj1-PD-jgK" customClass="FeedBacksViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YhB-Mm-fs2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oKJ-Kz-WAV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Efi-Ye-OLC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-kM-jpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1286,7 +1287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="CNu-mQ-oU8">
-                                <rect key="frame" x="-5" y="-9" width="385" height="784"/>
+                                <rect key="frame" x="-6" y="-10" width="386" height="784"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDa-KK-MHd">
@@ -1736,6 +1737,7 @@
                         <outlet property="tableView" destination="ivS-te-CoM" id="6Yd-7T-DSv"/>
                         <segue destination="OaZ-6O-s4q" kind="show" identifier="developerToUsers" id="980-so-Ygw"/>
                         <segue destination="C9X-Df-oZd" kind="show" identifier="developerToProductEdit" id="NvE-RD-iC3"/>
+                        <segue destination="Lj1-PD-jgK" kind="show" identifier="developerToFeedBacks" id="JUY-N6-png"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvR-Yo-uge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

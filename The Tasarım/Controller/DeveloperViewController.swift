@@ -52,6 +52,9 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         if index == 2 {
             performSegue(withIdentifier: "developerToUsers", sender: nil)
         }
+        if index == 3 {
+            performSegue(withIdentifier: "developerToFeedBacks", sender: nil)
+        }
     }
     func getCategoryImage(){
         for index in 0..<productCategories.count {
