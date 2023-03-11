@@ -69,7 +69,7 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
                     }
                 }
             }
-            let alertController = UIAlertController(title: "Ürün Eklendi.", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Kategori Eklendi.", message: nil, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                 self.navigationController?.popViewController(animated: true)
             }

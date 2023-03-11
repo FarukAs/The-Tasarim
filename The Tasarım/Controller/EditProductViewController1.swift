@@ -5,13 +5,11 @@ import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseStorage
 
-class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource , UITableViewDelegate,UITableViewDataSource ,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    
-    
-    
-    
+    @IBOutlet var mainScrollView: UIScrollView!
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var pageLabel: UILabel!
     @IBOutlet var pageControl: UIPageControl!
     var productName = ""
@@ -23,10 +21,13 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     var image2 = UIImage(named: "logo")
     var image3 = UIImage(named: "logo")
     
+    @IBOutlet var saveButton: UIButton!
     @IBOutlet var productPriceTextField: UITextField!
     @IBOutlet var productDetailTextView: UITextView!
     @IBOutlet var productCategoryTextField: UITextField!
     @IBOutlet var productNameTextField: UITextField!
+    
+    let imgPicker = UIImagePickerController()
     
     @IBOutlet var scrollView: UIScrollView!
     let documentID = collectionViewData[selectedItem].productName
@@ -39,11 +40,33 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     var photoCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imgPicker.sourceType = .photoLibrary
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = false
+        
         hideKeyboardWhenTappedAround()
         setupPicker()
         dissmissAndClosePickerView()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        
+        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: 3000)
+        
+        print("aa\(mainScrollView.frame.size)")
+        print("aa\(mainScrollView.frame.height)")
+        print("aa\(mainScrollView.contentSize)")
+        
+        saveButton.frame = CGRect(x: saveButton.frame.minX, y: mainScrollView.contentSize.height - saveButton.frame.height, width: saveButton.frame.width, height: saveButton.frame.height)
+        
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ProductReviewTableViewCell.self, forCellReuseIdentifier: "productReviewCell")
+        
+        // Bu maxy kodu ile mainscroll view yüksekliği ayarlanacak
+        print(tableView.frame.maxY)
         
         scrollView.delegate = self
         
@@ -105,11 +128,74 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         print(photoCount)
         
     }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        //
+        
+        //
+        switch photoCount {
+        case 1:
+            if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                image2 = userPickedImage
+                let newImageView = UIImageView(image: userPickedImage)
+                let imageViewWidth = scrollView.frame.width
+                let imageViewHeight = scrollView.frame.height
+                let xCoordinate = CGFloat(photoCount) * imageViewWidth
+                let yCoordinate: CGFloat = 0.0
+                newImageView.frame = CGRect(x: xCoordinate, y: yCoordinate, width: imageViewWidth, height: imageViewHeight)
+                newImageView.contentMode = .scaleAspectFit
+                newImageView.image = userPickedImage
+                scrollView.addSubview(newImageView)
+                let contentWidth = imageViewWidth * CGFloat(photoCount + 1)
+                scrollView.contentSize = CGSize(width: contentWidth, height: imageViewHeight)
+                photoCount += 1
+                numberOfPage += 1
+                pageControl.numberOfPages = photoCount - 1
+                pageLabel.text = "\(currentPage + 1) / \(numberOfPage)"
+                imgPicker.dismiss(animated: true)
+            }
+        case 2:
+            if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                image3 = userPickedImage
+                let newImageView = UIImageView(image: userPickedImage)
+                let imageViewWidth = scrollView.frame.width
+                let imageViewHeight = scrollView.frame.height
+                let xCoordinate = CGFloat(photoCount) * imageViewWidth
+                let yCoordinate: CGFloat = 0.0
+                newImageView.frame = CGRect(x: xCoordinate, y: yCoordinate, width: imageViewWidth, height: imageViewHeight)
+                newImageView.contentMode = .scaleAspectFit
+                newImageView.image = userPickedImage
+                scrollView.addSubview(newImageView)
+                let contentWidth = imageViewWidth * CGFloat(photoCount + 1)
+                scrollView.contentSize = CGSize(width: contentWidth, height: imageViewHeight)
+                photoCount += 1
+                numberOfPage += 1
+                pageControl.numberOfPages = photoCount - 1
+                pageLabel.text = "\(currentPage + 1) / \(numberOfPage)"
+                imgPicker.dismiss(animated: true)
+            }
+        default:
+            print("Error photoCount cannot found")
+        }
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = Int(round(scrollView.contentOffset.x / scrollView.frame.width))
         currentPage = pageIndex
         pageControl.currentPage = currentPage
         pageLabel.text = "\(currentPage + 1) / \(numberOfPage)"
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Satır yüksekliklerinin otomatik olarak ayarlanmasını sağla
+        tableView.estimatedRowHeight = 300
+        
+        // Table view'i yeniden boyutlandır
+        tableView.reloadData()
+        
+        tableView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: view.frame.width, height: 500)
     }
     
     @IBAction func deleteProduct(_ sender: UIBarButtonItem) {
@@ -540,10 +626,44 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             photoCount -= 1
         }
     }
+    
+    @IBAction func addPhoto(_ sender: UIButton) {
+        if photoCount == 3 {
+            let alert = UIAlertController(title: "Hata!", message: "Maksimum 3 fotoğraf ekleyebilirsin.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Tamam", style: .cancel)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            present(imgPicker, animated: true, completion: nil)
+        }
+        
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productReviewCell", for: indexPath) as! ProductReviewTableViewCell
+            
+            // Configure the cell with the review data
+            let review = reviews[indexPath.row]
+        cell.configure(name: review.0, rating: review.1, comment: review.2, date: review.3)
+            
+            // Add the review date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            let reviewDate = Date(timeIntervalSince1970: review.3.timeIntervalSince1970)
+            cell.detailTextLabel?.text = dateFormatter.string(from: reviewDate)
+            
+            return cell
+        }
+    
     @IBAction func saveChanges(_ sender: UIButton) {
         // Update the product information and images in the database
         if let name = productNameTextField.text, let price = productPriceTextField.text, let detail = productDetailTextView.text, let category = productCategoryTextField.text {

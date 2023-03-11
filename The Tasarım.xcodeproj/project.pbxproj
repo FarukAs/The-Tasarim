@@ -12,6 +12,7 @@
 		9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */; };
 		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
 		9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */; };
+		9D3704C729BCE2C300DBF14C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */; };
 		9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */; };
 		9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C562993C4C4008F7568 /* EditViewController.swift */; };
 		9D419C5C29962687008F7568 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D419C5B29962687008F7568 /* CouponViewController.swift */; };
@@ -58,6 +59,7 @@
 		9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBacksViewController.swift; sourceTree = "<group>"; };
 		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController1.swift; sourceTree = "<group>"; };
+		9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		9D39CBEF29963307007601C6 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D419C562993C4C4008F7568 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		9D419C5B29962687008F7568 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				9D41E7472981A3C4001D24F7 /* Info.plist */,
 				9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */,
 				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
+				9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */,
 			);
 			path = "The Tasarım";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
 				9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
+				9D3704C729BCE2C300DBF14C /* CommentsTableViewCell.swift in Sources */,
 				9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */,
 				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,

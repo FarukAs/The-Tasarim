@@ -22,6 +22,7 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
     var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoryClicked()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         collectionView.delegate = self

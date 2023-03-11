@@ -41,3 +41,5 @@ var productCategories = [""]
 var products = [""]
 
 var selectedItem = 1000
+
+var reviews = [("John Doe", 4.5, "This is a great product!", Date(timeIntervalSince1970: 11248)), ("Jane Smith", 3.0, "Not bad, but could be better.", Date(timeIntervalSince1970: 16468520)), ("Alex Johnson", 5.0, "I love this product!", Date(timeIntervalSince1970: 164685240324))]
