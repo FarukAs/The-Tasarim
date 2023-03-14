@@ -28,10 +28,8 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
-        
         productCategories = []
         addProductCategories()
-       
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -97,6 +95,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             } else {
                 for document in querySnapshot!.documents {
                     productCategories.append(document.documentID)
+                    
                 }
             }
         }

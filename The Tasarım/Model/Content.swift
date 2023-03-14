@@ -87,7 +87,21 @@ class productBrain{
         self.image3 = image3
     }
 }
-
+class commentBrain{
+    var Comment: String
+    var Date: Double
+    var Rate: Double
+    var Name: String
+    var Documentid: String
+    
+    init(Comment: String, Date: Double, Rate: Double, Name: String,Documentid: String) {
+        self.Comment = Comment
+        self.Date = Date
+        self.Rate = Rate
+        self.Name = Name
+        self.Documentid = Documentid
+    }
+}
 
 
 

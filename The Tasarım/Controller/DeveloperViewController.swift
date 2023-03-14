@@ -174,5 +174,4 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         }
         MBProgressHUD.hide(for: view, animated: true)
     }
-    
 }
