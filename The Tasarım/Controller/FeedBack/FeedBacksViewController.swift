@@ -6,19 +6,16 @@
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseAuth
-import FirebaseFirestore
-import FirebaseDatabase
-import FirebaseStorage
 class FeedBacksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
-    }()    
+    }()
+    var selectedIndex = Int()
     override func viewDidLoad() {
+        self.navigationItem.title = "Geri Bildirimler"
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.delegate = self
@@ -39,9 +36,16 @@ class FeedBacksViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FeedbackTableViewCell.identifier, for: indexPath) as! FeedbackTableViewCell
-        cell.configure(with: feedbacks[indexPath.row])
+        let originalFeedback = feedbacks[indexPath.row]
+        let truncatedText = String(originalFeedback.text.prefix(100)) // Change 100 to your desired character limit
+        
+        let modifiedFeedback = Feedback(userEmail: originalFeedback.userEmail, timestamp: originalFeedback.timestamp, text: truncatedText, imageData: originalFeedback.imageData)
+        
+        cell.configure(with: modifiedFeedback)
         return cell
     }
+
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -49,5 +53,16 @@ class FeedBacksViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        performSegue(withIdentifier: "toFeedBackDetail", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toFeedBackDetail" {
+            if let destinationVC = segue.destination as? FeedBackDetailViewController {
+                destinationVC.selectedIndex = selectedIndex
+            }
+        }
     }
 }

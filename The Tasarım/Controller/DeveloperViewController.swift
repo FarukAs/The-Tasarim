@@ -5,6 +5,14 @@
 //  Created by Şeyda Soylu on 26.01.2023.
 //
 
+
+
+// Uzun vadeli güncelleme --> Fotoğrafların boyutu büyük, geri bildirim gönderirikenki yüklenen fotoğrafların boyutu küçültülecek.
+
+
+
+
+
 import UIKit
 import FirebaseCore
 import FirebaseAuth
@@ -202,11 +210,16 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                             let images1Ref = imagesRef.child("\(itm.key)")
                             let images2Ref = images1Ref.child("\(itm.value)")
                             print("burada başladı ")
-                            images2Ref.getData(maxSize: 2 * 1024 * 1024) { data, error in
+                            images2Ref.getData(maxSize: 5 * 1024 * 1024) { data, error in
                                 if let error = error {
                                     print("Eror :\(error)")
                                     feedBackImage = nil
                                     print("burada bitti error")
+                                    if let timestampString = documents.data().keys.first,
+                                        let timestamp = Double(timestampString) {
+                                       let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData:UIImage(named: "logo")! )
+                                       newFeedbacks.append(exampleFeedback)
+                                   }
                                 } else {
                                     // Data for "images/island.jpg" is returned
                                     let image = UIImage(data: data!)
@@ -214,33 +227,19 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                                         feedBackImage = image
                                         print("pğ\(feedBackImage!)")
                                         print("burada bitti oldu")
-                                        
+                                        if let timestampString = documents.data().keys.first,
+                                           let timestamp = Double(timestampString) {
+                                            let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData: feedBackImage!)
+                                            newFeedbacks.append(exampleFeedback)
+                                            print("yy\(feedBackImage!)")
+                                            feedBackImage = UIImage(data: Data())
+                                        }
                                     }
-                                }
-                            }
-                            
-                            print("ccc\(feedBackImage)")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 12.0) {
-                                print("yo\(feedBackImage)")
-                                if feedBackImage != nil{
-                                    if let timestampString = documents.data().keys.first,
-                                       let timestamp = Double(timestampString) {
-                                        let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData: feedBackImage!)
-                                        newFeedbacks.append(exampleFeedback)
-                                        print("yy\(feedBackImage!)")
-                                        feedBackImage = UIImage(data: Data())
-                                    }
-                                }else
-                                { if let timestampString = documents.data().keys.first,
-                                     let timestamp = Double(timestampString) {
-                                    let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData:UIImage(named: "logo")! )
-                                    newFeedbacks.append(exampleFeedback)
-                                    feedBackImage = UIImage(data: Data())
-                                }
                                 }
                             }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 13.2) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            // Garantiye almak için 5 saniye eklendi azaltılabilir.(Fotoğrafların boyutu büyük olduğu için
                             feedbacks += newFeedbacks
                         }
                     }

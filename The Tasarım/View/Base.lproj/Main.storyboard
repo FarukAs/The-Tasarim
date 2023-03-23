@@ -758,10 +758,44 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Efi-Ye-OLC"/>
+                    <connections>
+                        <segue destination="FGf-ff-f9I" kind="show" identifier="toFeedBackDetail" id="E7J-a6-Jrk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-kM-jpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5433" y="3056"/>
+        </scene>
+        <!--Feed Back Detail View Controller-->
+        <scene sceneID="8y3-b5-ldu">
+            <objects>
+                <viewController id="FGf-ff-f9I" customClass="FeedBackDetailViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c25-Qn-Rrh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QzF-Yy-r3W"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kCY-Pv-8YV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N4I-Rf-7uH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6307.6335877862593" y="3055.6338028169016"/>
+        </scene>
+        <!--Full Screen Image View View Controller-->
+        <scene sceneID="imG-Qa-UNB">
+            <objects>
+                <viewController id="rnA-W1-bln" customClass="FullScreenImageViewViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Od2-hr-qxC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2WM-DZ-hiZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m5M-pg-Sl6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7172" y="3056"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Pcy-wk-wW7">
@@ -1302,7 +1336,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="CNu-mQ-oU8">
-                                <rect key="frame" x="-6" y="-13" width="386" height="784"/>
+                                <rect key="frame" x="-7" y="-13" width="386" height="783"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDa-KK-MHd">

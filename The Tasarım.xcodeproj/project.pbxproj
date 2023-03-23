@@ -43,6 +43,8 @@
 		9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */; };
 		9D54E84E29B729B200DD8839 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9D54E84D29B729B200DD8839 /* MBProgressHUD */; };
 		9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */; };
+		9D829E6529CC3C91008443B2 /* FeedBackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */; };
+		9D829E6929CC4B46008443B2 /* FullScreenImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
@@ -85,6 +87,8 @@
 		9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
+		9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackDetailViewController.swift; sourceTree = "<group>"; };
+		9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewViewController.swift; sourceTree = "<group>"; };
 		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
 				9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */,
 				9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */,
+				9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */,
+				9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -323,7 +329,9 @@
 				9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */,
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
 				9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */,
+				9D829E6929CC4B46008443B2 /* FullScreenImageViewViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
+				9D829E6529CC3C91008443B2 /* FeedBackDetailViewController.swift in Sources */,
 				9D41E76629824EEF001D24F7 /* AccountViewController.swift in Sources */,
 				9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */,
 				9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */,
