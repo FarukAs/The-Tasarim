@@ -83,7 +83,8 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                     let images1Ref = imagesRef.child(self.userEmail!)
                     let images2Ref = images1Ref.child(timestamp)
 
-                    guard let imageData = newImage.jpegData(compressionQuality: 0.8) else {
+                    // Sıkıştırma kalitesini düşük bir değere ayarlayarak fotoğrafın boyutunu azaltın
+                    guard let imageData = newImage.jpegData(compressionQuality: 0.1) else {
                         return
                     }
                     // Fotoğrafı yükleyin
@@ -94,7 +95,6 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                         }
                     }
                 }
-
 
                 let alert = UIAlertController(title: "Başarılı", message: "Geri bildirim gönderildi.", preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil)
@@ -112,6 +112,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         }
     }
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
