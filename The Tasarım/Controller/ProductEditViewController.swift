@@ -18,7 +18,6 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
     let storage = Storage.storage()
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
-    var selectedProduct = 0
     var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,6 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
         if collectionView == self.collectionView{
             selectedItem = indexPath.item
             performSegue(withIdentifier: "ProductEditToEdit1", sender: nil)
-            
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
             categoryClicked()

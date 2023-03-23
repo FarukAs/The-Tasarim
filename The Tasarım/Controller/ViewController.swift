@@ -21,6 +21,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     let user = Auth.auth().currentUser?.email
     let storage = Storage.storage()
     var loadedItemCount = 0
+    var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoader()
@@ -50,8 +51,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             self.fixCollectionView()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.selectedCategory = categoryArray[0].categoryName
+            self.categoryClicked()
             self.categoryCollectionView.reloadData()
-            self.collectionView.reloadData()
             self.hideLoader()
         }
         
@@ -65,12 +67,19 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
-            return productArray.count
+            return collectionViewData.count
         }else{
             return categoryArray.count
         }
         
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView{
+        }else{
+            selectedCategory = categoryArray[indexPath.item].categoryName
+            categoryClicked()
+        }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
@@ -94,9 +103,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             cell.layer.masksToBounds = false
             cell.backgroundColor = .white
             
-            cell.imageView.image = productArray[indexPath.item].image1
-            cell.productTitle.text = productArray[indexPath.item].productName
-            cell.productPrice.text = "\(productArray[indexPath.item].productPrice) TL"
+            cell.imageView.image = collectionViewData[indexPath.item].image1
+            cell.productTitle.text = collectionViewData[indexPath.item].productName
+            cell.productPrice.text = "\(collectionViewData[indexPath.item].productPrice) TL"
             
             
             return cell
@@ -265,5 +274,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
                 }
             }
         }
+    }
+    func categoryClicked(){
+        collectionViewData = []
+        for prdct in productArray{
+            if prdct.productCategory == selectedCategory{
+                collectionViewData.append(prdct)
+            }
+        }
+        collectionView.reloadData()
     }
 }
