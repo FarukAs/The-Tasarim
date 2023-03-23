@@ -42,6 +42,7 @@
 		9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */; };
 		9D4B8AD8299CC75E0020F602 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */; };
 		9D54E84E29B729B200DD8839 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9D54E84D29B729B200DD8839 /* MBProgressHUD */; };
+		9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
@@ -83,6 +84,7 @@
 		9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEditViewController.swift; sourceTree = "<group>"; };
 		9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		9D4B8AD7299CC75E0020F602 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
 		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			children = (
 				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
 				9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */,
+				9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
+				9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */,
 				9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

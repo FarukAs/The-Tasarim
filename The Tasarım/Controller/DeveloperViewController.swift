@@ -18,7 +18,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
     var loadedItemCount = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoader()
@@ -31,9 +30,11 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         productArray = []
         getCategoryImage()
         getProductImage()
+        feedbacks = []
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.fixCollectionView()
         }
+        fetchData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DeveloperMenu.count
@@ -110,8 +111,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                     }
                     loadCompletion()
                 }
-                
-                
                 image1.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                     if let error = error {
                         print("Error downloading image: \(error.localizedDescription)")
@@ -148,7 +147,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
     func fixCollectionView() {
         var indexesToRemove: [Int] = []
         for index in 0..<productArray.count {
-            print("te\(productArray[index].productDetail)")
             if productArray[index].productDetail == "" {
                 indexesToRemove.append(index)
             }
@@ -173,5 +171,81 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
             }
         }
         MBProgressHUD.hide(for: view, animated: true)
+    }
+    
+    //Feedbacks için verileri çekme
+    private func fetchData() {
+        var idArray = ["":""]
+        idArray = [:]
+        db.collection("Feedbacks").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    idArray["\(document.documentID)"] = "\(document.data().first!.key)"
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            for itm in idArray {
+                self.db.collection("Feedbacks").document("\(itm.key)").collection("\(itm.value)").getDocuments { (querySnapshot, erro) in
+                    if let erro = erro {
+                        print("Error getting documents: \(erro)")
+                    } else {
+                        print("uu\(itm.key)oo\(itm.value)")
+                        var newFeedbacks = [Feedback]()
+                        for documents in querySnapshot!.documents {
+                            var feedBackImage = UIImage(data: Data())
+                            print("pğ\(feedBackImage)")
+                            let storageRef = self.storage.reference()
+                            let imagesRef = storageRef.child("Feedbacks")
+                            let images1Ref = imagesRef.child("\(itm.key)")
+                            let images2Ref = images1Ref.child("\(itm.value)")
+                            print("burada başladı ")
+                            images2Ref.getData(maxSize: 2 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    print("Eror :\(error)")
+                                    feedBackImage = nil
+                                    print("burada bitti error")
+                                } else {
+                                    // Data for "images/island.jpg" is returned
+                                    let image = UIImage(data: data!)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                                        feedBackImage = image
+                                        print("pğ\(feedBackImage!)")
+                                        print("burada bitti oldu")
+                                        
+                                    }
+                                }
+                            }
+                            
+                            print("ccc\(feedBackImage)")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 12.0) {
+                                print("yo\(feedBackImage)")
+                                if feedBackImage != nil{
+                                    if let timestampString = documents.data().keys.first,
+                                       let timestamp = Double(timestampString) {
+                                        let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData: feedBackImage!)
+                                        newFeedbacks.append(exampleFeedback)
+                                        print("yy\(feedBackImage!)")
+                                        feedBackImage = UIImage(data: Data())
+                                    }
+                                }else
+                                { if let timestampString = documents.data().keys.first,
+                                     let timestamp = Double(timestampString) {
+                                    let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData:UIImage(named: "logo")! )
+                                    newFeedbacks.append(exampleFeedback)
+                                    feedBackImage = UIImage(data: Data())
+                                }
+                                }
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 13.2) {
+                            feedbacks += newFeedbacks
+                        }
+                    }
+                }
+            }
+        }
     }
 }

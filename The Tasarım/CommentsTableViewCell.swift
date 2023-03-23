@@ -88,6 +88,7 @@ class ProductReviewTableViewCell: UITableViewCell {
         
         for i in 1...5 {
             let starImageView = UIImageView()
+            starImageView.tintColor = UIColor.systemYellow
             starImageView.contentMode = .scaleAspectFit
             starImageView.translatesAutoresizingMaskIntoConstraints = false
             

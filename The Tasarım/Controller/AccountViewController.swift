@@ -190,19 +190,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             }
         }
     }
-//    func loader(){
-//        let blurEffect = UIBlurEffect(style: .light)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        view.addSubview(blurEffectView)
-//        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-//        hud.label.text = "Yükleniyor..."
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-//            blurEffectView.removeFromSuperview()
-//            hud.hide(animated: true)
-//        }
-//    }
-    
     func showLoader() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)

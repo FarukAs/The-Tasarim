@@ -102,6 +102,14 @@ class commentBrain{
         self.Documentid = Documentid
     }
 }
+struct Feedback {
+    let userEmail: String
+    let timestamp:  Date
+    let text: String
+    let imageData: UIImage
+}
+
+
 
 
 

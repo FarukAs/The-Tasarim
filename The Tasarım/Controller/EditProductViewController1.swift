@@ -58,10 +58,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: 3000)
-        
-        saveButton.frame = CGRect(x: saveButton.frame.minX, y: mainScrollView.contentSize.height - saveButton.frame.height, width: saveButton.frame.width, height: saveButton.frame.height)
-        
+
         productNameTextField.text = collectionViewData[selectedItem].productName
         productPriceTextField.text = collectionViewData[selectedItem].productPrice
         productDetailTextView.text = collectionViewData[selectedItem].productDetail
@@ -174,7 +171,15 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.frame = CGRect(x: tableView.frame.origin.x, y: productPriceTextField.frame.maxY + 20, width: view.frame.width, height: CGFloat(Double(commentsBrain.count) * 114.3))
+        tableView.frame = CGRect(x: tableView.frame.origin.x, y: productPriceTextField.frame.maxY + 20, width: view.frame.width, height: 3 * 120)
+        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: tableView.frame.maxY + 120)
+        saveButton.frame = CGRect(x: saveButton.frame.minX, y: mainScrollView.contentSize.height - saveButton.frame.height, width: saveButton.frame.width, height: saveButton.frame.height)
+        if commentsBrain.count == 0 {
+            tableView.frame = CGRect(x: tableView.frame.origin.x, y: productPriceTextField.frame.maxY + 20, width: view.frame.width, height: 0 * 120)
+            mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: productPriceTextField.frame.maxY + 114)
+            saveButton.frame = CGRect(x: saveButton.frame.minX, y: mainScrollView.contentSize.height - saveButton.frame.height, width: saveButton.frame.width, height: saveButton.frame.height)
+            
+        }
     }
     
     @IBAction func deleteProduct(_ sender: UIBarButtonItem) {
@@ -390,46 +395,34 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         return true
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentsBrain.count
+        if commentsBrain.count != 0{
+            return commentsBrain.count
+        }else{
+            return 0
+        }
+   
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productReviewCell", for: indexPath) as! ProductReviewTableViewCell
-        
-        // Configure the cell with the review data
-        let review = commentsBrain[indexPath.row]
-        var myDate = Date(timeIntervalSince1970: TimeInterval(review.Date))
-        cell.configure(name: review.Name, rating: Double(review.Rate), comment: review.Comment, date: myDate)
-        
-        // Add the review date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        let reviewDate = Date(timeIntervalSince1970: myDate.timeIntervalSince1970)
-        cell.detailTextLabel?.text = dateFormatter.string(from: reviewDate)
-        
-        return cell
+        if commentsBrain.count != 0{
+            
+            // Configure the cell with the review data
+            let review = commentsBrain[indexPath.row]
+            let myDate = Date(timeIntervalSince1970: TimeInterval(review.Date))
+            cell.configure(name: review.Name, rating: Double(review.Rate), comment: review.Comment, date: myDate)
+            // Add the review date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            let reviewDate = Date(timeIntervalSince1970: myDate.timeIntervalSince1970)
+            cell.detailTextLabel?.text = dateFormatter.string(from: reviewDate)
+            return cell
+        }else{
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print(tableView.frame.height)
-        print(tableView.rowHeight)
-        
-        if let visibleRowsIndexPaths = tableView.indexPathsForVisibleRows {
-            for indexPath in visibleRowsIndexPaths {
-                let cell = tableView.cellForRow(at: indexPath)
-                let cellHeight = cell?.frame.height
-                print(cellHeight)
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        
         let alert = UIAlertController(title: "Yorum silinecek", message: "Onaylıyor musun?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Vazgeç", style: .cancel)
         let okAction = UIAlertAction(title: "Onayla", style: .default) { _ in
@@ -440,8 +433,6 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         alert.addAction(cancelAction)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
-        
-        
     }
     func getCommentsData(){
         db.collection(user!).document("Comments").collection(documentID).getDocuments { QuerySnapshot, errr in
@@ -459,80 +450,83 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
-            
-            // Add rating view
-            let ratingView = UIView()
-            ratingView.backgroundColor = .white
-            ratingView.layer.cornerRadius = 8.0
-            ratingView.layer.shadowColor = UIColor.black.cgColor
-            ratingView.layer.shadowOffset = CGSize(width: 0, height: 2)
-            ratingView.layer.shadowOpacity = 0.2
-            ratingView.layer.shadowRadius = 2.0
-            ratingView.translatesAutoresizingMaskIntoConstraints = false
-            mainScrollView.addSubview(ratingView)
-            
-            // Add rating stars
-            let filledStarImage = UIImage(systemName: "star.fill")
-            let emptyStarImage = UIImage(systemName: "star")
-            let ratingStarsStackView = UIStackView()
-            ratingStarsStackView.axis = .horizontal
-            ratingStarsStackView.alignment = .fill
-            ratingStarsStackView.distribution = .fillEqually
-            ratingStarsStackView.spacing = 4.0
-            ratingStarsStackView.translatesAutoresizingMaskIntoConstraints = false
-            ratingView.addSubview(ratingStarsStackView)
-            
-            for i in 1...5 {
-                let starImageView = UIImageView()
-                starImageView.contentMode = .scaleAspectFit
-                starImageView.translatesAutoresizingMaskIntoConstraints = false
+            if commentsBrain.count != 0 {
+                // Add rating view
+                let ratingView = UIView()
+                ratingView.backgroundColor = .white
+                ratingView.layer.cornerRadius = 8.0
+                ratingView.layer.shadowColor = UIColor.black.cgColor
+                ratingView.layer.shadowOffset = CGSize(width: 0, height: 2)
+                ratingView.layer.shadowOpacity = 0.2
+                ratingView.layer.shadowRadius = 2.0
+                ratingView.translatesAutoresizingMaskIntoConstraints = false
+                mainScrollView.addSubview(ratingView)
                 
-                if Int(Double(i)) <= Int(commentsBrain[0].Rate) {
-                    starImageView.image = filledStarImage
-                } else {
-                    starImageView.image = emptyStarImage
+                // Add rating stars
+                let filledStarImage = UIImage(systemName: "star.fill")
+                let emptyStarImage = UIImage(systemName: "star")
+                let ratingStarsStackView = UIStackView()
+                ratingStarsStackView.axis = .horizontal
+                ratingStarsStackView.alignment = .fill
+                ratingStarsStackView.distribution = .fillEqually
+                ratingStarsStackView.spacing = 4.0
+                ratingStarsStackView.translatesAutoresizingMaskIntoConstraints = false
+                ratingView.addSubview(ratingStarsStackView)
+                
+                
+                for i in 1...5 {
+                    let starImageView = UIImageView()
+                    starImageView.tintColor = UIColor.systemYellow
+                    starImageView.contentMode = .scaleAspectFit
+                    starImageView.translatesAutoresizingMaskIntoConstraints = false
+                    
+                    if Int(Double(i)) <= Int(commentsBrain[0].Rate) {
+                        starImageView.image = filledStarImage
+                    } else {
+                        starImageView.image = emptyStarImage
+                    }
+                    
+                    ratingStarsStackView.addArrangedSubview(starImageView)
+                    
+                    // Add constraints for the star image view
+                    starImageView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+                    starImageView.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
                 }
                 
-                ratingStarsStackView.addArrangedSubview(starImageView)
-                
-                // Add constraints for the star image view
-                starImageView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-                starImageView.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
-            }
-            
-            func getAverageRate() -> Double {
-                var totalRate = 0.0
-                for comment in commentsBrain {
-                    totalRate += Double(comment.Rate)
+                func getAverageRate() -> Double {
+                    var totalRate = 0.0
+                    for comment in commentsBrain {
+                        totalRate += Double(comment.Rate)
+                    }
+                    let averageRate = Double(totalRate) / Double(commentsBrain.count)
+                    return averageRate
                 }
-                let averageRate = Double(totalRate) / Double(commentsBrain.count)
-                return averageRate
+                let averageRate = getAverageRate()
+                let ratingLabel = UILabel()
+                ratingLabel.text = String(format: "%.1f", averageRate)
+                ratingLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
+                
+                ratingLabel.textColor = .darkGray
+                ratingLabel.textAlignment = .center
+                ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+                ratingView.addSubview(ratingLabel)
+                
+                // Add constraints for the rating label
+                ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsStackView.trailingAnchor, constant: 10.0).isActive = true
+                ratingLabel.centerYAnchor.constraint(equalTo: ratingStarsStackView.centerYAnchor).isActive = true
+                
+                // Add constraints for the rating stars stack view
+                ratingStarsStackView.topAnchor.constraint(equalTo: ratingView.topAnchor).isActive = true
+                ratingStarsStackView.leadingAnchor.constraint(equalTo: ratingView.leadingAnchor).isActive = true
+                ratingStarsStackView.bottomAnchor.constraint(equalTo: ratingView.bottomAnchor).isActive = true
+                // Add constraints for rating view
+                let horizontalSpacing: CGFloat = 20.0
+                ratingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalSpacing).isActive = true
+                ratingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalSpacing).isActive = true
+                ratingView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 15.0).isActive = true
+                ratingView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+                ratingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
             }
-            let averageRate = getAverageRate()
-            let ratingLabel = UILabel()
-            ratingLabel.text = String(format: "%.1f", averageRate)
-            ratingLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
-            
-            ratingLabel.textColor = .darkGray
-            ratingLabel.textAlignment = .center
-            ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-            ratingView.addSubview(ratingLabel)
-            
-            // Add constraints for the rating label
-            ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsStackView.trailingAnchor, constant: 10.0).isActive = true
-            ratingLabel.centerYAnchor.constraint(equalTo: ratingStarsStackView.centerYAnchor).isActive = true
-            
-            // Add constraints for the rating stars stack view
-            ratingStarsStackView.topAnchor.constraint(equalTo: ratingView.topAnchor).isActive = true
-            ratingStarsStackView.leadingAnchor.constraint(equalTo: ratingView.leadingAnchor).isActive = true
-            ratingStarsStackView.bottomAnchor.constraint(equalTo: ratingView.bottomAnchor).isActive = true
-            // Add constraints for rating view
-            let horizontalSpacing: CGFloat = 20.0
-            ratingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalSpacing).isActive = true
-            ratingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalSpacing).isActive = true
-            ratingView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 15.0).isActive = true
-            ratingView.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-            ratingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
         }
         
     }
@@ -699,7 +693,6 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         let selectedCat = productCategories[row]
         productCategoryTextField.text = selectedCat
         selectedCategory = selectedCat
-        print(selectedCategory)
     }
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

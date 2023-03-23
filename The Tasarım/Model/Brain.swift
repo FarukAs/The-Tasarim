@@ -44,3 +44,5 @@ var selectedItem = 1000
 
 
 var commentsBrain = [commentBrain(Comment: "", Date: 0.0, Rate: 0.0, Name: "",Documentid: "")]
+
+var feedbacks: [Feedback] = []
