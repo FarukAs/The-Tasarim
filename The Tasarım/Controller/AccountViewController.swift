@@ -46,7 +46,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showLoader()
         profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
         profile.clipsToBounds = true
         tableView.delegate = self
@@ -61,10 +60,8 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         topView.layer.addSublayer(gradientLayer)
         animateGradient()
         coupon = []
-        products = []
         getCouponData()
         getNumberOfCoupons()
-        getProductNames()
         stackView.layer.zPosition = 1
         button.layer.cornerRadius = 10
         
@@ -90,7 +87,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
 
                 self.profile.setAttributedTitle(attributedTitle, for: .normal)
                 self.userInfo.text = "\(user.name) \(user.surname)"
-                self.hideLoader()
             } else {
                 print("Document does not exist")
             }
@@ -172,21 +168,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
                 numberOfData = safeData
             } else {
                 print("Document does not exist")
-            }
-        }
-    }
-    func getProductNames(){
-        for index in 0..<productCategories.count {
-            let ref = self.db.collection(self.user!).document("Products").collection(productCategories[index])
-            ref.getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print(error)
-                }else {
-                    for document in querySnapshot!.documents {
-                        products.append("\(document.documentID)")
-                        print(products)
-                    }
-                }
             }
         }
     }
