@@ -238,8 +238,9 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                                 }
                             }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
                             // Garantiye almak için 5 saniye eklendi azaltılabilir.(Fotoğrafların boyutu büyük olduğu için
+                            print("Gir")
                             feedbacks += newFeedbacks
                         }
                     }
