@@ -17,6 +17,8 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     var productCategory = ""
     var productDetail = ""
     var selectedCategory = ""
+    let firstCategory = collectionViewData[selectedItem].productCategory
+    
     var image1 = UIImage(named: "logo")
     var image2 = UIImage(named: "logo")
     var image3 = UIImage(named: "logo")
@@ -572,8 +574,8 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 let storageRef = self.storage.reference()
                 let imagesRef = storageRef.child(self.user!)
                 let images1Ref = imagesRef.child("Products")
-                let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
-                let images3Ref = images2Ref.child(self.documentID)
+                let images2Ref = images1Ref.child(productCategoryTextField.text!)
+                let images3Ref = images2Ref.child(productNameTextField.text!)
                 let images4Ref = images3Ref.child("image1")
                 
                 guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
@@ -594,8 +596,8 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 let storageRef = self.storage.reference()
                 let imagesRef = storageRef.child(self.user!)
                 let images1Ref = imagesRef.child("Products")
-                let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
-                let images3Ref = images2Ref.child(self.documentID)
+                let images2Ref = images1Ref.child(productCategoryTextField.text!)
+                let images3Ref = images2Ref.child(productNameTextField.text!)
                 let images4Ref = images3Ref.child("image2")
                 
                 guard let imageData = imagetwo.jpegData(compressionQuality: 0.8) else {
@@ -611,13 +613,13 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             }
         }
         if image3 != UIImage(named: "logo"){
-            // İkinci fotoğrafı yükleme
+            // Üçüncü fotoğrafı yükleme
             if let imagethree = self.image2 {
                 let storageRef = self.storage.reference()
                 let imagesRef = storageRef.child(self.user!)
                 let images1Ref = imagesRef.child("Products")
-                let images2Ref = images1Ref.child(collectionViewData[selectedItem].productCategory)
-                let images3Ref = images2Ref.child(self.documentID)
+                let images2Ref = images1Ref.child(productCategoryTextField.text!)
+                let images3Ref = images2Ref.child(productNameTextField.text!)
                 let images4Ref = images3Ref.child("image3")
                 
                 guard let imageData = imagethree.jpegData(compressionQuality: 0.8) else {
@@ -632,10 +634,15 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 }
             }
         }
+        
         // Update the product information and images in the database
         if let name = productNameTextField.text, let price = productPriceTextField.text, let detail = productDetailTextView.text, let category = productCategoryTextField.text {
+            //Delete old informations
+            let shouldDelete = db.collection(user!).document("Products").collection(firstCategory).document(documentID)
+            shouldDelete.delete()
+            
             // Update the product information
-            db.collection(user!).document("Products").collection(category).document(documentID).setData([
+            db.collection(user!).document("Products").collection(category).document(name).setData([
                 "name": name,
                 "price": price,
                 "detail": detail

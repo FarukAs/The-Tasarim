@@ -50,7 +50,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
             self.fixCollectionView()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
             self.selectedCategory = categoryArray[0].categoryName
             self.categoryClicked()
             self.categoryCollectionView.reloadData()
@@ -146,7 +146,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     func getCategoryImage(){
         for index in 0..<productCategories.count {
             let storageRef = self.storage.reference()
-            let imagesRef = storageRef.child(user!)
+            let imagesRef = storageRef.child("developer@gmail.com")
             let images1Ref = imagesRef.child("Category")
             let images2Ref = images1Ref.child(productCategories[index])
             let images3Ref = images2Ref.child("categoryImage")
@@ -185,7 +185,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         
         for index in 0..<productCategories.count {
             let storageRef = self.storage.reference()
-            let imagesRef = storageRef.child(user!)
+            let imagesRef = storageRef.child("developer@gmail.com")
             let images1Ref = imagesRef.child("Products")
             let images2Ref = images1Ref.child(productCategories[index])
             
@@ -206,7 +206,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
 //                        hideLoader()
                     }
                 }
-                db.collection(self.user!).document("Products").collection(productCategories[index]).document(products[item]).getDocument { (document, error) in
+                db.collection("developer@gmail.com").document("Products").collection(productCategories[index]).document(products[item]).getDocument { (document, error) in
                     if let document = document, document.exists {
                         let data = document.data()
                         product.productDetail = data!["detail"] as! String
@@ -262,7 +262,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     }
     func getProductNames(){
         for index in 0..<productCategories.count {
-            let ref = self.db.collection(self.user!).document("Products").collection(productCategories[index])
+            let ref = self.db.collection("developer@gmail.com").document("Products").collection(productCategories[index])
             ref.getDocuments { (querySnapshot, error) in
                 if let error = error {
                     print(error)
