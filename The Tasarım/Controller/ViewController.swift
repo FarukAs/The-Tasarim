@@ -32,8 +32,6 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -41,16 +39,6 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             categoryClicked()
@@ -67,41 +55,18 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return collectionViewData.count
         }else{
             return categoryArray.count
         }
-        
-        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView{
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
+            print("clicked")
             categoryClicked()
         }
     }

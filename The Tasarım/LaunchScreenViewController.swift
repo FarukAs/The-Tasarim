@@ -37,6 +37,13 @@ class LaunchScreenViewController: UIViewController {
                 
             }
         }
+        let animationView = LottieAnimationView(name: "animation")
+        animationView.frame = CGRect(x: (view.bounds.width - 160) / 2, y: 550, width: 160, height: 160)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+        self.view.addSubview(animationView)
+        
         addProductCategories(){
             self.getProductNames(){
                 self.getCategoryImage()
@@ -49,17 +56,10 @@ class LaunchScreenViewController: UIViewController {
                     self.progressView.setProgress(1.0, animated: false)
                     timer.invalidate()
                     self.navigateToViewController()
+                    animationView.stop()
                 }
             }
         }
-        
-        let animationView = LottieAnimationView(name: "animation")
-        animationView.frame = CGRect(x: (view.bounds.width - 160) / 2, y: 550, width: 160, height: 160)
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.play()
-
-        self.view.addSubview(animationView)
     }
     
     func navigateToViewController() {
