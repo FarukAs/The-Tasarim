@@ -55,6 +55,7 @@
 		9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FA2984576100FF650C /* AddressViewController.swift */; };
 		9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9FC298458C500FF650C /* AddressCollectionViewCell.swift */; };
 		9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDBA002984612100FF650C /* AddAddressViewController.swift */; };
+		9DE90F0029CF2184000001F3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE90EFF29CF2184000001F3 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 			files = (
 				9D41E7592981A4BA001D24F7 /* FirebaseMessaging in Frameworks */,
 				9D41E7552981A4BA001D24F7 /* FirebaseDatabaseSwift in Frameworks */,
+				9DE90F0029CF2184000001F3 /* Lottie in Frameworks */,
 				9D54E84E29B729B200DD8839 /* MBProgressHUD in Frameworks */,
 				9D41E7532981A4BA001D24F7 /* FirebaseDatabase in Frameworks */,
 				9D41E74F2981A4BA001D24F7 /* FirebaseAnalytics in Frameworks */,
@@ -266,6 +268,7 @@
 				9D41E7582981A4BA001D24F7 /* FirebaseMessaging */,
 				9D41E75A2981A4BA001D24F7 /* FirebaseStorage */,
 				9D54E84D29B729B200DD8839 /* MBProgressHUD */,
+				9DE90EFF29CF2184000001F3 /* Lottie */,
 			);
 			productName = "The Tasarım";
 			productReference = 9D41E7332981A3C3001D24F7 /* The Tasarım.app */;
@@ -298,6 +301,7 @@
 			packageReferences = (
 				9D41E74D2981A4BA001D24F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9D54E84C29B729B200DD8839 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+				9DE90EFE29CF2184000001F3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 9D41E7342981A3C3001D24F7 /* Products */;
 			projectDirPath = "";
@@ -602,6 +606,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		9DE90EFE29CF2184000001F3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -644,6 +656,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9D54E84C29B729B200DD8839 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
 			productName = MBProgressHUD;
+		};
+		9DE90EFF29CF2184000001F3 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DE90EFE29CF2184000001F3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -10,7 +10,11 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import Lottie
+
 class LaunchScreenViewController: UIViewController {
+    
+    let animationView = LottieAnimationView()
     
     @IBOutlet var progressView: UIProgressView!
     let db = Firestore.firestore()
@@ -27,12 +31,10 @@ class LaunchScreenViewController: UIViewController {
         
         var progressValue: Float = 0.0
         let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-            progressValue += 0.01
+            progressValue += 0.02
             self.progressView.setProgress(progressValue, animated: true)
-            
             if progressValue >= 1.0 {
-                timer.invalidate()
-                self.navigateToViewController()
+                
             }
         }
         addProductCategories(){
@@ -42,9 +44,22 @@ class LaunchScreenViewController: UIViewController {
                     self.selectedCategory = categoryArray[0].categoryName
                     self.fixCollectionViewData()
                     self.categoryClicked()
+                    self.progressView.setProgress(0.8, animated: false)
+                    self.progressView.setProgress(0.9, animated: false)
+                    self.progressView.setProgress(1.0, animated: false)
+                    timer.invalidate()
+                    self.navigateToViewController()
                 }
             }
         }
+        
+        let animationView = LottieAnimationView(name: "animation")
+        animationView.frame = CGRect(x: (view.bounds.width - 160) / 2, y: 550, width: 160, height: 160)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+
+        self.view.addSubview(animationView)
     }
     
     func navigateToViewController() {
