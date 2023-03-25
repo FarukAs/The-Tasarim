@@ -10,6 +10,7 @@
 		9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */; };
 		9D1C971B299CF0360082F33E /* EditCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */; };
 		9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */; };
+		9D27BE8329CDFCE200BE53EA /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27BE8229CDFCE200BE53EA /* LaunchScreenViewController.swift */; };
 		9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */; };
 		9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */; };
 		9D3704C729BCE2C300DBF14C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */; };
@@ -60,6 +61,7 @@
 		9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBacksViewController.swift; sourceTree = "<group>"; };
+		9D27BE8229CDFCE200BE53EA /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController1.swift; sourceTree = "<group>"; };
 		9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */,
 				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
 				9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */,
+				9D27BE8229CDFCE200BE53EA /* LaunchScreenViewController.swift */,
 			);
 			path = "The Tasarım";
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				9D39CBF129963307007601C6 /* CouponCollectionViewCell.swift in Sources */,
 				9D419C572993C4C4008F7568 /* EditViewController.swift in Sources */,
 				9D41E76E2982A1F0001D24F7 /* Content.swift in Sources */,
+				9D27BE8329CDFCE200BE53EA /* LaunchScreenViewController.swift in Sources */,
 				9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */,
 				9DBDB9FB2984576100FF650C /* AddressViewController.swift in Sources */,
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
