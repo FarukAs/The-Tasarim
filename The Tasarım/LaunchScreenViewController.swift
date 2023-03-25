@@ -16,6 +16,7 @@ class LaunchScreenViewController: UIViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var loadedItemCount = 0
+    private var selectedCategory = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,43 +26,37 @@ class LaunchScreenViewController: UIViewController {
         productArray = []
         
         var progressValue: Float = 0.0
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            progressValue += 0.125
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+            progressValue += 0.01
             self.progressView.setProgress(progressValue, animated: true)
             
             if progressValue >= 1.0 {
                 timer.invalidate()
-                
                 self.navigateToViewController()
             }
         }
-        addProductCategories()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.getProductNames()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.getCategoryImage()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.getProductImage()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
-            self.fixCollectionView()
+        addProductCategories(){
+            self.getProductNames(){
+                self.getCategoryImage()
+                self.getProductImage(){
+                    self.selectedCategory = categoryArray[0].categoryName
+                    self.fixCollectionViewData()
+                    self.categoryClicked()
+                }
+            }
         }
     }
     
     func navigateToViewController() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navigationController = self.navigationController {
             let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            viewController.modalPresentationStyle = .fullScreen
-            viewController.modalTransitionStyle = .crossDissolve
-            self.present(viewController, animated: true, completion: nil)
+            navigationController.pushViewController(viewController, animated: true)
+        } else {
+            print("Navigation controller not found")
         }
-    
-    
-    
-    
-    func addProductCategories(){
+    }
+    func addProductCategories(completion: @escaping () -> Void) {
         db.collection("Category").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -69,10 +64,33 @@ class LaunchScreenViewController: UIViewController {
                 for document in querySnapshot!.documents {
                     productCategories.append(document.documentID)
                 }
-                print("Number of categories: \(productCategories.count)")
+                completion() // çağrılan fonksiyonu burada çağırın
             }
         }
     }
+    func getProductNames(completion: @escaping () -> Void){
+        var numFinishedFetches = 0
+        for index in 0..<productCategories.count {
+            let ref = self.db.collection("developer@gmail.com").document("Products").collection(productCategories[index])
+            ref.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print(error)
+                }else {
+                    for document in querySnapshot!.documents {
+                        products.append("\(document.documentID)")
+                        print(products)
+                    }
+                }
+                // artık bir koleksiyondan veri indirme işlemi tamamlandı
+                numFinishedFetches += 1
+                if numFinishedFetches == productCategories.count {
+                    completion()
+                }
+            }
+        }
+        
+    }
+    
     func getCategoryImage(){
         for index in 0..<productCategories.count {
             let storageRef = self.storage.reference()
@@ -92,7 +110,10 @@ class LaunchScreenViewController: UIViewController {
             }
         }
     }
-    func getProductImage(){
+    func getProductImage(completion: @escaping () -> Void) {
+        // DispatchGroup oluştur
+        let group = DispatchGroup()
+        
         // Product Categories içerisindeki kategoriler
         for index in 0..<productCategories.count {
             let storageRef = self.storage.reference()
@@ -100,8 +121,7 @@ class LaunchScreenViewController: UIViewController {
             let images1Ref = imagesRef.child("Products")
             let images2Ref = images1Ref.child(productCategories[index])
             
-            for item in 0..<products.count{
-                
+            for item in 0..<products.count {
                 let images3Ref = images2Ref.child(products[item])
                 let image1 = images3Ref.child("image1")
                 let image2 = images3Ref.child("image2")
@@ -109,15 +129,7 @@ class LaunchScreenViewController: UIViewController {
                 
                 let product = productBrain(productCategory: productCategories[index], productName: products[item], productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
                 
-                //Load fonksiyonu
-                let loadCompletion = { [self] in
-                    loadedItemCount += 1
-                    if loadedItemCount == productCategories.count * products.count * 3 {
-                        // Tüm ürünler yüklendiğinde hideLoader() fonksiyonunu çağırmak için
-//                        hideLoader()
-                    }
-                }
-                
+                group.enter()
                 db.collection("developer@gmail.com").document("Products").collection(productCategories[index]).document(products[item]).getDocument { (document, error) in
                     if let document = document, document.exists {
                         let data = document.data()
@@ -126,8 +138,10 @@ class LaunchScreenViewController: UIViewController {
                     } else {
                         print("Document does not exist")
                     }
-                    loadCompletion()
+                    group.leave()
                 }
+                
+                group.enter()
                 image1.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                     if let error = error {
                         print("Error downloading image: \(error.localizedDescription)")
@@ -135,8 +149,10 @@ class LaunchScreenViewController: UIViewController {
                         let image1 = UIImage(data: data!)
                         product.image1 = image1!
                     }
-                    loadCompletion()
+                    group.leave()
                 }
+                
+                group.enter()
                 image2.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                     if let error = error {
                         print("Error downloading image: \(error.localizedDescription)")
@@ -144,9 +160,10 @@ class LaunchScreenViewController: UIViewController {
                         let image2 = UIImage(data: data!)
                         product.image2 = image2!
                     }
-                    loadCompletion()
+                    group.leave()
                 }
                 
+                group.enter()
                 image3.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                     if let error = error {
                         print("Error downloading image: \(error.localizedDescription)")
@@ -154,29 +171,19 @@ class LaunchScreenViewController: UIViewController {
                         let image3 = UIImage(data: data!)
                         product.image3 = image3!
                     }
-                    loadCompletion()
+                    group.leave()
                 }
                 productArray.append(product)
-                
             }
         }
-    }
-    func getProductNames(){
-        for index in 0..<productCategories.count {
-            let ref = self.db.collection("developer@gmail.com").document("Products").collection(productCategories[index])
-            ref.getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print(error)
-                }else {
-                    for document in querySnapshot!.documents {
-                        products.append("\(document.documentID)")
-                        print(products)
-                    }
-                }
-            }
+        
+        // Bütün işlemler tamamlandığında
+        group.notify(queue: .main) {
+            completion()
         }
     }
-    func fixCollectionView() {
+    
+    func fixCollectionViewData() {
         var indexesToRemove: [Int] = []
         for index in 0..<productArray.count {
             if productArray[index].productDetail == "" {
@@ -185,6 +192,14 @@ class LaunchScreenViewController: UIViewController {
         }
         for index in indexesToRemove.reversed() {
             productArray.remove(at: index)
+        }
+    }
+    func categoryClicked(){
+        collectionViewData = []
+        for prdct in productArray{
+            if prdct.productCategory == selectedCategory{
+                collectionViewData.append(prdct)
+            }
         }
     }
 }

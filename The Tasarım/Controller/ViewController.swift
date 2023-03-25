@@ -11,8 +11,9 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import MBProgressHUD
-class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource {
+class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
 
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var categoryCollectionView: UICollectionView!
     
     @IBOutlet var collectionView: UICollectionView!
@@ -23,7 +24,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("tyu\(selectedCategory)")
+        searchBar.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
         categoryCollectionView.dataSource = self
@@ -31,12 +32,8 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToLogin))
         accountStackView.addGestureRecognizer(tapGesture)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            print("tyt\(self.selectedCategory)")
-            self.categoryClicked()
-        }
-        // Kategori ve ürün sayısını çarparak loader bitişi hesaplanacak
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -44,6 +41,54 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            categoryClicked()
+        } else {
+            filterProducts(searchText: searchText)
+        }
+    }
+    func filterProducts(searchText: String) {
+        collectionViewData = productArray.filter { (product) -> Bool in
+            return product.productName.lowercased().contains(searchText.lowercased())
+        }
+        collectionView.reloadData()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionView {
             return collectionViewData.count
