@@ -108,7 +108,19 @@ struct Feedback {
     let text: String
     let imageData: UIImage
 }
-
+class UserDefaultsKeys {
+    var givenName :String
+    var familyName :String
+    var email :String
+    var phoneNumber : String
+    
+    init(givenName: String, familyName: String, email: String, phoneNumber: String) {
+        self.givenName = givenName
+        self.familyName = familyName
+        self.email = email
+        self.phoneNumber = phoneNumber
+    }
+}
 
 
 

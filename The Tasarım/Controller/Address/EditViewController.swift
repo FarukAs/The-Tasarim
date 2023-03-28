@@ -44,7 +44,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         let words = address!.split(separator: " ")
         let firstTwoWords = words.prefix(2)
         
-        db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").delete() { err in
+        db.collection("users").document(user!).collection("address").document("\(firstTwoWords)").delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -52,7 +52,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
             }
         }
         if address == self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
-            db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").setData([
+            db.collection("users").document(user!).collection("address").document("\(firstTwoWords)").setData([
                 "address": address!,
                 "city": cityArray,
                 "name": name,
@@ -74,7 +74,7 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
     func loadData() {
         addresses = []
-        db.collection(user!).document("address").collection(userID!).getDocuments { (querySnapshot, error) in
+        db.collection("users").document(user!).collection("address").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
@@ -122,18 +122,6 @@ class EditViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         pickerView.dataSource = self
         cityText.inputView = pickerView
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false

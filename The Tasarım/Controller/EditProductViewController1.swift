@@ -173,7 +173,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.frame = CGRect(x: tableView.frame.origin.x, y: productPriceTextField.frame.maxY + 20, width: view.frame.width, height: 3 * 120)
+        tableView.frame = CGRect(x: tableView.frame.origin.x, y: productPriceTextField.frame.maxY + 20, width: view.frame.width, height: CGFloat(commentsBrain.count * 120))
         mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: tableView.frame.maxY + 120)
         saveButton.frame = CGRect(x: saveButton.frame.minX, y: mainScrollView.contentSize.height - saveButton.frame.height, width: saveButton.frame.width, height: saveButton.frame.height)
         if commentsBrain.count == 0 {
@@ -228,6 +228,16 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 } else {
                     print("Document successfully removed!")
                     self.navigationController?.popViewController(animated: true)
+                }
+            }
+            self.db.collection("users").document(self.user!).collection("Comments").document("Comment").collection(self.documentID).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        self.db.collection("users").document(self.user!).collection("Comments").document("Comment").collection(self.documentID).document(document.documentID).delete()
+                    }
                 }
             }
         }
@@ -428,7 +438,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         let alert = UIAlertController(title: "Yorum silinecek", message: "Onaylıyor musun?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Vazgeç", style: .cancel)
         let okAction = UIAlertAction(title: "Onayla", style: .default) { _ in
-            self.db.collection(self.user!).document("Comments").collection(self.documentID).document( commentsBrain[indexPath.row].Documentid).delete()
+            self.db.collection("users").document(self.user!).collection("Comments").document("Comment").collection(self.documentID).document(commentsBrain[indexPath.row].Documentid).delete()
             commentsBrain.remove(at:  indexPath.row)
             tableView.reloadData()
         }
@@ -437,16 +447,21 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         self.present(alert, animated: true, completion: nil)
     }
     func getCommentsData(){
-        db.collection(user!).document("Comments").collection(documentID).getDocuments { QuerySnapshot, errr in
+        print("ooo\(user!)")
+        print("ooo\(documentID)")
+        db.collection("users").document(user!).collection("Comments").document("Comment").collection(documentID).getDocuments { QuerySnapshot, errr in
             if let errr = errr {
-                print(errr)
+                print("Error:\(errr)")
             }else{
                 let data1 = QuerySnapshot?.documents
+                print("ood\(data1)")
                 for dcmnt in data1!{
+                    print("ooou\(dcmnt)")
                     let data = dcmnt.data()
                     if let comment = data["Comment"] as? String ,let date = data["Date"] as? Int , let name = data["Name"] as? String, let rate = data["Rate"] as? Double , let id = data["Documentid"] as? String{
                         let cmmnt = commentBrain(Comment: comment, Date: Double(date), Rate: Double(rate), Name: name,Documentid: id)
                         commentsBrain.append(cmmnt)
+                        print("oop\(commentsBrain)")
                     }
                 }
             }

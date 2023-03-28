@@ -11,7 +11,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import Lottie
-
 class LaunchScreenViewController: UIViewController {
     
     let animationView = LottieAnimationView()
@@ -39,16 +38,17 @@ class LaunchScreenViewController: UIViewController {
         }
         let animationView = LottieAnimationView(name: "animation")
         animationView.frame = CGRect(x: (view.bounds.width - 160) / 2, y: 550, width: 160, height: 160)
-        animationView.contentMode = .scaleAspectFit
+        animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
         animationView.play()
         self.view.addSubview(animationView)
-        
         addProductCategories(){
             self.getProductNames(){
-                self.getCategoryImage()
-                self.getProductImage(){
+                self.getCategoryImage(){
+                    print("llş")
                     self.selectedCategory = categoryArray[0].categoryName
+                }
+                self.getProductImage(){
                     self.fixCollectionViewData()
                     self.categoryClicked()
                     self.progressView.setProgress(0.8, animated: false)
@@ -60,8 +60,56 @@ class LaunchScreenViewController: UIViewController {
                 }
             }
         }
+        
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+          // The user's ID, unique to the Firebase project.
+          // Do NOT use this value to authenticate with your backend server,
+          // if you have one. Use getTokenWithCompletion:completion: instead.
+          let uid = user.uid
+          let email = user.email
+          let photoURL = user.photoURL
+            let name = user.displayName
+            print("ass\(uid)")
+            print("ass\(email)")
+            print("ass\(photoURL)")
+            print("ass\(name)")
+          var multiFactorString = "MultiFactor: "
+          for info in user.multiFactor.enrolledFactors {
+            multiFactorString += info.displayName ?? "[DispayName]"
+            multiFactorString += " "
+          }
+          // ...
+        }
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     func navigateToViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let navigationController = self.navigationController {
@@ -106,7 +154,8 @@ class LaunchScreenViewController: UIViewController {
         
     }
     
-    func getCategoryImage(){
+    func getCategoryImage(completion: @escaping () -> Void){
+        var numFinishedFetches = 0
         for index in 0..<productCategories.count {
             let storageRef = self.storage.reference()
             let imagesRef = storageRef.child("developer@gmail.com")
@@ -121,6 +170,15 @@ class LaunchScreenViewController: UIViewController {
                     let image = UIImage(data: data!)
                     categoryArray.append(categorBrain(categoryName: productCategories[index], categoryImage: image!))
                     print("done")
+                }
+                numFinishedFetches += 1
+                if numFinishedFetches == productCategories.count {
+                    print("lll")
+                    print("pp\(categoryArray.count)")
+                    print("pp\(categoryArray[0].categoryName)")
+                    print("pp\(categoryArray[1].categoryName)")
+                    print("pp\(categoryArray[2].categoryName)")
+                    completion()
                 }
             }
         }

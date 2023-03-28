@@ -43,7 +43,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         [UIColor(red: 0.224, green: 0.722, blue: 0.906, alpha: 1.0).cgColor, UIColor(red: 0.086, green: 0.329, blue: 0.973, alpha: 1.0).cgColor],
         [UIColor(red: 0.906, green: 0.902, blue: 0.133, alpha: 1.0).cgColor, UIColor(red: 0.902, green: 0.557, blue: 0.098, alpha: 1.0).cgColor]
     ]
-    
+    var urlimage = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         profile.layer.cornerRadius = 0.5 * profile.bounds.size.width
@@ -72,7 +72,7 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         let bellButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(bellButtonTapped))
         navigationItem.rightBarButtonItem = bellButton
         
-        let docRef = db.collection(user!).document("userInfo")
+        let docRef = db.collection("users").document(user!).collection("userInfo").document("Info")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
@@ -80,13 +80,16 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
                                     surname: data!["surname"] as! String,
                                     phoneNumber: data!["phoneNumber"] as! String,
                                     email: data!["email"] as! String)
-                let firstLetter = String(user.name.prefix(1))
-                let secondLetter = String(user.surname.prefix(1))
-                let currentAttributes = self.profile.titleLabel?.attributedText?.attributes(at: 0, effectiveRange: nil)
-                let attributedTitle = NSAttributedString(string: "\(firstLetter)\(secondLetter)", attributes: currentAttributes)
+                td_currentuser = UserDefaultsKeys(givenName: user.name, familyName: user.surname, email: user.email, phoneNumber: user.phoneNumber)
 
-                self.profile.setAttributedTitle(attributedTitle, for: .normal)
-                self.userInfo.text = "\(user.name) \(user.surname)"
+                    let firstLetter = String(user.name.prefix(1))
+                    let secondLetter = String(user.surname.prefix(1))
+                    let currentAttributes = self.profile.titleLabel?.attributedText?.attributes(at: 0, effectiveRange: nil)
+                    let attributedTitle = NSAttributedString(string: "\(firstLetter)\(secondLetter)", attributes: currentAttributes)
+
+                    self.profile.setAttributedTitle(attributedTitle, for: .normal)
+                    self.userInfo.text = "\(user.name) \(user.surname)"
+         
             } else {
                 print("Document does not exist")
             }
@@ -120,13 +123,18 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         if selectedRow == 4 {
             performSegue(withIdentifier: "accountToGame", sender: nil)
         }
+        //Hesabım
         if selectedRow == 5 {
+            performSegue(withIdentifier: "accountToMyAccount", sender: nil)
+        }
+        
+        if selectedRow == 6 {
             performSegue(withIdentifier: "accountToFeedBack", sender: nil)
         }
-        if selectedRow == 6 {
+        if selectedRow == 7 {
             do {
                 try Auth.auth().signOut()
-                navigationController?.popToRootViewController(animated: true)
+                self.navigateToLoginViewController()
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)
             }
@@ -146,26 +154,26 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         gradientLayer.add(animation, forKey: "gradientChange")
     }
     func getCouponData(){
-        db.collection(user!).document("Coupons").collection("CouponsData").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
+        db.collection("users").document(user!).collection("Coupons").document("CouponsData").getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                     let data = document.data()
-                    let safeData = Coupons(category: data["category"] as! String, limit: data["limit"] as! String, price: data["price"] as! String)
+                let safeData = Coupons(category: data!["category"] as! String, limit: data!["limit"] as! String, price: data!["price"] as! String)
                     coupon.append(safeData)
-                }
+            } else {
+                print("Document does not exist")
             }
         }
         
     }
     func getNumberOfCoupons(){
-        let docRef = db.collection(user!).document("NumberOfCoupons")
+        let docRef = db.collection("users").document(user!).collection("Coupons").document("NumberOfCoupons")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
                 let safeData = data!["number"] as! Int
                 numberOfData = safeData
+                print("işit\(numberOfData)")
             } else {
                 print("Document does not exist")
             }
@@ -187,6 +195,15 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
             }
         }
         MBProgressHUD.hide(for: view, animated: true)
+    }
+    func navigateToLoginViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navigationController = self.navigationController {
+            let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            navigationController.pushViewController(viewController, animated: true)
+        } else {
+            print("Navigation controller not found")
+        }
     }
 }
 

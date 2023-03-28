@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zVi-4L-Lmt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4ld-EV-lKw">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -250,7 +250,7 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="person" catalog="system"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hesabım" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygj-gg-6Qr">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayarlar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygj-gg-6Qr">
                                                         <rect key="frame" x="0.0" y="34.333333333333371" width="98.333333333333329" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -293,7 +293,7 @@
                         <outlet property="categoryCollectionView" destination="TuL-99-gV2" id="Iby-2q-J4l"/>
                         <outlet property="collectionView" destination="vMs-HY-Q8k" id="KbL-ke-Y6X"/>
                         <outlet property="searchBar" destination="OpT-r7-8kg" id="3EO-mC-ZQ7"/>
-                        <segue destination="Aqn-Q6-XEM" kind="show" identifier="mainToLogin" id="nZb-ht-yVI"/>
+                        <segue destination="Aqn-Q6-XEM" kind="show" identifier="mainToLogin" id="9fo-oX-ZYP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -483,7 +483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubQ-sI-57a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5432.8244274809158" y="843.66197183098598"/>
+            <point key="canvasLocation" x="6359.5419847328239" y="843.66197183098598"/>
         </scene>
         <!--Add Category View Controller-->
         <scene sceneID="I33-Kw-AFu">
@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CJ-oh-zU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6307.6335877862593" y="843.66197183098598"/>
+            <point key="canvasLocation" x="7234.3511450381675" y="843.66197183098598"/>
         </scene>
         <!--Add Product View Controller-->
         <scene sceneID="TOD-V9-nvl">
@@ -568,7 +568,7 @@
                                 <rect key="frame" x="16" y="430" width="361" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ürün Detaylarını girin." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dma-fX-lW5">
                                 <rect key="frame" x="16" y="481" width="240" height="128"/>
@@ -632,7 +632,7 @@
                                         <rect key="frame" x="0.0" y="365" width="361" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ürün Detaylarını girin." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SkG-8p-FoF">
                                         <rect key="frame" x="0.0" y="407" width="240" height="128"/>
@@ -802,7 +802,7 @@
         <!--Login View Controller-->
         <scene sceneID="Pcy-wk-wW7">
             <objects>
-                <viewController id="Aqn-Q6-XEM" customClass="LoginViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="Aqn-Q6-XEM" customClass="LoginViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QJG-nm-BNg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -872,17 +872,19 @@
                         <outlet property="passwordTextField" destination="hRp-4t-ZFW" id="uWe-ws-PVY"/>
                         <outlet property="signInButtonOutlet" destination="FIY-EM-RPg" id="TXl-Ok-dpw"/>
                         <outlet property="signUpButtonOutlet" destination="5T7-Oh-z2S" id="QLk-3O-hyf"/>
+                        <outlet property="stackView" destination="b0f-Mh-XJz" id="qLI-Ui-TOM"/>
                         <segue destination="5vO-ee-3Vb" kind="show" identifier="loginToAccount" id="ucR-uk-BaS"/>
+                        <segue destination="pmK-pc-CDK" kind="show" identifier="loginToLaunch" id="fuk-fY-LOj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5g-tJ-s1a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.5267175572519" y="844.36619718309862"/>
+            <point key="canvasLocation" x="1028.2442748091603" y="844.36619718309862"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="zDp-n1-IN1">
             <objects>
-                <viewController id="h2u-CU-Awy" customClass="RegisterViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="h2u-CU-Awy" customClass="RegisterViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5BI-B5-si3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -951,7 +953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6C-DP-il6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="844"/>
+            <point key="canvasLocation" x="1953.4351145038167" y="843.66197183098598"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="tfv-oN-eC5">
@@ -1077,11 +1079,12 @@
                         <segue destination="fGL-aE-T9u" kind="show" identifier="accountToDeveloper" id="Dny-mT-WZa"/>
                         <segue destination="ZRR-vk-dO3" kind="show" identifier="accountToAdress" id="zxC-QM-yba"/>
                         <segue destination="Cv9-m6-m46" kind="show" identifier="accountToCoupon" id="mgX-x5-Eik"/>
+                        <segue destination="CMT-ak-Xoy" kind="show" identifier="accountToMyAccount" id="exH-vJ-P1x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLF-Ie-rGt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1930.534351145038" y="843.66197183098598"/>
+            <point key="canvasLocation" x="2857.2519083969464" y="843.66197183098598"/>
         </scene>
         <!--Address View Controller-->
         <scene sceneID="A6u-ly-aWd">
@@ -1338,7 +1341,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="CNu-mQ-oU8">
-                                <rect key="frame" x="-9" y="-15" width="384" height="784"/>
+                                <rect key="frame" x="-14" y="-16" width="385" height="785"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDa-KK-MHd">
@@ -1695,6 +1698,22 @@
             </objects>
             <point key="canvasLocation" x="2843.5114503816794" y="1624.6478873239437"/>
         </scene>
+        <!--My Account View Controller-->
+        <scene sceneID="tVI-sx-g0h">
+            <objects>
+                <viewController id="CMT-ak-Xoy" customClass="MyAccountViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2VG-Wb-S1d">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="K2E-lQ-V6i"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cmc-pJ-Oek"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iyv-9D-TzW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3768.7022900763359" y="1624.6478873239437"/>
+        </scene>
         <!--Feed Back View Controller-->
         <scene sceneID="Khk-np-w2V">
             <objects>
@@ -1764,7 +1783,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PdK-Kl-ffD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4001" y="1625"/>
+            <point key="canvasLocation" x="4622" y="1625"/>
         </scene>
         <!--Developer View Controller-->
         <scene sceneID="YL7-fw-aEv">
@@ -1793,18 +1812,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SvR-Yo-uge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2843.5114503816794" y="843.66197183098598"/>
+            <point key="canvasLocation" x="3770.2290076335876" y="843.66197183098598"/>
         </scene>
         <!--Launch Screen View Controller-->
         <scene sceneID="yX1-um-Kev">
             <objects>
-                <viewController id="pmK-pc-CDK" customClass="LaunchScreenViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreenViewController" id="pmK-pc-CDK" customClass="LaunchScreenViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b2G-Gi-QyY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="azZ-1R-7VM">
-                                <rect key="frame" x="96.666666666666686" y="310.33333333333331" width="200" height="231.33333333333331"/>
+                                <rect key="frame" x="96.666666666666686" y="276" width="200" height="231.33333333333337"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_withoutbackground" translatesAutoresizingMaskIntoConstraints="NO" id="mvD-XP-Vug">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -1843,27 +1862,29 @@
             <point key="canvasLocation" x="1027" y="4"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Trf-VO-6Nd">
+        <scene sceneID="5L0-3h-vD0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zVi-4L-Lmt" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ld-EV-lKw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uiu-I2-mLY">
+                    <navigationItem key="navigationItem" id="16z-uI-Csp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZN-NP-Xtf">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="pmK-pc-CDK" kind="relationship" relationship="rootViewController" id="MZM-Bm-10G"/>
+                        <segue destination="Aqn-Q6-XEM" kind="relationship" relationship="rootViewController" id="Sds-OZ-W8d"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HFE-rj-yzR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-Dk-ay1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="4"/>
+            <point key="canvasLocation" x="101.5267175572519" y="844.36619718309862"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Fi5-ao-Fah"/>
-        <segue reference="1si-xM-9D1"/>
+        <segue reference="ucR-uk-BaS"/>
+        <segue reference="9fo-oX-ZYP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="125" height="128"/>

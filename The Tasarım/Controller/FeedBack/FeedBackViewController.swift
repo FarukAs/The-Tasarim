@@ -83,15 +83,13 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                     let images1Ref = imagesRef.child(self.userEmail!)
                     let images2Ref = images1Ref.child(timestamp)
 
-                    // Sıkıştırma kalitesini düşük bir değere ayarlayarak fotoğrafın boyutunu azaltın
-                    guard let imageData = newImage.jpegData(compressionQuality: 0.1) else {
-                        return
-                    }
-                    // Fotoğrafı yükleyin
-                    images2Ref.putData(imageData, metadata: nil) { (metadata, error) in
-                        guard let _ = metadata else {
-                            print("metadata error \(String(describing: error))")
-                            return
+                    if let imageData = newImage.sd_imageData(as: .webP, compressionQuality: 0.3) {
+                        // Fotoğrafı yükleyin
+                        images2Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                            guard let _ = metadata else {
+                                print("metadata error \(String(describing: error))")
+                                return
+                            }
                         }
                     }
                 }

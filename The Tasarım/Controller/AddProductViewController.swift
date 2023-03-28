@@ -10,6 +10,8 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import SDWebImageWebPCoder
+
 class AddProductViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate,UITextFieldDelegate , UIPickerViewDelegate ,UIPickerViewDataSource {
     
     @IBOutlet var priceTextField: UITextField!
@@ -38,8 +40,6 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         dissmissAndClosePickerView()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        print(productCategories)
-        
     }
     
     
@@ -51,7 +51,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         let photoCount = scrollView.subviews.filter { $0 is UIImageView }.count
         if photoCount == 0 {
             if var userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-       
+                
                 let newImageView = UIImageView(image: userPickedImage)
                 image1 = userPickedImage
                 print(photoCount)
@@ -134,14 +134,16 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image1")
                         
-                        guard let imageData = imageone.jpegData(compressionQuality: 0.8) else {
-                            return
-                        }
-                        // Fotoğrafı yükleyin
-                        images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
-                            guard let _ = metadata else {
-                                print("metadata error \(String(describing: error))")
-                                return
+                        
+                        
+                        if let imageData = imageone.sd_imageData(as: .webP, compressionQuality: 0.1) {
+                            print("ert\(imageData)")
+                            // Fotoğrafı yükleyin
+                            images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                                guard let _ = metadata else {
+                                    print("metadata error \(String(describing: error))")
+                                    return
+                                }
                             }
                         }
                     }
@@ -153,14 +155,13 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image2")
                         
-                        guard let imageData = imagetwo.jpegData(compressionQuality: 0.8) else {
-                            return
-                        }
-                        // Fotoğrafı yükleyin
-                        _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
-                            guard let _ = metadata else {
-                                print("metadata error \(String(describing: error))")
-                                return
+                        if let imageData = imagetwo.sd_imageData(as: .webP, compressionQuality: 0.1){
+                            // Fotoğrafı yükleyin
+                            _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                                guard let _ = metadata else {
+                                    print("metadata error \(String(describing: error))")
+                                    return
+                                }
                             }
                         }
                     }
@@ -172,14 +173,13 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image3")
                         
-                        guard let imageData = imagethree.jpegData(compressionQuality: 0.8) else {
-                            return
-                        }
-                        // Fotoğrafı yükleyin
-                        _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
-                            guard let _ = metadata else {
-                                print("metadata error \(String(describing: error))")
-                                return
+                        if let imageData = imagethree.sd_imageData(as: .webP, compressionQuality: 0.1){
+                            // Fotoğrafı yükleyin
+                            _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
+                                guard let _ = metadata else {
+                                    print("metadata error \(String(describing: error))")
+                                    return
+                                }
                             }
                         }
                     }
@@ -191,8 +191,6 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
-            
-            
         }
     }
     func hideKeyboardWhenTappedAround() {
@@ -249,21 +247,9 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         selectedCategory = selectedCat
         print(selectedCategory)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func compressImage(image: UIImage, compressionQuality: CGFloat) -> Data? {
-        guard let data = image.jpegData(compressionQuality: compressionQuality) else { return nil }
-        return data
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
     }
-
 }
 
 

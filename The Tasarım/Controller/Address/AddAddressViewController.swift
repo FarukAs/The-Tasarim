@@ -40,7 +40,7 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
         let firstTwoWords = words.prefix(2)
         
         if address == self.textView.text , let phone = self.phoneNumber.text ,  let name = self.name.text , let surname = self.surname.text, let title = self.titleText.text {
-            db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").setData([
+            db.collection("users").document(user!).collection("address").document("\(firstTwoWords)").setData([
                 "address": address!,
                 "city": cityArray,
                 "name": name,
@@ -129,7 +129,7 @@ class AddAddressViewController: UIViewController ,UIPickerViewDelegate,UIPickerV
     }
     func loadData() {
         addresses = []
-        db.collection(user!).document("address").collection(userID!).getDocuments { (querySnapshot, error) in
+        db.collection("users").document(user!).collection("address").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {

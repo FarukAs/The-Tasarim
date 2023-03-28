@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let AccountMenu = ["📦 Siparişlerim","💛 Beğendiklerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","💬 Geri Bildirim","🚪 Çıkış Yap"]
+let AccountMenu = ["📦 Siparişlerim","💛 Beğendiklerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","👤 Hesabım","💬 Geri Bildirim","🚪 Çıkış Yap"]
 
 let DeveloperMenu = ["Ürünler","Siparişler","Kullanıcılar","Geri Bildirimler"]
 
@@ -46,3 +46,5 @@ var selectedItem = 1000
 var commentsBrain = [commentBrain(Comment: "", Date: 0.0, Rate: 0.0, Name: "",Documentid: "")]
 
 var feedbacks: [Feedback] = []
+
+var td_currentuser = UserDefaultsKeys(givenName: "", familyName: "", email: "", phoneNumber: "")

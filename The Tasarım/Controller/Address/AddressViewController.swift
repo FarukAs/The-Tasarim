@@ -66,7 +66,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
         currentAddress.text = "\(addresses[indexPath.item].address) \(addresses[indexPath.item].city)"
         
         // mevcut adresi databaseye kaydet
-        db.collection(user!).document("TD_current_Address").setData([
+        db.collection("users").document(user!).collection("TD").document("TD_current_Address").setData([
             "address": addresses[indexPath.item].address,
             "city": addresses[indexPath.item].city,
             "name": addresses[indexPath.item].name,
@@ -89,7 +89,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
     }
     
     func loadData() {
-        db.collection(user!).document("address").collection(userID!).getDocuments { (querySnapshot, error) in
+        db.collection("users").document(user!).collection("address").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
@@ -122,7 +122,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
             let words = address.split(separator: " ")
             let firstTwoWords = words.prefix(2)
             
-            db.collection(user!).document("address").collection(userID!).document("\(firstTwoWords)").delete() { err in
+            db.collection("users").document(user!).collection("address").document("\(firstTwoWords)").delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
@@ -176,7 +176,7 @@ class AddressViewController: UIViewController , UICollectionViewDelegate,UIColle
     
     // Uygulama açıldığında mevcut adres kısmının databaseden veri çekilerek doldurulması
     func loadCurrentAddress(){
-        let docRef = db.collection(user!).document("TD_current_Address")
+        let docRef = db.collection("users").document(user!).collection("TD").document("TD_current_Address")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()

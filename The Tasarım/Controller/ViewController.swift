@@ -21,7 +21,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
     let storage = Storage.storage()
-    var selectedCategory = categoryArray[0].categoryName
+    var selectedCategory = "g"
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
