@@ -29,23 +29,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
         imagePicker.allowsEditing = false
         hideKeyboardWhenTappedAround()
         navigationItem.title = "Geri Bildirim"
-        
-        sendButton.layer.cornerRadius = 18
-        sendButton.layer.shadowColor = UIColor.black.cgColor
-        sendButton.layer.shadowOffset = CGSize(width: 5, height: 5)
-        sendButton.layer.shadowRadius = 10
-        sendButton.layer.shadowOpacity = 0.3
-        
-        textView.delegate = self
-        textView.layer.cornerRadius = 10
-        textView.layer.borderWidth = 2
-        textView.layer.borderColor = UIColor.gray.cgColor
-        textView.backgroundColor = UIColor.white
-        textView.textColor = UIColor.black
-        textView.font = UIFont.systemFont(ofSize: 18)
-        textView.clipsToBounds = false
-        textView.layer.masksToBounds = false
-        successLabel.isHidden = true
+        setupLayout()
     }
     
     @IBAction func addPhotoButton(_ sender: UIButton) {
@@ -118,5 +102,23 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    func setupLayout(){
+        sendButton.layer.cornerRadius = 18
+        sendButton.layer.shadowColor = UIColor.black.cgColor
+        sendButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        sendButton.layer.shadowRadius = 10
+        sendButton.layer.shadowOpacity = 0.3
+        
+        textView.delegate = self
+        textView.layer.cornerRadius = 10
+        textView.layer.borderWidth = 2
+        textView.layer.borderColor = UIColor.gray.cgColor
+        textView.backgroundColor = UIColor.white
+        textView.textColor = UIColor.black
+        textView.font = UIFont.systemFont(ofSize: 18)
+        textView.clipsToBounds = false
+        textView.layer.masksToBounds = false
+        successLabel.isHidden = true
     }
 }

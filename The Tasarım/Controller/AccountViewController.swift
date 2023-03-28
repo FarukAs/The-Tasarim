@@ -127,7 +127,6 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
         if selectedRow == 5 {
             performSegue(withIdentifier: "accountToMyAccount", sender: nil)
         }
-        
         if selectedRow == 6 {
             performSegue(withIdentifier: "accountToFeedBack", sender: nil)
         }
