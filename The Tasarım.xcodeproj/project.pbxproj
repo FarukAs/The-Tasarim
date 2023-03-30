@@ -50,6 +50,8 @@
 		9D829E6529CC3C91008443B2 /* FeedBackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */; };
 		9D829E6929CC4B46008443B2 /* FullScreenImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
+		9DBCD4E229D439F900D485CD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCD4E129D439F900D485CD /* FavoritesViewController.swift */; };
+		9DBCD4E429D43B5F00D485CD /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */; };
 		9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F02982E60300FF650C /* TableViewCell.swift */; };
 		9DBDB9F32982E60300FF650C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F12982E60300FF650C /* TableViewCell.xib */; };
 		9DBDB9F529839FA900FF650C /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */; };
@@ -97,6 +99,8 @@
 		9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackDetailViewController.swift; sourceTree = "<group>"; };
 		9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewViewController.swift; sourceTree = "<group>"; };
 		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DBCD4E129D439F900D485CD /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F02982E60300FF650C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DBDB9F12982E60300FF650C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				9D419C5D299626BC008F7568 /* Coupon */,
 				9D419C5929956F0D008F7568 /* Game */,
 				9D419C5A29956F16008F7568 /* FeedBack */,
+				9DBCD4E129D439F900D485CD /* FavoritesViewController.swift */,
+				9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -374,11 +380,13 @@
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
 				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
 				9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */,
+				9DBCD4E229D439F900D485CD /* FavoritesViewController.swift in Sources */,
 				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
 				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
 				9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */,
 				9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */,
+				9DBCD4E429D43B5F00D485CD /* FavoritesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

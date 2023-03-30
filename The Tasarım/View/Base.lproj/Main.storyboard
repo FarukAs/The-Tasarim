@@ -173,29 +173,37 @@
                                                     </buttonConfiguration>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ART-Hd-Ebc">
-                                                    <rect key="frame" x="75" y="255" width="59" height="37"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="37" id="cHo-bw-Fnr"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="107" y="255" width="27" height="37"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-Gr-aLo">
+                                                    <rect key="frame" x="79" y="256.66666666666652" width="25" height="32"/>
+                                                    <color key="tintColor" red="0.96862745289999996" green="0.8078432083" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="svL-MX-fHL"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fYI-Ut-173" firstAttribute="leading" secondItem="WgS-oV-z1P" secondAttribute="leading" id="3yU-eX-89d"/>
                                                 <constraint firstItem="WgS-oV-z1P" firstAttribute="leading" secondItem="BIy-8V-ydc" secondAttribute="leading" id="7p4-vU-EG1"/>
                                                 <constraint firstItem="BIy-8V-ydc" firstAttribute="top" secondItem="WgS-oV-z1P" secondAttribute="bottom" constant="8" id="A3g-4T-5FK"/>
+                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="leading" secondItem="bVV-Gr-aLo" secondAttribute="trailing" constant="3" id="J8V-Ry-dU0"/>
+                                                <constraint firstItem="bVV-Gr-aLo" firstAttribute="top" secondItem="WgS-oV-z1P" secondAttribute="bottom" constant="9.9999999999998295" id="O4p-V3-dSp"/>
                                                 <constraint firstItem="WgS-oV-z1P" firstAttribute="trailing" secondItem="BIy-8V-ydc" secondAttribute="trailing" constant="56" id="PPf-qQ-OAE"/>
                                                 <constraint firstAttribute="bottom" secondItem="fYI-Ut-173" secondAttribute="bottom" constant="118" id="RcW-Nu-mMB"/>
-                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="leading" secondItem="Uae-gY-IGB" secondAttribute="leading" constant="75" id="Z16-Hx-iJ9"/>
-                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="trailing" secondItem="fYI-Ut-173" secondAttribute="trailing" id="eEo-0F-XG7"/>
+                                                <constraint firstItem="bVV-Gr-aLo" firstAttribute="leading" secondItem="BIy-8V-ydc" secondAttribute="trailing" constant="3" id="TXV-36-DL1"/>
+                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="trailing" secondItem="fYI-Ut-173" secondAttribute="trailing" id="c1I-o6-CP1"/>
                                                 <constraint firstItem="BIy-8V-ydc" firstAttribute="bottom" secondItem="Uae-gY-IGB" secondAttribute="bottomMargin" id="f1a-qW-rCa"/>
                                                 <constraint firstItem="WgS-oV-z1P" firstAttribute="leading" secondItem="Uae-gY-IGB" secondAttribute="leadingMargin" id="ghS-PU-lza"/>
-                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="trailing" secondItem="Uae-gY-IGB" secondAttribute="trailingMargin" id="huC-0s-M4O"/>
+                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="trailing" secondItem="Uae-gY-IGB" secondAttribute="trailingMargin" id="hlW-6A-vaT"/>
+                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="firstBaseline" secondItem="BIy-8V-ydc" secondAttribute="firstBaseline" id="kar-Fz-L3H"/>
                                                 <constraint firstItem="WgS-oV-z1P" firstAttribute="top" secondItem="fYI-Ut-173" secondAttribute="bottom" constant="8" id="m4H-BE-8Uc"/>
-                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="baseline" secondItem="BIy-8V-ydc" secondAttribute="baseline" id="nNB-JX-Ebe"/>
                                                 <constraint firstItem="fYI-Ut-173" firstAttribute="top" secondItem="Uae-gY-IGB" secondAttribute="topMargin" id="uCc-O2-sMf"/>
+                                                <constraint firstItem="bVV-Gr-aLo" firstAttribute="centerY" secondItem="ART-Hd-Ebc" secondAttribute="centerY" id="xbb-Bj-hmP"/>
+                                                <constraint firstItem="ART-Hd-Ebc" firstAttribute="baseline" secondItem="BIy-8V-ydc" secondAttribute="baseline" id="xmj-zL-gBn"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="142" height="300"/>
@@ -246,7 +254,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kOE-0Q-iL1" userLabel="liked">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kOE-0Q-iL1" userLabel="favorites">
                                                 <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="52.333333333333336"/>
                                                 <subviews>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bR6-Ci-cg7">
@@ -257,7 +265,7 @@
                                                             <segue destination="5vO-ee-3Vb" kind="show" identifier="mainToAccount" id="1si-xM-9D1"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beğendiklerim" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7x-pg-uSI">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorilerim" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7x-pg-uSI">
                                                         <rect key="frame" x="0.0" y="34.333333333333371" width="98" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -315,13 +323,31 @@
                         <outlet property="accountStackView" destination="33g-ih-MsG" id="mad-6a-UkS"/>
                         <outlet property="categoryCollectionView" destination="TuL-99-gV2" id="Iby-2q-J4l"/>
                         <outlet property="collectionView" destination="vMs-HY-Q8k" id="KbL-ke-Y6X"/>
+                        <outlet property="favoritesStackView" destination="kOE-0Q-iL1" id="za8-3u-lxb"/>
                         <outlet property="searchBar" destination="OpT-r7-8kg" id="3EO-mC-ZQ7"/>
                         <segue destination="Aqn-Q6-XEM" kind="show" identifier="mainToLogin" id="9fo-oX-ZYP"/>
+                        <segue destination="mvl-I9-NZa" kind="show" identifier="mainToFavorites" id="fNd-V9-CId"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954.9618320610687" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1951.9083969465648" y="-896.47887323943667"/>
+        </scene>
+        <!--Favorites View Controller-->
+        <scene sceneID="ho3-cq-jpk">
+            <objects>
+                <viewController id="mvl-I9-NZa" customClass="FavoritesViewController" customModule="The_Tasarım" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PAT-F3-bA4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fub-X8-Xh9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jSm-Gq-waL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MKf-WN-xZb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1953" y="-99"/>
         </scene>
         <!--Product View Controller-->
         <scene sceneID="UxZ-i8-tvx">
@@ -336,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLZ-66-e44" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2857.2519083969464" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="2857" y="-896"/>
         </scene>
         <!--Product Edit View Controller-->
         <scene sceneID="12w-3u-pbj">
@@ -1882,7 +1908,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVN-8e-9vq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="4"/>
+            <point key="canvasLocation" x="1028" y="-896"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5L0-3h-vD0">
@@ -1920,6 +1946,7 @@
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="pic" width="1024" height="1024"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

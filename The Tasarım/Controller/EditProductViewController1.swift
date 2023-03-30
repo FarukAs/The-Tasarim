@@ -41,6 +41,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     var currentPage = 0
     var photoCount = 0
     let ratingView = UIView()
+    var average = Double()
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
@@ -69,8 +70,6 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         image1 = collectionViewData[selectedItem].image1
         image2 = collectionViewData[selectedItem].image2
         image3 = collectionViewData[selectedItem].image3
-        
-        
         if image1 != UIImage(named: "logo") {
             photoCount += 1
         }
@@ -412,7 +411,6 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         }else{
             return 0
         }
-   
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -447,26 +445,23 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         self.present(alert, animated: true, completion: nil)
     }
     func getCommentsData(){
-        print("ooo\(user!)")
-        print("ooo\(documentID)")
-        db.collection("users").document(user!).collection("Comments").document("Comment").collection(documentID).getDocuments { QuerySnapshot, errr in
-            if let errr = errr {
-                print("Error:\(errr)")
-            }else{
-                let data1 = QuerySnapshot?.documents
-                print("ood\(data1)")
-                for dcmnt in data1!{
-                    print("ooou\(dcmnt)")
-                    let data = dcmnt.data()
+        self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).collection("Comments").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let data = document.data()
                     if let comment = data["Comment"] as? String ,let date = data["Date"] as? Int , let name = data["Name"] as? String, let rate = data["Rate"] as? Double , let id = data["Documentid"] as? String{
                         let cmmnt = commentBrain(Comment: comment, Date: Double(date), Rate: Double(rate), Name: name,Documentid: id)
                         commentsBrain.append(cmmnt)
-                        print("oop\(commentsBrain)")
+                        print("ert\(comment)")
                     }
                 }
+                print("ert\(commentsBrain)")
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [self] in
             if commentsBrain.count != 0 {
                 // Add rating view
                 let ratingView = UIView()
@@ -491,48 +486,51 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 ratingView.addSubview(ratingStarsStackView)
                 
                 
-                for i in 1...5 {
-                    let starImageView = UIImageView()
-                    starImageView.tintColor = UIColor.systemYellow
-                    starImageView.contentMode = .scaleAspectFit
-                    starImageView.translatesAutoresizingMaskIntoConstraints = false
+               
+                
+//                func getAverageRate() -> Double {
+//                    var totalRate = 0.0
+//                    for comment in commentsBrain {
+//                        totalRate += Double(comment.Rate)
+//                    }
+//                    let averageRate = Double(totalRate) / Double(commentsBrain.count)
+//                    return averageRate
+//                }
+                getAverageRateData(){
+                    let averageRate = self.average
+                    print("ooo\(averageRate)")
+                    let ratingLabel = UILabel()
+                    ratingLabel.text = String(format: "%.1f", averageRate)
+                    ratingLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
+
+                    ratingLabel.textColor = .darkGray
+                    ratingLabel.textAlignment = .center
+                    ratingLabel.translatesAutoresizingMaskIntoConstraints = false
                     
-                    if Int(Double(i)) <= Int(commentsBrain[0].Rate) {
-                        starImageView.image = filledStarImage
-                    } else {
-                        starImageView.image = emptyStarImage
+                    ratingView.addSubview(ratingLabel)
+                    ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsStackView.trailingAnchor, constant: 10.0).isActive = true
+                    ratingLabel.centerYAnchor.constraint(equalTo: ratingStarsStackView.centerYAnchor).isActive = true
+                    
+                    for i in 1...5 {
+                        let starImageView = UIImageView()
+                        starImageView.tintColor = UIColor.systemYellow
+                        starImageView.contentMode = .scaleAspectFit
+                        starImageView.translatesAutoresizingMaskIntoConstraints = false
+                        
+                        if Int(Double(i)) <= Int(averageRate) {
+                            starImageView.image = filledStarImage
+                        } else {
+                            starImageView.image = emptyStarImage
+                        }
+                        
+                        ratingStarsStackView.addArrangedSubview(starImageView)
+                        
+                        // Add constraints for the star image view
+                        starImageView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
+                        starImageView.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
                     }
-                    
-                    ratingStarsStackView.addArrangedSubview(starImageView)
-                    
-                    // Add constraints for the star image view
-                    starImageView.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-                    starImageView.widthAnchor.constraint(equalToConstant: 20.0).isActive = true
                 }
-                
-                func getAverageRate() -> Double {
-                    var totalRate = 0.0
-                    for comment in commentsBrain {
-                        totalRate += Double(comment.Rate)
-                    }
-                    let averageRate = Double(totalRate) / Double(commentsBrain.count)
-                    return averageRate
-                }
-                let averageRate = getAverageRate()
-                let ratingLabel = UILabel()
-                ratingLabel.text = String(format: "%.1f", averageRate)
-                ratingLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
-                
-                ratingLabel.textColor = .darkGray
-                ratingLabel.textAlignment = .center
-                ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-                ratingView.addSubview(ratingLabel)
-                
-                // Add constraints for the rating label
-                ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsStackView.trailingAnchor, constant: 10.0).isActive = true
-                ratingLabel.centerYAnchor.constraint(equalTo: ratingStarsStackView.centerYAnchor).isActive = true
-                
-                // Add constraints for the rating stars stack view
+
                 ratingStarsStackView.topAnchor.constraint(equalTo: ratingView.topAnchor).isActive = true
                 ratingStarsStackView.leadingAnchor.constraint(equalTo: ratingView.leadingAnchor).isActive = true
                 ratingStarsStackView.bottomAnchor.constraint(equalTo: ratingView.bottomAnchor).isActive = true
@@ -546,6 +544,38 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             }
         }
         
+    }
+    func getAverageRateData(completion: @escaping () -> Void) {
+        var usersArray = [""]
+        var rates = [0]
+        usersArray = []
+        rates = []
+        self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).collection("Comments").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    usersArray.append(document.documentID)
+                }
+                let group = DispatchGroup()
+                for usr in usersArray {
+                    self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).collection("Comments").document(usr).getDocument(source: .cache) { (document, error) in
+                        if let document = document {
+                            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                            let data = document.data()
+                            rates.append(data!["Rate"] as! Int)
+                            if rates.count == usersArray.count {
+                                self.average = Double(rates.reduce(0, +)) / Double(rates.count)
+                                completion()
+                            }
+                        } else {
+                            print("Document does not exist in cache")
+                        }
+                    }
+                }
+            }
+        }
     }
     @IBAction func saveChanges(_ sender: UIButton) {
         //Eski fotoğrafları silme
@@ -660,7 +690,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             db.collection(user!).document("Products").collection(category).document(name).setData([
                 "name": name,
                 "price": price,
-                "detail": detail
+                "detail": detail,
             ], merge: true) { error in
                 if let error = error {
                     print("Error updating product information: \(error.localizedDescription)")

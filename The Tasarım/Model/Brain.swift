@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let AccountMenu = ["📦 Siparişlerim","💛 Beğendiklerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","👤 Hesabım","💬 Geri Bildirim","🚪 Çıkış Yap"]
+let AccountMenu = ["📦 Siparişlerim","💛 Favorilerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","👤 Hesabım","💬 Geri Bildirim","🚪 Çıkış Yap"]
 
 let DeveloperMenu = ["Ürünler","Siparişler","Kullanıcılar","Geri Bildirimler"]
 
@@ -33,9 +33,9 @@ var numberOfData = 0
 //var categoryImages = [UIImage]()
 
 var categoryArray = [categorBrain(categoryName: "", categoryImage: UIImage(named: "logo")!)]
-var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5.6, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
-var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
 var productCategories = [""]
 var products = [""]
@@ -48,3 +48,5 @@ var commentsBrain = [commentBrain(Comment: "", Date: 0.0, Rate: 0.0, Name: "",Do
 var feedbacks: [Feedback] = []
 
 var td_currentuser = UserDefaultsKeys(givenName: "", familyName: "", email: "", phoneNumber: "")
+
+var userFavorites = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]

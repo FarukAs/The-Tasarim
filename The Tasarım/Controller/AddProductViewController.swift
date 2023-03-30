@@ -118,7 +118,8 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                 "category": selectedCategory,
                 "name": name,
                 "detail": detail,
-                "price": price
+                "price": price,
+                "averageRate": 5
             ]) { (error) in
                 if let error = error {
                     print("Error adding document: \(error)")

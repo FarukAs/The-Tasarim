@@ -18,6 +18,7 @@ class LaunchScreenViewController: UIViewController {
     @IBOutlet var progressView: UIProgressView!
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    let user = Auth.auth().currentUser?.email
     var loadedItemCount = 0
     private var selectedCategory = ""
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class LaunchScreenViewController: UIViewController {
         productCategories = []
         products = []
         productArray = []
+        userFavorites = []
         
         var progressValue: Float = 0.0
         let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
@@ -43,13 +45,14 @@ class LaunchScreenViewController: UIViewController {
         animationView.play()
         self.view.addSubview(animationView)
         addProductCategories(){
+            self.getFavoritesData()
             self.getProductNames(){
                 self.getCategoryImage(){
-                    print("llş")
                     self.selectedCategory = categoryArray[0].categoryName
                 }
                 self.getProductImage(){
                     self.fixCollectionViewData()
+                    self.getFavoritesData()
                     self.categoryClicked()
                     self.progressView.setProgress(0.8, animated: false)
                     self.progressView.setProgress(0.9, animated: false)
@@ -60,52 +63,6 @@ class LaunchScreenViewController: UIViewController {
                 }
             }
         }
-        
-        
-        let user = Auth.auth().currentUser
-        if let user = user {
-          // The user's ID, unique to the Firebase project.
-          // Do NOT use this value to authenticate with your backend server,
-          // if you have one. Use getTokenWithCompletion:completion: instead.
-          let uid = user.uid
-          let email = user.email
-          let photoURL = user.photoURL
-            let name = user.displayName
-            print("ass\(uid)")
-            print("ass\(email)")
-            print("ass\(photoURL)")
-            print("ass\(name)")
-          var multiFactorString = "MultiFactor: "
-          for info in user.multiFactor.enrolledFactors {
-            multiFactorString += info.displayName ?? "[DispayName]"
-            multiFactorString += " "
-          }
-          // ...
-        }
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -200,7 +157,7 @@ class LaunchScreenViewController: UIViewController {
                 let image2 = images3Ref.child("image2")
                 let image3 = images3Ref.child("image3")
                 
-                let product = productBrain(productCategory: productCategories[index], productName: products[item], productDetail: "", productPrice: "", image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
+                let product = productBrain(productCategory: productCategories[index], productName: products[item], productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
                 
                 group.enter()
                 db.collection("developer@gmail.com").document("Products").collection(productCategories[index]).document(products[item]).getDocument { (document, error) in
@@ -208,6 +165,7 @@ class LaunchScreenViewController: UIViewController {
                         let data = document.data()
                         product.productDetail = data!["detail"] as! String
                         product.productPrice = data!["price"] as! String
+                        product.averageRate = data!["averageRate"] as! Double
                     } else {
                         print("Document does not exist")
                     }
@@ -235,7 +193,6 @@ class LaunchScreenViewController: UIViewController {
                     }
                     group.leave()
                 }
-                
                 group.enter()
                 image3.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                     if let error = error {
@@ -249,13 +206,34 @@ class LaunchScreenViewController: UIViewController {
                 productArray.append(product)
             }
         }
-        
-        // Bütün işlemler tamamlandığında
         group.notify(queue: .main) {
             completion()
         }
     }
-    
+    func getFavoritesData(){
+        self.db.collection("users").document(user!).collection("FavoriteProducts").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    for product in productArray{
+                        if document.documentID == product.productName{
+                            userFavorites.append(product)
+                        }
+                    }
+                }
+                var indexesToRemove: [Int] = []
+                for index in 0..<userFavorites.count {
+                    if userFavorites[index].productDetail == "" {
+                        indexesToRemove.append(index)
+                    }
+                }
+                for index in indexesToRemove.reversed() {
+                    userFavorites.remove(at: index)
+                }
+            }
+        }
+    }
     func fixCollectionViewData() {
         var indexesToRemove: [Int] = []
         for index in 0..<productArray.count {
