@@ -157,7 +157,7 @@ class LaunchScreenViewController: UIViewController {
                 let image2 = images3Ref.child("image2")
                 let image3 = images3Ref.child("image3")
                 
-                let product = productBrain(productCategory: productCategories[index], productName: products[item], productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
+                let product = productBrain(productCategory: productCategories[index], productName: products[item], productDetail: "", productPrice: "", averageRate: 5, timestamp: 123, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)
                 
                 group.enter()
                 db.collection("developer@gmail.com").document("Products").collection(productCategories[index]).document(products[item]).getDocument { (document, error) in

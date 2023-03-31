@@ -691,6 +691,8 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                 "name": name,
                 "price": price,
                 "detail": detail,
+                "averageRate": average,
+                "timestamp": Date().timeIntervalSince1970
             ], merge: true) { error in
                 if let error = error {
                     print("Error updating product information: \(error.localizedDescription)")

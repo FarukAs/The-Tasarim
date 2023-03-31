@@ -74,16 +74,18 @@ class productBrain{
     var productDetail: String
     var productPrice: String
     var averageRate: Double
+    var timestamp: TimeInterval
     var image1: UIImage
     var image2: UIImage
     var image3: UIImage
     
-    init(productCategory: String, productName: String, productDetail: String, productPrice: String,averageRate: Double, image1: UIImage, image2: UIImage, image3: UIImage) {
+    init(productCategory: String, productName: String, productDetail: String, productPrice: String,averageRate: Double,timestamp: TimeInterval, image1: UIImage, image2: UIImage, image3: UIImage) {
         self.productCategory = productCategory
         self.productName = productName
         self.productDetail = productDetail
         self.productPrice = productPrice
         self.averageRate = averageRate
+        self.timestamp  = timestamp
         self.image1 = image1
         self.image2 = image2
         self.image3 = image3

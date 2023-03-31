@@ -33,9 +33,9 @@ var numberOfData = 0
 //var categoryImages = [UIImage]()
 
 var categoryArray = [categorBrain(categoryName: "", categoryImage: UIImage(named: "logo")!)]
-var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5.6, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var productArray = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5.6, timestamp: 1234, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
-var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var collectionViewData = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, timestamp: 1234, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 
 var productCategories = [""]
 var products = [""]
@@ -49,4 +49,4 @@ var feedbacks: [Feedback] = []
 
 var td_currentuser = UserDefaultsKeys(givenName: "", familyName: "", email: "", phoneNumber: "")
 
-var userFavorites = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var userFavorites = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, timestamp: 1234, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
