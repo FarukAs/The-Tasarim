@@ -69,17 +69,18 @@ class categorBrain{
     }
 }
 class productBrain{
+    
     var productCategory: String
     var productName: String
     var productDetail: String
     var productPrice: String
     var averageRate: Double
-    var timestamp: TimeInterval
+    var timestamp: Double
     var image1: UIImage
     var image2: UIImage
     var image3: UIImage
     
-    init(productCategory: String, productName: String, productDetail: String, productPrice: String,averageRate: Double,timestamp: TimeInterval, image1: UIImage, image2: UIImage, image3: UIImage) {
+    init(productCategory: String, productName: String, productDetail: String, productPrice: String,averageRate: Double,timestamp: Double, image1: UIImage, image2: UIImage, image3: UIImage) {
         self.productCategory = productCategory
         self.productName = productName
         self.productDetail = productDetail
@@ -127,5 +128,7 @@ class UserDefaultsKeys {
 }
 
 
-
-
+struct prdct {
+    let name : String
+    let timestamp : Int
+}

@@ -69,6 +69,18 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
                     }
                 }
             }
+            //Databasedeki toplam kategori sayısını güncelleme
+            self.db.collection("developer@gmail.com").document("numberofitems").getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    let numberofcategory = data!["category"] as! Int
+                    let numberofproduct = data!["product"] as! Int
+                    
+                    self.db.collection("developer@gmail.com").document("numberofitems").setData(["category" : numberofcategory + 1, "product": numberofproduct])
+                } else {
+                    print("Document does not exist")
+                }
+            }
             let alertController = UIAlertController(title: "Kategori Eklendi.", message: nil, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                 self.navigationController?.popViewController(animated: true)

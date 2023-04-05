@@ -10,7 +10,7 @@ import UIKit
 
 let AccountMenu = ["📦 Siparişlerim","💛 Favorilerim","🏠 Adreslerim","🎟 Kuponlarım","🎮 Oyna Kazan","👤 Hesabım","💬 Geri Bildirim","🚪 Çıkış Yap"]
 
-let DeveloperMenu = ["Ürünler","Siparişler","Kullanıcılar","Geri Bildirimler"]
+let DeveloperMenu = ["Tüm Ürünler","Listelenen Ürünler","Siparişler","Kullanıcılar","Geri Bildirimler"]
 
 let city = ["","İstanbul","İzmir","Ankara","Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Antalya", "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Isparta", "Mersin", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"]
 
@@ -50,3 +50,4 @@ var feedbacks: [Feedback] = []
 var td_currentuser = UserDefaultsKeys(givenName: "", familyName: "", email: "", phoneNumber: "")
 
 var userFavorites = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, timestamp: 1234, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
+var listedProducts: [String] = []

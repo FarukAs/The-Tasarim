@@ -220,6 +220,20 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
                     print("file deleted")
                 }
             }
+            // Fotoğrafı adet olarak databaseden düşme
+            self.db.collection("developer@gmail.com").document("numberofitems").getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    let numberofcategory = data!["category"] as! Int
+                    let numberofproduct = data!["product"] as! Int
+                    
+                    self.db.collection("developer@gmail.com").document("numberofitems").setData(["category" : numberofcategory , "product": numberofproduct - 1])
+                } else {
+                    print("Document does not exist")
+                }
+            }
+            //Kullanıcıların Coredatasından silme
+            self.db.collection("developer@gmail.com").document("productDeletedByTheDeveloper").collection("Deleted").document(self.documentID).setData(["Deleted" : "Deleted"])
             // Delete from Database
             self.db.collection(self.user!).document("Products").collection(collectionViewData[selectedItem].productCategory).document(self.documentID).delete() { err in
                 if let err = err {
@@ -545,7 +559,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
         }
         
     }
-    func getAverageRateData(completion: @escaping () -> Void) {
+    private func getAverageRateData(completion: @escaping () -> Void) {
         var usersArray = [""]
         var rates = [0]
         usersArray = []
@@ -716,7 +730,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func dissmissAndClosePickerView(){
+    private func dissmissAndClosePickerView(){
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
@@ -728,7 +742,7 @@ class EditProductViewController1: UIViewController,UITextFieldDelegate,UIScrollV
     @objc func dissmissAction(){
         self.view.endEditing(true)
     }
-    func setupPicker(){
+    private func setupPicker(){
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self

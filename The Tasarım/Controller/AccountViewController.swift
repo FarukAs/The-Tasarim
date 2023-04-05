@@ -114,6 +114,9 @@ class AccountViewController: UIViewController, UITableViewDelegate , UITableView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedRow = indexPath.item
+        if selectedRow == 1 {
+            performSegue(withIdentifier: "accountToFavorites", sender: nil)
+        }
         if selectedRow == 2 {
             performSegue(withIdentifier: "accountToAdress", sender: nil)
         }

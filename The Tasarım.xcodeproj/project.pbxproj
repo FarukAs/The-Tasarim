@@ -22,7 +22,6 @@
 		9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */; };
 		9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E73A2981A3C3001D24F7 /* ViewController.swift */; };
 		9D41E73E2981A3C3001D24F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E73C2981A3C3001D24F7 /* Main.storyboard */; };
-		9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */; };
 		9D41E7432981A3C4001D24F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E7422981A3C4001D24F7 /* Assets.xcassets */; };
 		9D41E7462981A3C4001D24F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */; };
 		9D41E74F2981A4BA001D24F7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9D41E74E2981A4BA001D24F7 /* FirebaseAnalytics */; };
@@ -49,6 +48,10 @@
 		9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */; };
 		9D829E6529CC3C91008443B2 /* FeedBackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */; };
 		9D829E6929CC4B46008443B2 /* FullScreenImageViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */; };
+		9D85519229DD4BB0005169C8 /* ListedProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85519129DD4BB0005169C8 /* ListedProductsViewController.swift */; };
+		9D8FB69029D9F31D0024D8D9 /* Product.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FB68E29D9F31D0024D8D9 /* Product.xcdatamodeld */; };
+		9D8FB69329D9F3740024D8D9 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FB69129D9F3740024D8D9 /* Product+CoreDataClass.swift */; };
+		9D8FB69429D9F3740024D8D9 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FB69229D9F3740024D8D9 /* Product+CoreDataProperties.swift */; };
 		9DBC5CAE299AA1140034B9BD /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */; };
 		9DBCD4E229D439F900D485CD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCD4E129D439F900D485CD /* FavoritesViewController.swift */; };
 		9DBCD4E429D43B5F00D485CD /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */; };
@@ -79,7 +82,6 @@
 		9D41E7382981A3C3001D24F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9D41E73A2981A3C3001D24F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D41E73D2981A3C3001D24F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9D41E7402981A3C3001D24F7 /* The_Tasar_m.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = The_Tasar_m.xcdatamodel; sourceTree = "<group>"; };
 		9D41E7422981A3C4001D24F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D41E7452981A3C4001D24F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D41E7472981A3C4001D24F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,10 @@
 		9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
 		9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackDetailViewController.swift; sourceTree = "<group>"; };
 		9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewViewController.swift; sourceTree = "<group>"; };
+		9D85519129DD4BB0005169C8 /* ListedProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedProductsViewController.swift; sourceTree = "<group>"; };
+		9D8FB68F29D9F31D0024D8D9 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
+		9D8FB69129D9F3740024D8D9 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9D8FB69229D9F3740024D8D9 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBCD4E129D439F900D485CD /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,10 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				9DBDB9F429839FA900FF650C /* FeedBackViewController.swift */,
-				9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */,
-				9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */,
-				9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */,
-				9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */,
 			);
 			path = FeedBack;
 			sourceTree = "<group>";
@@ -176,6 +178,8 @@
 		9D41E72A2981A3C3001D24F7 = {
 			isa = PBXGroup;
 			children = (
+				9D8FB69129D9F3740024D8D9 /* Product+CoreDataClass.swift */,
+				9D8FB69229D9F3740024D8D9 /* Product+CoreDataProperties.swift */,
 				9D41E7352981A3C3001D24F7 /* The Tasarım */,
 				9D41E7342981A3C3001D24F7 /* Products */,
 			);
@@ -200,10 +204,10 @@
 				9D41E7422981A3C4001D24F7 /* Assets.xcassets */,
 				9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */,
 				9D41E7472981A3C4001D24F7 /* Info.plist */,
-				9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */,
 				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
 				9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */,
 				9D27BE8229CDFCE200BE53EA /* LaunchScreenViewController.swift */,
+				9D8FB68E29D9F31D0024D8D9 /* Product.xcdatamodeld */,
 			);
 			path = "The Tasarım";
 			sourceTree = "<group>";
@@ -229,14 +233,13 @@
 		9D41E76029824E07001D24F7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9D85519329DD4BBB005169C8 /* Developer Controller */,
 				9D41E73A2981A3C3001D24F7 /* ViewController.swift */,
 				9D2A8D3E299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift */,
 				9DBC5CAD299AA1140034B9BD /* CategoryCollectionViewCell.swift */,
 				9D41E76129824EBA001D24F7 /* LoginViewController.swift */,
 				9D41E76329824ED3001D24F7 /* RegisterViewController.swift */,
 				9D41E76529824EEF001D24F7 /* AccountViewController.swift */,
-				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
-				9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */,
 				9D1C971A299CF0360082F33E /* EditCategoryCollectionViewCell.swift */,
 				9D1C9718299CEB520082F33E /* EditProductCollectionViewCell.swift */,
 				9D2F04BB29ACA4C500BE6252 /* EditProductViewController1.swift */,
@@ -244,7 +247,6 @@
 				9D4B8AD5299B97AC0020F602 /* AddProductViewController.swift */,
 				9D41E7692982A132001D24F7 /* ProductViewController.swift */,
 				9DBDB9F02982E60300FF650C /* TableViewCell.swift */,
-				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
 				9D52922129D21F17009C5833 /* MyAccountViewController.swift */,
 				9D419C5829956ED2008F7568 /* Address */,
 				9D419C5D299626BC008F7568 /* Coupon */,
@@ -254,6 +256,29 @@
 				9DBCD4E329D43B5F00D485CD /* FavoritesTableViewCell.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9D85519329DD4BBB005169C8 /* Developer Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9D41E76729824F23001D24F7 /* DeveloperViewController.swift */,
+				9D4B8AD3299B944E0020F602 /* ProductEditViewController.swift */,
+				9D85519129DD4BB0005169C8 /* ListedProductsViewController.swift */,
+				9DBDB9F82983F50900FF650C /* UsersViewController.swift */,
+				9D85519429DD4C56005169C8 /* FeedBack */,
+			);
+			path = "Developer Controller";
+			sourceTree = "<group>";
+		};
+		9D85519429DD4C56005169C8 /* FeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				9D829E6829CC4B46008443B2 /* FullScreenImageViewViewController.swift */,
+				9D829E6429CC3C91008443B2 /* FeedBackDetailViewController.swift */,
+				9D7A3E9A29C2EEF500845DB0 /* FeedbackTableViewCell.swift */,
+				9D24603529B7681F00D85BD2 /* FeedBacksViewController.swift */,
+			);
+			path = FeedBack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +377,7 @@
 				9D4B8AD4299B944E0020F602 /* ProductEditViewController.swift in Sources */,
 				9DBDB9F72983C47000FF650C /* GameViewController.swift in Sources */,
 				9D41E73B2981A3C3001D24F7 /* ViewController.swift in Sources */,
+				9D8FB69029D9F31D0024D8D9 /* Product.xcdatamodeld in Sources */,
 				9D2A8D3F299A3E0A00DC8FE5 /* ProductCollectionViewCell.swift in Sources */,
 				9D829E6929CC4B46008443B2 /* FullScreenImageViewViewController.swift in Sources */,
 				9D41E7372981A3C3001D24F7 /* AppDelegate.swift in Sources */,
@@ -368,6 +394,7 @@
 				9D41E7392981A3C3001D24F7 /* SceneDelegate.swift in Sources */,
 				9D3704C729BCE2C300DBF14C /* CommentsTableViewCell.swift in Sources */,
 				9D4B8AD6299B97AC0020F602 /* AddProductViewController.swift in Sources */,
+				9D8FB69329D9F3740024D8D9 /* Product+CoreDataClass.swift in Sources */,
 				9DBDB9F92983F50900FF650C /* UsersViewController.swift in Sources */,
 				9D41E76429824ED3001D24F7 /* RegisterViewController.swift in Sources */,
 				9DBDBA012984612100FF650C /* AddAddressViewController.swift in Sources */,
@@ -377,14 +404,15 @@
 				9D41E76A2982A132001D24F7 /* ProductViewController.swift in Sources */,
 				9D52922229D21F17009C5833 /* MyAccountViewController.swift in Sources */,
 				9D41E76229824EBA001D24F7 /* LoginViewController.swift in Sources */,
+				9D8FB69429D9F3740024D8D9 /* Product+CoreDataProperties.swift in Sources */,
 				9DBDB9F22982E60300FF650C /* TableViewCell.swift in Sources */,
 				9D41E76C2982A1BE001D24F7 /* Brain.swift in Sources */,
 				9D2F04BC29ACA4C500BE6252 /* EditProductViewController1.swift in Sources */,
 				9DBCD4E229D439F900D485CD /* FavoritesViewController.swift in Sources */,
 				9D1C9719299CEB520082F33E /* EditProductCollectionViewCell.swift in Sources */,
-				9D41E7412981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld in Sources */,
 				9DBDB9FE298458C500FF650C /* AddressCollectionViewCell.swift in Sources */,
 				9D7A3E9B29C2EEF500845DB0 /* FeedbackTableViewCell.swift in Sources */,
+				9D85519229DD4BB0005169C8 /* ListedProductsViewController.swift in Sources */,
 				9D24603629B7681F00D85BD2 /* FeedBacksViewController.swift in Sources */,
 				9DBCD4E429D43B5F00D485CD /* FavoritesTableViewCell.swift in Sources */,
 			);
@@ -711,13 +739,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9D41E73F2981A3C3001D24F7 /* The_Tasar_m.xcdatamodeld */ = {
+		9D8FB68E29D9F31D0024D8D9 /* Product.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9D41E7402981A3C3001D24F7 /* The_Tasar_m.xcdatamodel */,
+				9D8FB68F29D9F31D0024D8D9 /* Product.xcdatamodel */,
 			);
-			currentVersion = 9D41E7402981A3C3001D24F7 /* The_Tasar_m.xcdatamodel */;
-			path = The_Tasar_m.xcdatamodeld;
+			currentVersion = 9D8FB68F29D9F31D0024D8D9 /* Product.xcdatamodel */;
+			path = Product.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

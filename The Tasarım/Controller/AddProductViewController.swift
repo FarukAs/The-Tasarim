@@ -119,7 +119,8 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                 "name": name,
                 "detail": detail,
                 "price": price,
-                "averageRate": 5
+                "averageRate": 5,
+                "timestamp": Date().timeIntervalSince1970
             ]) { (error) in
                 if let error = error {
                     print("Error adding document: \(error)")
@@ -182,6 +183,17 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                                     return
                                 }
                             }
+                        }
+                    }
+                    //Databasedeki toplam ürün sayısını güncelleme
+                    self.db.collection("developer@gmail.com").document("numberofitems").getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let data = document.data()
+                            let numberofcategory = data!["category"] as! Int
+                            let numberofproduct = data!["product"] as! Int
+                            self.db.collection("developer@gmail.com").document("numberofitems").setData(["category" : numberofcategory , "product": numberofproduct + 1])
+                        } else {
+                            print("Document does not exist")
                         }
                     }
                     let alertController = UIAlertController(title: "Ürün Eklendi, Lütfen uygulamayı yeniden başlatın.", message: nil, preferredStyle: .alert)

@@ -11,9 +11,11 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import MBProgressHUD
+import CoreData
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
-
+    
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var mainMenuStackView: UIStackView!
     @IBOutlet var categoryCollectionView: UICollectionView!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var favoritesStackView: UIStackView!
@@ -21,9 +23,10 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
     let storage = Storage.storage()
-    var selectedCategory = ""
+    var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
+        setListedProducts()
         searchBar.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -34,7 +37,11 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         accountStackView.addGestureRecognizer(tapGesture)
         let favtapGesture = UITapGestureRecognizer(target: self, action: #selector(goToFavorites))
         favoritesStackView.addGestureRecognizer(favtapGesture)
+        let maintapGesture = UITapGestureRecognizer(target: self, action: #selector(mainMenu))
+        mainMenuStackView.addGestureRecognizer(maintapGesture)
+        categoryClicked()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
@@ -94,43 +101,35 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             cell.backgroundColor = .white
             
             var isProductFavorite = false
-                    for fav in userFavorites {
-                        if collectionViewData[indexPath.item].productName == fav.productName {
-                            isProductFavorite = true
-                            break
-                        }
-                    }
-                    
-                    if isProductFavorite {
-                        cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                    } else {
-                        cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                    }
-            
-            
-            
+            for fav in userFavorites {
+                if collectionViewData[indexPath.item].productName == fav.productName {
+                    isProductFavorite = true
+                    break
+                }
+            }
+            if isProductFavorite {
+                cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            } else {
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
             cell.imageView.image = collectionViewData[indexPath.item].image1
             cell.productTitle.text = collectionViewData[indexPath.item].productName
             cell.productPrice.text = "\(collectionViewData[indexPath.item].productPrice) TL"
-            
-            
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryReusableCell", for: indexPath as IndexPath) as! CategoryCollectionViewCell
-            
             cell.imageView.image = categoryArray[indexPath.item].categoryImage
             cell.label.text = categoryArray[indexPath.item].categoryName
-            
             return cell
         }
-        
-        
-        
+    }
+    @objc func mainMenu(){
+        categoryCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
     @objc func goToFavorites() {
         performSegue(withIdentifier: "mainToFavorites", sender: nil)
     }
-    
     @objc func goToLogin() {
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "mainToAccount", sender: nil)
@@ -141,7 +140,6 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     @objc func likeButton(sender: UIButton) {
         print("Like Button pressed")
     }
-    
     func showLoader() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -159,7 +157,6 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         }
         MBProgressHUD.hide(for: view, animated: true)
     }
-   
     func categoryClicked(){
         collectionViewData = []
         for prdct in productArray{
@@ -168,5 +165,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             }
         }
         collectionView.reloadData()
+    }
+    private func setListedProducts(){
+        productArray = productArray.filter { listedProducts.contains($0.productName) }
+        userFavorites = userFavorites.filter { listedProducts.contains($0.productName) }
     }
 }

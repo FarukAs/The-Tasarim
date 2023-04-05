@@ -47,10 +47,13 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         if index == 0 {
             performSegue(withIdentifier: "developerToProductEdit", sender: nil)
         }
-        if index == 2 {
-            performSegue(withIdentifier: "developerToUsers", sender: nil)
+        if index == 1 {
+            performSegue(withIdentifier: "developerToListedProducts", sender: nil)
         }
         if index == 3 {
+            performSegue(withIdentifier: "developerToUsers", sender: nil)
+        }
+        if index == 4 {
             performSegue(withIdentifier: "developerToFeedBacks", sender: nil)
         }
     }
@@ -83,12 +86,10 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                             let imagesRef = storageRef.child("Feedbacks")
                             let images1Ref = imagesRef.child("\(itm.key)")
                             let images2Ref = images1Ref.child("\(itm.value)")
-                            print("burada başladı ")
                             images2Ref.getData(maxSize: 5 * 1024 * 1024) { data, error in
                                 if let error = error {
                                     print("Eror :\(error)")
                                     feedBackImage = nil
-                                    print("burada bitti error")
                                     if let timestampString = documents.data().keys.first,
                                         let timestamp = Double(timestampString) {
                                        let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData:UIImage(named: "logo")! )
@@ -99,8 +100,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                                     let image = UIImage(data: data!)
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
                                         feedBackImage = image
-                                        print("pğ\(feedBackImage!)")
-                                        print("burada bitti oldu")
                                         if let timestampString = documents.data().keys.first,
                                            let timestamp = Double(timestampString) {
                                             let exampleFeedback = Feedback(userEmail: "\(itm.key)", timestamp: Date(timeIntervalSince1970: timestamp), text: documents.data()[timestampString] as! String, imageData: feedBackImage!)
