@@ -42,7 +42,16 @@ class RegisterViewController: UIViewController , UITextFieldDelegate {
         if  let name = self.nameTextField.text , let surname = surnameTextField.text , let phoneNumber = phoneNumberTextField.text,let email = emailTextField.text , let password = passwordTextField.text  {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
-                    print(e)
+                    print("error...\(e.localizedDescription)")
+                    if e.localizedDescription == "The email address is already in use by another account." {
+                        // Kullanıcı zaten kayıtlı
+                        let alert = UIAlertController(title: "Maile kayıtlı hesap var", message: "Kullanıcı girişi sayfasına yönlendiriliyorsunuz", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Onayla", style: .default) { _ in
+                            self.navigateToLoginViewController()
+                        }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 } else {
                     User = []
                     let user1 = UserInfo(name: name, surname: surname, phoneNumber: phoneNumber, email: email)

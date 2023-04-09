@@ -29,7 +29,6 @@ class LaunchScreenViewController: UIViewController {
     var productsDone = false
     var productVariable = 0  {
         willSet(newValue) {
-            print("abası\(newValue)")
             if newValue == numberOfProduct {
                 productsDone = true
                 checkAndNavigate()
@@ -55,7 +54,6 @@ class LaunchScreenViewController: UIViewController {
         productCategories = []
         products = []
         productArray = []
-        
         var progressValue: Float = 0.0
         let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
             progressValue += 0.02
@@ -399,7 +397,6 @@ class LaunchScreenViewController: UIViewController {
         var nmbr = 0
         let finalNmbr = productArray.count
         for index in 0..<productArray.count {
-            print("asass\(nmbr)")
             nmbr += 1
             if productArray[index].productDetail == "" {
                 indexesToRemove.append(index)

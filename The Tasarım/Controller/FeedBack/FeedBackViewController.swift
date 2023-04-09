@@ -55,6 +55,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func sendFeedBack(_ sender: UIButton) {
         let timestamp = String(Int(Date().timeIntervalSince1970))
         db.collection("Feedbacks").document("\(userEmail!)").setData([timestamp: 1])
+        db.collection("Feedbacks").document("\(userEmail!)").collection("Timestamp").document("\(String(Int(Date().timeIntervalSince1970)))").setData(["SS":"SS"])
         self.db.collection("Feedbacks").document("\(userEmail!)").collection(timestamp).document("Feedback").setData([timestamp: textView.text!]) { (error) in
             if let error = error {
                 print("Error adding user: \(error)")

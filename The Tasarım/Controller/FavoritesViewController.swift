@@ -10,7 +10,9 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import Lottie
 class FavoritesViewController: UIViewController,UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate, FavoritesTableViewCellDelegate {
+    let animationView = LottieAnimationView()
     let db = Firestore.firestore()
     let storage = Storage.storage()
     let user = Auth.auth().currentUser?.email
@@ -18,12 +20,18 @@ class FavoritesViewController: UIViewController,UITableViewDataSource, UITableVi
     var tableView = UITableView()
     var filteredProducts: [productBrain] = []
     var isSearching = false
+    var noFavoritesView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
+        
+        if userFavorites.count == 0 {
+            tableView.isHidden = true
+            setupNoFavoritesView()
+        }
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
@@ -101,5 +109,63 @@ class FavoritesViewController: UIViewController,UITableViewDataSource, UITableVi
         print("Add to cart button pressed at row: \(indexPath.row)")
         print("Burada sepete ekleme işlemi yapılacak fakat seçilen satır searchbarda arama yapıldığında değişiyor , arrayin içinden seçilen ürün karıştırılabilir")
     }
-    
+    func setupNoFavoritesView() {
+        noFavoritesView = UIView(frame: view.bounds)
+        noFavoritesView.backgroundColor = .white
+        view.addSubview(noFavoritesView)
+        
+        let animationView = LottieAnimationView(name: "oppsAnimation")
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        noFavoritesView.addSubview(animationView)
+        
+        let label = UILabel()
+        label.text = "Henüz favorilerinize bir ürün eklemediniz"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        noFavoritesView.addSubview(label)
+        
+        let browseButton = UIButton(type: .system)
+        browseButton.setTitle("Ürünlere göz at", for: .normal)
+        browseButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        browseButton.backgroundColor = UIColor(red: 0.97, green: 0.49, blue: 0.28, alpha: 1.0)
+        browseButton.setTitleColor(.white, for: .normal)
+        browseButton.layer.cornerRadius = 8
+        browseButton.translatesAutoresizingMaskIntoConstraints = false
+        noFavoritesView.addSubview(browseButton)
+        
+        NSLayoutConstraint.activate([
+            animationView.centerXAnchor.constraint(equalTo: noFavoritesView.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: noFavoritesView.centerYAnchor, constant: -100),
+            animationView.widthAnchor.constraint(equalToConstant: 200),
+            animationView.heightAnchor.constraint(equalToConstant: 200),
+            
+            label.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 20),
+            label.leadingAnchor.constraint(equalTo: noFavoritesView.leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: noFavoritesView.trailingAnchor, constant: -20),
+            
+            browseButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            browseButton.centerXAnchor.constraint(equalTo: noFavoritesView.centerXAnchor),
+            browseButton.widthAnchor.constraint(equalToConstant: 200),
+            browseButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        browseButton.addTarget(self, action: #selector(browseButtonTapped), for: .touchUpInside)
+        animationView.play()
+    }
+    @objc func browseButtonTapped() {
+        navigateToViewController()
+    }
+    func navigateToViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let navigationController = self.navigationController {
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            navigationController.pushViewController(viewController, animated: true)
+        } else {
+            print("Navigation controller not found")
+        }
+    }
 }

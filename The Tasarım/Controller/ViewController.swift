@@ -73,6 +73,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView{
+            print("selected")
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
             categoryClicked()
@@ -81,7 +82,6 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ProductReusableCell", for: indexPath as IndexPath) as! ProductCollectionViewCell
-            cell.imageView.image = UIImage(named: "pic")
             cell.likeButton.addTarget(self, action: #selector(likeButton), for: .touchUpInside)
             cell.likeButton.tag = indexPath.item
             
@@ -112,7 +112,13 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             } else {
                 cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
-            cell.imageView.image = collectionViewData[indexPath.item].image1
+            let productImages = [
+                collectionViewData[indexPath.item].image1,
+                collectionViewData[indexPath.item].image2,
+                collectionViewData[indexPath.item].image3
+            ]
+            let images = [collectionViewData[indexPath.item].image1, collectionViewData[indexPath.item].image2, collectionViewData[indexPath.item].image3]
+            cell.configure(images: images)
             cell.productTitle.text = collectionViewData[indexPath.item].productName
             cell.productPrice.text = "\(collectionViewData[indexPath.item].productPrice) TL"
             return cell
@@ -138,7 +144,20 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         }
     }
     @objc func likeButton(sender: UIButton) {
-        print("Like Button pressed")
+        print("asa\(listedProducts)")
+        let index = sender.tag
+        if sender.currentImage == UIImage(systemName: "heart.fill") {
+            db.collection("users").document(user!).collection("FavoriteProducts").document("\(collectionViewData[index].productName)").delete()
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+            
+            if let productIndex = userFavorites.firstIndex(where: { $0.productName == collectionViewData[index].productName }) {
+                userFavorites.remove(at: productIndex)
+            }
+        } else {
+            db.collection("users").document(user!).collection("FavoriteProducts").document("\(collectionViewData[index].productName)").setData(["String" : "String"])
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            userFavorites.append(collectionViewData[index])
+        }
     }
     func showLoader() {
         let blurEffect = UIBlurEffect(style: .light)

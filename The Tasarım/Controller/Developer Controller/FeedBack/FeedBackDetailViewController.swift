@@ -93,6 +93,9 @@ class FeedBackDetailViewController: UIViewController {
         
         setupConstraints()
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        feedbackImageView.addGestureRecognizer(longPressGesture)
+        
         let feedback = feedbacks[selectedIndex]
         if let img0 = feedback.imageData.jpegData(compressionQuality: 1.0){
             feedbackImageView.image = UIImage(data: img0)
@@ -150,7 +153,7 @@ class FeedBackDetailViewController: UIViewController {
             // Geri bildirim silindikten sonra Hesabım View'ına geri götürür.
             if let targetVC = self.navigationController?.viewControllers.first(where: { $0 is AccountViewController }) {
                 self.navigationController?.popToViewController(targetVC, animated: true)
-                }
+            }
         }
         alert.addAction(cancelAction)
         alert.addAction(okAction)
@@ -195,5 +198,18 @@ class FeedBackDetailViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 16)
         ])
     }
-    
+    @objc func handleLongPressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let savePhotoAction = UIAlertAction(title: "Fotoğrafı Kaydet", style: .default) { _ in
+                UIImageWriteToSavedPhotosAlbum(self.feedbackImageView.image!, nil, nil, nil)
+            }
+            let cancelAction = UIAlertAction(title: "İptal", style: .cancel)
+            
+            actionSheet.addAction(savePhotoAction)
+            actionSheet.addAction(cancelAction)
+            
+            present(actionSheet, animated: true)
+        }
+    }
 }

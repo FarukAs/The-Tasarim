@@ -205,8 +205,8 @@
 				9D41E7442981A3C4001D24F7 /* LaunchScreen.storyboard */,
 				9D41E7472981A3C4001D24F7 /* Info.plist */,
 				9D41E75C2981A5CE001D24F7 /* GoogleService-Info.plist */,
-				9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */,
 				9D27BE8229CDFCE200BE53EA /* LaunchScreenViewController.swift */,
+				9D3704C629BCE2C300DBF14C /* CommentsTableViewCell.swift */,
 				9D8FB68E29D9F31D0024D8D9 /* Product.xcdatamodeld */,
 			);
 			path = "The Tasarım";
