@@ -122,7 +122,7 @@ class FavoritesTableViewCell: UITableViewCell {
         productImageView.image = product.image1 // Replace with your image loading method
         nameLabel.text = product.productName
         priceLabel.text = "\(product.productPrice) TL"
-        ratingLabel.text = "\(product.averageRate)"
+        ratingLabel.text = String(format: "%.1f", product.averageRate)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {

@@ -22,7 +22,7 @@ class LaunchScreenViewController: UIViewController {
     let user = Auth.auth().currentUser?.email
     var loadedItemCount = 0
     var itemtobedeletedfromthearray: [String] = []
-
+    
     var numberOfProduct = Int()
     var numberOfCategory = Int()
     var categoriesDone = false
@@ -214,7 +214,7 @@ class LaunchScreenViewController: UIViewController {
                                     image1Data = data!
                                     group2.leave()
                                 }
-                             
+                                
                             }
                             
                             group2.enter()
@@ -228,7 +228,7 @@ class LaunchScreenViewController: UIViewController {
                                     image2Data = data!
                                     group2.leave()
                                 }
-                               
+                                
                             }
                             group2.enter()
                             image3.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
@@ -272,7 +272,7 @@ class LaunchScreenViewController: UIViewController {
                                         image1Data = data!
                                         group1.leave()
                                     }
-                                 
+                                    
                                 }
                                 
                                 group1.enter()
@@ -286,7 +286,7 @@ class LaunchScreenViewController: UIViewController {
                                         image2Data = data!
                                         group1.leave()
                                     }
-                                   
+                                    
                                 }
                                 group1.enter()
                                 image3.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
@@ -309,7 +309,7 @@ class LaunchScreenViewController: UIViewController {
                                     self.getFavoritesData() {}
                                 }
                             }
-
+                            
                         }
                         
                         
@@ -436,45 +436,45 @@ class LaunchScreenViewController: UIViewController {
     func deleteProduct(timestamp:Double) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
-
+        
         fetchRequest.predicate = NSPredicate(format: "timestamp == %@", timestamp as NSNumber)
-
+        
         do {
-          let results = try context.fetch(fetchRequest)
-          for data in results {
-              context.delete(data as! NSManagedObject)
-          }
+            let results = try context.fetch(fetchRequest)
+            for data in results {
+                context.delete(data as! NSManagedObject)
+            }
         } catch let error as NSError {
-          print("Could not fetch data. \(error), \(error.userInfo)")
+            print("Could not fetch data. \(error), \(error.userInfo)")
         }
         do {
-          try context.save()
+            try context.save()
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     func deleteProduct(name:String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
-
+        
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-
+        
         do {
-          let results = try context.fetch(fetchRequest)
-          for data in results {
-              context.delete(data as! NSManagedObject)
-          }
+            let results = try context.fetch(fetchRequest)
+            for data in results {
+                context.delete(data as! NSManagedObject)
+            }
         } catch let error as NSError {
-          print("Could not fetch data. \(error), \(error.userInfo)")
+            print("Could not fetch data. \(error), \(error.userInfo)")
         }
         do {
-          try context.save()
+            try context.save()
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     func saveProduct(name: String,detail: String,category: String,price: String,rate: Double, timestamp: Double, image1: Data? = nil, image2: Data? = nil, image3: Data? = nil) {
@@ -507,15 +507,18 @@ class LaunchScreenViewController: UIViewController {
             context.rollback() // Revert any changes made during the save attempt
         }
     }
-
+    
     func productDeletedByTheDeveloper(){
         self.db.collection("developer@gmail.com").document("productDeletedByTheDeveloper").collection("Deleted").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documen: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("docu\(document.documentID)")
+                    // Ürün coredatadan silinecek.
+                    print("Ürün coredatadan silinecek.")
                     self.deleteProduct(name: document.documentID)
+                    // Ürün Databasedeki Deleted By Developerk kısmından silinecek
+                    self.db.collection("developer@gmail.com").document("productDeletedByTheDeveloper").collection("Deleted").document(document.documentID).delete()
                 }
             }
         }
@@ -552,8 +555,6 @@ class LaunchScreenViewController: UIViewController {
                 let data = document.data()
                 self.numberOfProduct = data!["product"] as! Int
                 self.numberOfCategory = data!["category"] as! Int
-                print("numbb\(self.numberOfProduct)")
-                print("numb\(self.numberOfCategory)")
             } else {
                 print("Document does not exist")
             }

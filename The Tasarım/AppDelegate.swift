@@ -10,7 +10,6 @@ import CoreData
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
-import SDWebImageWebPCoder
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
           }
         FirebaseApp.configure()
-        SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
+//        SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
 
         return true
     }

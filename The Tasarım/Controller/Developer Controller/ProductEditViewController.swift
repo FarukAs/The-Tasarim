@@ -18,7 +18,7 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
     let storage = Storage.storage()
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
-    var selectedCategory = categoryArray[0].categoryName
+    lazy var selectedCategory = categoryArray[0].categoryName
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryClicked()
@@ -37,10 +37,12 @@ class ProductEditViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView{
             selectedItem = indexPath.item
-            performSegue(withIdentifier: "ProductEditToEdit1", sender: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.performSegue(withIdentifier: "ProductEditToEdit1", sender: nil)
+            }
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
-            categoryClicked()
+            self.categoryClicked()
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

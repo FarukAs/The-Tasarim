@@ -10,7 +10,6 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import SDWebImageWebPCoder
 class AddCategoryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate ,UITextFieldDelegate {
     
     @IBOutlet var categoryTextField: UITextField!
@@ -59,7 +58,7 @@ class AddCategoryViewController: UIViewController, UIImagePickerControllerDelega
                 let images2Ref = images1Ref.child(category)
                 let images3Ref = images2Ref.child("categoryImage")
                 
-                if let imageData = imageone.sd_imageData(as: .webP, compressionQuality: 0.1){
+                if let imageData = imageone.jpegData(compressionQuality: 0.1){
                     // Fotoğrafı yükleyin
                     _ = images3Ref.putData(imageData, metadata: nil) { (metadata, error) in
                         guard let _ = metadata else {

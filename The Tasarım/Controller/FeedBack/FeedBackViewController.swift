@@ -61,14 +61,14 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                 print("Error adding user: \(error)")
             } else {
                 print("User added successfully!")
-
+                
                 if let newImage = self.myImage {
                     let storageRef = self.storage.reference()
                     let imagesRef = storageRef.child("Feedbacks")
                     let images1Ref = imagesRef.child(self.userEmail!)
                     let images2Ref = images1Ref.child(timestamp)
-
-                    if let imageData = newImage.sd_imageData(as: .webP, compressionQuality: 0.3) {
+                    
+                    if let imageData = newImage.jpegData(compressionQuality: 0.1) {
                         // Fotoğrafı yükleyin
                         images2Ref.putData(imageData, metadata: nil) { (metadata, error) in
                             guard let _ = metadata else {
@@ -78,7 +78,7 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                         }
                     }
                 }
-
+                
                 let alert = UIAlertController(title: "Başarılı", message: "Geri bildirim gönderildi.", preferredStyle: UIAlertController.Style.alert)
                 let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(okButton)
@@ -86,16 +86,16 @@ class FeedBackViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.textView.text = ""
                 self.successLabel.isHidden = true
                 self.sendButton.backgroundColor = .green
-
+                
                 // 1 saniye sonra eski rengine dön
                 UIView.animate(withDuration: 6) {
                     self.sendButton.backgroundColor = .lightGray
                 }
-
+                
             }
         }
     }
-
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false

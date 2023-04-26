@@ -12,7 +12,10 @@ import FirebaseFirestore
 import FirebaseStorage
 import MBProgressHUD
 import CoreData
+import Lottie
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
+    
+    let animationView = LottieAnimationView()
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var mainMenuStackView: UIStackView!
@@ -24,6 +27,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     let user = Auth.auth().currentUser?.email
     let storage = Storage.storage()
     var selectedCategory = categoryArray[0].categoryName
+    var selectedIndex = Int()
+    var average = Double()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setListedProducts()
@@ -39,7 +45,44 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         favoritesStackView.addGestureRecognizer(favtapGesture)
         let maintapGesture = UITapGestureRecognizer(target: self, action: #selector(mainMenu))
         mainMenuStackView.addGestureRecognizer(maintapGesture)
+        
+        
+        collectionViewData.sort { (product1, product2) -> Bool in
+            return product1.productName.localizedCaseInsensitiveCompare(product2.productName) == .orderedAscending
+        }
         categoryClicked()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.categoryClicked()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.categoryClicked()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.categoryClicked()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.categoryClicked()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            self.categoryClicked()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
+            self.categoryClicked()
+        }
+        
+        
+        let animationView = LottieAnimationView(name: "rocket")
+        animationView.frame = CGRect(x: view.frame.width - 78, y: 500, width: 80, height: 160)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.clipsToBounds = true
+        animationView.layer.cornerRadius = 25
+        view.addSubview(animationView)
+        
+        let angle = CGFloat.pi / 2
+        animationView.transform = CGAffineTransform(rotationAngle: angle)
+        
+        animationView.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +116,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView{
-            print("selected")
+            showLoader()
+            selectedIndex = indexPath.item
+            getCommendData {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.performSegue(withIdentifier: "mainToProductView", sender: nil)
+                    self.hideLoader()
+                }
+            }
         }else{
             selectedCategory = categoryArray[indexPath.item].categoryName
             categoryClicked()
@@ -82,15 +132,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ProductReusableCell", for: indexPath as IndexPath) as! ProductCollectionViewCell
+            cell.pageControl.currentPage = 0
             cell.likeButton.addTarget(self, action: #selector(likeButton), for: .touchUpInside)
             cell.likeButton.tag = indexPath.item
-            
-            cell.likeButton.layer.cornerRadius = 15
-            cell.likeButton.layer.shadowColor = UIColor.black.cgColor
-            cell.likeButton.layer.shadowOffset = CGSize(width: 2, height: 2)
-            cell.likeButton.layer.shadowRadius = 8.0
-            cell.likeButton.layer.shadowOpacity = 0.3
-            cell.likeButton.layer.masksToBounds = false
             
             cell.layer.cornerRadius = 8.0
             cell.layer.shadowColor = UIColor.black.cgColor
@@ -112,13 +156,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             } else {
                 cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
-            let productImages = [
-                collectionViewData[indexPath.item].image1,
-                collectionViewData[indexPath.item].image2,
-                collectionViewData[indexPath.item].image3
-            ]
             let images = [collectionViewData[indexPath.item].image1, collectionViewData[indexPath.item].image2, collectionViewData[indexPath.item].image3]
             cell.configure(images: images)
+            cell.indexPath = indexPath // Hücrenin indexPath'ini atayın
+            cell.tapAction = { [weak self] indexPath in
+                // Tıklama işlemi olduğunda çağrılacak işlevi atayın
+                self?.collectionView(collectionView, didSelectItemAt: indexPath)
+            }
+            cell.averageRate.text = String(format: "%.1f", collectionViewData[indexPath.item].averageRate)
             cell.productTitle.text = collectionViewData[indexPath.item].productName
             cell.productPrice.text = "\(collectionViewData[indexPath.item].productPrice) TL"
             return cell
@@ -159,12 +204,13 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             userFavorites.append(collectionViewData[index])
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailVC = segue.destination as? ProductViewController {
+            detailVC.selectedIndex = self.selectedIndex
+            detailVC.average = average
+        }
+    }
     func showLoader() {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        view.addSubview(blurEffectView)
-        
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.label.text = "Yükleniyor..."
     }
@@ -188,5 +234,56 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     private func setListedProducts(){
         productArray = productArray.filter { listedProducts.contains($0.productName) }
         userFavorites = userFavorites.filter { listedProducts.contains($0.productName) }
+    }
+    func getCommendData(completion: @escaping () -> Void) {
+        self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedIndex].productCategory).document(collectionViewData[selectedIndex].productName).collection("Comments").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let data = document.data()
+                    if let comment = data["Comment"] as? String ,let date = data["Date"] as? Int , let name = data["Name"] as? String, let rate = data["Rate"] as? Double , let id = data["Documentid"] as? String{
+                        let cmmnt = commentBrain(Comment: comment, Date: Double(date), Rate: Double(rate), Name: name,Documentid: id)
+                        commentsBrain.append(cmmnt)
+                        self.getAverageRateData(){
+                        }
+                    }
+                }
+            }
+            completion()
+        }
+    }
+    private func getAverageRateData(completion: @escaping () -> Void) {
+        var usersArray = [""]
+        var rates = [0]
+        usersArray = []
+        rates = []
+        self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedIndex].productCategory).document(collectionViewData[selectedIndex].productName).collection("Comments").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    usersArray.append(document.documentID)
+                }
+                let group = DispatchGroup()
+                for usr in usersArray {
+                    self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[self.selectedIndex].productCategory).document(collectionViewData[self.selectedIndex].productName).collection("Comments").document(usr).getDocument(source: .cache) { (document, error) in
+                        if let document = document {
+                            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                            let data = document.data()
+                            rates.append(data!["Rate"] as! Int)
+                            if rates.count == usersArray.count {
+                                self.average = Double(rates.reduce(0, +)) / Double(rates.count)
+                                completion()
+                            }
+                        } else {
+                            print("Document does not exist in cache")
+                        }
+                    }
+                }
+            }
+        }
     }
 }

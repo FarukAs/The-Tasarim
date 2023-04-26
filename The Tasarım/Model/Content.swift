@@ -132,3 +132,13 @@ struct prdct {
     let name : String
     let timestamp : Int
 }
+
+
+struct QuestionAnswerModel {
+    let question: String
+    let askerName: String
+    let questionDate: Date
+    let answer: String
+    let sellerName: String
+    let answerDate: Date
+}

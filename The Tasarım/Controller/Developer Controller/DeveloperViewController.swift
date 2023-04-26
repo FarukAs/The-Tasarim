@@ -107,7 +107,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                                         }else {
                                             let image = UIImage(data: data!)
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                                print("şşşl\(image)")
                                                 feedBackImage = image
                                                 if let timeStamp = Double("\(timestamp.documentID)") {
                                                     let text = dataDocument!["\(timestamp.documentID)"] as! String
@@ -128,7 +127,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                print("eklendi")
+                print("Eklendi")
                 feedbacks += newFeedbacks
             }
         }

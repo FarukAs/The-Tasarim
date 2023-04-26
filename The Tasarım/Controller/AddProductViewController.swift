@@ -10,7 +10,6 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import SDWebImageWebPCoder
 
 class AddProductViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate ,UITextViewDelegate,UITextFieldDelegate , UIPickerViewDelegate ,UIPickerViewDataSource {
     
@@ -19,7 +18,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var detailTextView: UITextView!
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var categoryTextField: UITextField!
-    
+    @IBOutlet var stockTextField: UITextField!
     let storage = Storage.storage()
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
@@ -112,7 +111,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func addProduct(_ sender: UIButton) {
         
-        if  let name = nameTextField.text , let detail = detailTextView.text , let price = priceTextField.text {
+        if  let name = nameTextField.text , let detail = detailTextView.text , let price = priceTextField.text , let stock = stockTextField.text {
             
             db.collection(user!).document("Products").collection(selectedCategory).document(name).setData([
                 "category": selectedCategory,
@@ -138,7 +137,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         
                         
                         
-                        if let imageData = imageone.sd_imageData(as: .webP, compressionQuality: 0.1) {
+                        if let imageData = imageone.jpegData(compressionQuality: 0.1) {
                             print("ert\(imageData)")
                             // Fotoğrafı yükleyin
                             images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
@@ -157,7 +156,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image2")
                         
-                        if let imageData = imagetwo.sd_imageData(as: .webP, compressionQuality: 0.1){
+                        if let imageData = imagetwo.jpegData(compressionQuality: 0.1) {
                             // Fotoğrafı yükleyin
                             _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
                                 guard let _ = metadata else {
@@ -175,7 +174,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                         let images3Ref = images2Ref.child(name)
                         let images4Ref = images3Ref.child("image3")
                         
-                        if let imageData = imagethree.sd_imageData(as: .webP, compressionQuality: 0.1){
+                        if let imageData = imagethree.jpegData(compressionQuality: 0.1) {
                             // Fotoğrafı yükleyin
                             _ = images4Ref.putData(imageData, metadata: nil) { (metadata, error) in
                                 guard let _ = metadata else {
@@ -185,7 +184,9 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                             }
                         }
                     }
-                    //Databasedeki toplam ürün sayısını güncelleme
+                    // Stok kaydetme
+                    self.db.collection("developer@gmail.com").document("Stock").collection("Stock").document(name).setData([name:Int(stock)!])
+                    // Databasedeki toplam ürün sayısını güncelleme
                     self.db.collection("developer@gmail.com").document("numberofitems").getDocument { (document, error) in
                         if let document = document, document.exists {
                             let data = document.data()
@@ -196,6 +197,7 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
                             print("Document does not exist")
                         }
                     }
+                    self.db.collection("developer@gmail.com").document("Listed-Non Listed Products").collection("ListedProducts").document(name).setData(["String" : "String"])
                     let alertController = UIAlertController(title: "Ürün Eklendi, Lütfen uygulamayı yeniden başlatın.", message: nil, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                         self.navigationController?.popViewController(animated: true)
@@ -264,6 +266,3 @@ class AddProductViewController: UIViewController, UIImagePickerControllerDelegat
         textView.text = ""
     }
 }
-
-
-
