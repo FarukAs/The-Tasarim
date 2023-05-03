@@ -42,6 +42,7 @@ class AskQuestionView: UIView {
     private let questionTextView: UITextView = {
         let textView = UITextView()
         textView.layer.borderColor = UIColor.gray.cgColor
+        textView.font = UIFont.systemFont(ofSize: 18,weight: .light)
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 8
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,12 +94,14 @@ class AskQuestionView: UIView {
     let selectedIndex = ProductViewController().selectedIndex
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser?.email
+    var username = String()
     var closeAction: (() -> Void)?
     
     weak var parentViewController: UIViewController?
     private var isAnonymous: Bool = false
     override init(frame: CGRect) {
         super.init(frame: frame)
+        getUsername()
         setupUI()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backgroundView.addGestureRecognizer(tapGesture)
@@ -107,7 +110,17 @@ class AskQuestionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    func getUsername(){
+        self.db.collection("users").document(self.user!).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let name = data!["name"] as? String
+                self.username = name!
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
     // Setup UI
     private func setupUI() {
         hideKeyboardWhenTappedAround()
@@ -177,13 +190,24 @@ class AskQuestionView: UIView {
             self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedIndex].productCategory).document(collectionViewData[selectedIndex].productName).collection("QuestionsAnswers").document(user!).setData([
                 "title": title,
                 "question": content,
-                "date": Date().timeIntervalSince1970,
-                "name": user!,
-                "isAnonymus": isAnonymous
+                "questionDate": Date().timeIntervalSince1970,
+                "askerName": self.username,
+                "isAnonymus": isAnonymous as Bool,
+                "answered": false as Bool,
+                "sellerName": "The Tasarım",
+                "answer": "Error",
+                "answerDate": 123
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
+                    self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").document(collectionViewData[self.selectedIndex].productCategory).collection(collectionViewData[self.selectedIndex].productName).document(self.user!).setData(["\(collectionViewData[self.selectedIndex].productName)" : "ss"])  { err in
+                        if let err = err {
+                            print("Error writing document1: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
                     let alertController = UIAlertController(title: "Başarılı", message: "Sorunuz satıcıya gönderildi", preferredStyle: .alert)
                     self.parentViewController?.present(alertController, animated: true, completion: nil)
                     

@@ -137,8 +137,11 @@ struct prdct {
 struct QuestionAnswerModel {
     let question: String
     let askerName: String
-    let questionDate: Date
+    let questionDate: Double
     let answer: String
     let sellerName: String
-    let answerDate: Date
+    let answerDate: Double
+    let isAnonymus: Bool
+    let answered: Bool
+    let title: String
 }

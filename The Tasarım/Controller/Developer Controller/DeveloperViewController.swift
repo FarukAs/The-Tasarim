@@ -33,6 +33,7 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         feedbacks = []
         fetchData()
+        getUnansweredQuestionsData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DeveloperMenu.count
@@ -55,6 +56,9 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
             performSegue(withIdentifier: "developerToUsers", sender: nil)
         }
         if index == 4 {
+            performSegue(withIdentifier: "developerToQuestionAnswer", sender: nil)
+        }
+        if index == 5 {
             performSegue(withIdentifier: "developerToFeedBacks", sender: nil)
         }
     }
@@ -69,8 +73,6 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
             } else {
                 for document in querySnapshot!.documents {
                     userArray.append("\(document.documentID)")
-                    print(document.documentID)
-                    print("şş\(document.documentID)")
                 }
             }
         }
@@ -129,6 +131,31 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
                 print("Eklendi")
                 feedbacks += newFeedbacks
+            }
+        }
+    }
+    func getUnansweredQuestionsData(){
+        self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let productName = data["name"] as! String
+                    let category = document.documentID
+                    self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").document(category).collection(productName).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let senderName = document.documentID
+                                let products = data["name"] as! String
+                                unansweredProductsInfo.append((category: category, productName: productName, senderName: senderName, product: products))
+                            }
+                        }
+                    }
+                }
             }
         }
     }

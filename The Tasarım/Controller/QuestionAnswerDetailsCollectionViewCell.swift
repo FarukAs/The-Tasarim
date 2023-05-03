@@ -152,12 +152,17 @@ class QuestionAnswerDetailsCollectionViewCell: UICollectionViewCell {
     func configure(with model: QuestionAnswerModel) {
         questionLabel.text = model.question
         askerNameLabel.text = model.askerName
-        questionDateLabel.text = formatDate(model.questionDate)
+        let questionDate = firebaseTimestampToDate(model.questionDate)
+        questionDateLabel.text = formatDate(questionDate)
         answerLabel.text = model.answer
         sellerNameLabel.text = model.sellerName
-        answerDateLabel.text = formatDate(model.answerDate)
+        let answerDate = firebaseTimestampToDate(model.answerDate)
+        answerDateLabel.text = formatDate(answerDate)
     }
     
+    func firebaseTimestampToDate(_ timestamp: Double) -> Date {
+        return Date(timeIntervalSince1970: timestamp)
+    }
     private func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"

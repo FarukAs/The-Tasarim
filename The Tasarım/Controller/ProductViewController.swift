@@ -22,7 +22,6 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
     var selectedIndex = Int()
     var filteredArray = Array<productBrain>()
     var numberofComments = 0
-    var exampleNumberOfQuestions = 5
     
     private let contentView = UIView()
     private let mainScrollView = UIScrollView()
@@ -93,10 +92,12 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        questionAnswerData = []
         showLoader()
         commentsBrain = []
         productImage =  [collectionViewData[selectedIndex].image1,collectionViewData[selectedIndex].image2,collectionViewData[selectedIndex].image3]
         getCommentsData()
+        getQuestionAnswerData()
         getAverageRateData()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -121,6 +122,7 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     private func setupUI() {
         mainScrollView.translatesAutoresizingMaskIntoConstraints = false
+        mainScrollView.showsVerticalScrollIndicator = false
         view.addSubview(mainScrollView)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -780,7 +782,6 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
                     let data = document.data()
                     if let comment = data["Comment"] as? String ,let date = data["Date"] as? Int , let name = data["Name"] as? String, let rate = data["Rate"] as? Double , let id = data["Documentid"] as? String{
                         let cmmnt = commentBrain(Comment: comment, Date: Double(date), Rate: Double(rate), Name: name,Documentid: id)
@@ -788,6 +789,26 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
                     }
                 }
                 self.tableView.reloadData()
+            }
+        }
+    }
+    func getQuestionAnswerData(){
+        self.db.collection("developer@gmail.com").document("Products").collection(collectionViewData[selectedIndex].productCategory).document(collectionViewData[selectedIndex].productName).collection("QuestionsAnswers").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let data = document.data()
+                    if let answered = data["answered"] as? Bool {
+                    if answered == true{
+                        if let questionDate = data["questionDate"] as? Double , let askerName = data["askerName"] as? String , let question = data["question"] as? String , let title = data["title"] as? String , let isAnonymus = data["isAnonymus"] as? Bool,let answerDate = data["answerDate"] as? Double , let answer = data["answer"] as? String ,let sellerName = data["sellerName"] as? String  {
+                            let model = QuestionAnswerModel(question: question, askerName: askerName, questionDate: Double(questionDate), answer: answer, sellerName: sellerName, answerDate: Double(answerDate), isAnonymus: isAnonymus, answered: answered,title: title)
+                            questionAnswerData.append(model)
+                        }
+                    }
+                }
+                }
             }
         }
     }
@@ -846,7 +867,7 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
             return filteredArray.count
         }else{
             // Soru-cevap hücresi
-            return 5
+            return questionAnswerData.count
         }
     }
     
@@ -863,10 +884,10 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
         }else{
             // Soru-cevap hücresi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "qaCell", for: indexPath) as! QACollectionViewCell
-            cell.answerLabel.text = "Bir cevap alana kadar ez kır ve geç."
+            cell.answerLabel.text = questionAnswerData[indexPath.item].answer
             cell.profileImageView.image = UIImage(named: "logo")
             cell.sellerNameLabel.text = "The Tasarım"
-            cell.questionLabel.text = "Ürün bulaşık makinesine giriyor mu?"
+            cell.questionLabel.text = questionAnswerData[indexPath.item].question
             return cell
         }
     }
@@ -875,7 +896,7 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
     }
     
     func hasQuestions() -> Bool {
-        return exampleNumberOfQuestions > 0
+        return questionAnswerData.count > 0
     }
 }
 
