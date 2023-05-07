@@ -802,8 +802,8 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
                     let data = document.data()
                     if let answered = data["answered"] as? Bool {
                     if answered == true{
-                        if let questionDate = data["questionDate"] as? Double , let askerName = data["askerName"] as? String , let question = data["question"] as? String , let title = data["title"] as? String , let isAnonymus = data["isAnonymus"] as? Bool,let answerDate = data["answerDate"] as? Double , let answer = data["answer"] as? String ,let sellerName = data["sellerName"] as? String  {
-                            let model = QuestionAnswerModel(question: question, askerName: askerName, questionDate: Double(questionDate), answer: answer, sellerName: sellerName, answerDate: Double(answerDate), isAnonymus: isAnonymus, answered: answered,title: title)
+                        if let questionDate = data["questionDate"] as? Double , let askerName = data["askerName"] as? String , let question = data["question"] as? String , let title = data["title"] as? String , let isAnonymus = data["isAnonymus"] as? Bool,let answerDate = data["answerDate"] as? Double , let answer = data["answer"] as? String ,let sellerName = data["sellerName"] as? String , let productName = data["productName"] as? String, let productCategory = data["productCategory"] as? String ,let askerEmail = data["askerEmail"] as? String  {
+                            let model = QuestionAnswerModel(question: question, askerName: askerName, askerEmail: askerEmail, questionDate: Double(questionDate), answer: answer, sellerName: sellerName, answerDate: Double(answerDate), isAnonymus: isAnonymus, answered: answered,title: title,productName: productName,productCategory: productCategory)
                             questionAnswerData.append(model)
                         }
                     }
@@ -889,6 +889,13 @@ class ProductViewController: UIViewController, UIScrollViewDelegate, UITableView
             cell.sellerNameLabel.text = "The Tasarım"
             cell.questionLabel.text = questionAnswerData[indexPath.item].question
             return cell
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView{
+            
+        }else{
+            performSegue(withIdentifier: "productViewToQuestionAnswer", sender: nil)
         }
     }
     func hasComments() -> Bool {

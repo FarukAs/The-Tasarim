@@ -6,9 +6,11 @@
 //
 
 import UIKit
-
+import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
 class QuestionAnswerDetailsCollectionViewCell: UICollectionViewCell {
-    
+    let db = Firestore.firestore()
     private let chatBubbleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -150,8 +152,21 @@ class QuestionAnswerDetailsCollectionViewCell: UICollectionViewCell {
         ])
     }
     func configure(with model: QuestionAnswerModel) {
+        self.db.collection("developer@gmail.com").document("Products").collection(model.productCategory).document(model.productName).collection("QuestionsAnswers").document(model.askerEmail).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let isAnonymus = data?["isAnonymus"] as? Bool
+                if isAnonymus == true {
+                    self.askerNameLabel.text = " "
+                }else{
+                    self.askerNameLabel.text = model.askerName
+                }
+                    
+            } else {
+                print("Document does not exist")
+            }
+        }
         questionLabel.text = model.question
-        askerNameLabel.text = model.askerName
         let questionDate = firebaseTimestampToDate(model.questionDate)
         questionDateLabel.text = formatDate(questionDate)
         answerLabel.text = model.answer

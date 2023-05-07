@@ -52,8 +52,8 @@ var td_currentuser = UserDefaultsKeys(givenName: "", familyName: "", email: "", 
 var userFavorites = [productBrain(productCategory: "", productName: "", productDetail: "", productPrice: "", averageRate: 5, timestamp: 1234, image1: UIImage(named: "logo")!, image2: UIImage(named: "logo")!, image3: UIImage(named: "logo")!)]
 var listedProducts: [String] = []
 
-var questionAnswerData = [QuestionAnswerModel(question: "", askerName: "", questionDate: 0, answer: "", sellerName: "", answerDate: 0, isAnonymus: false, answered: false,title: "")]
+var questionAnswerData = [QuestionAnswerModel(question: "", askerName: "",askerEmail: "", questionDate: 0, answer: "", sellerName: "", answerDate: 0, isAnonymus: false, answered: false,title: "",productName: "",productCategory: "")]
 
 var unansweredQuestions = [QuestionAnswerModel]()
-var unansweredProducts = [""]
-var unansweredProductsInfo: [(category: String, productName: String , senderName: String , product:String)] = []
+var unansweredProducts = [String()]
+var unansweredProductsInfo = [QuestionProductModel]()

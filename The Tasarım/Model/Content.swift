@@ -132,11 +132,17 @@ struct prdct {
     let name : String
     let timestamp : Int
 }
+struct QuestionProductModel:Hashable {
+    let category: String
+    let productName: String
+    let senderName: String
+    let Product:String
+}
 
-
-struct QuestionAnswerModel {
+struct QuestionAnswerModel:Hashable {
     let question: String
     let askerName: String
+    let askerEmail: String
     let questionDate: Double
     let answer: String
     let sellerName: String
@@ -144,4 +150,6 @@ struct QuestionAnswerModel {
     let isAnonymus: Bool
     let answered: Bool
     let title: String
+    let productName: String
+    let productCategory: String
 }

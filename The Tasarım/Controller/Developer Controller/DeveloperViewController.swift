@@ -150,8 +150,9 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
                             for document in querySnapshot!.documents {
                                 let data = document.data()
                                 let senderName = document.documentID
-                                let products = data["name"] as! String
-                                unansweredProductsInfo.append((category: category, productName: productName, senderName: senderName, product: products))
+                                let productname = data["name"] as! String
+                                let model = QuestionProductModel(category: category, productName: productName, senderName: senderName, Product: productname)
+                                unansweredProductsInfo.append(model)
                             }
                         }
                     }
@@ -160,3 +161,4 @@ class DeveloperViewController: UIViewController ,UITableViewDelegate,UITableView
         }
     }
 }
+

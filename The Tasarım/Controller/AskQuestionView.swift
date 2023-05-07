@@ -192,16 +192,26 @@ class AskQuestionView: UIView {
                 "question": content,
                 "questionDate": Date().timeIntervalSince1970,
                 "askerName": self.username,
-                "isAnonymus": isAnonymous as Bool,
-                "answered": false as Bool,
+                "askerEmail": self.user!,
+                "isAnonymus": isAnonymous,
+                "answered": false,
                 "sellerName": "The Tasarım",
                 "answer": "Error",
-                "answerDate": 123
+                "answerDate": 123,
+                "productName": collectionViewData[selectedIndex].productName,
+                "productCategory": collectionViewData[selectedIndex].productCategory
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
-                    self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").document(collectionViewData[self.selectedIndex].productCategory).collection(collectionViewData[self.selectedIndex].productName).document(self.user!).setData(["\(collectionViewData[self.selectedIndex].productName)" : "ss"])  { err in
+                    self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").document(collectionViewData[self.selectedIndex].productCategory).collection(collectionViewData[self.selectedIndex].productName).document(self.user!).setData(["name" : "\(collectionViewData[self.selectedIndex].productName)"])  { err in
+                        if let err = err {
+                            print("Error writing document1: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                    self.db.collection("developer@gmail.com").document("Products").collection("unansweredQuestions").document(collectionViewData[self.selectedIndex].productCategory).setData(["name" : "\(collectionViewData[self.selectedIndex].productName)"])  { err in
                         if let err = err {
                             print("Error writing document1: \(err)")
                         } else {
@@ -210,8 +220,6 @@ class AskQuestionView: UIView {
                     }
                     let alertController = UIAlertController(title: "Başarılı", message: "Sorunuz satıcıya gönderildi", preferredStyle: .alert)
                     self.parentViewController?.present(alertController, animated: true, completion: nil)
-                    
-                    // Close the alert and AskQuestionView after 2 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         alertController.dismiss(animated: true, completion: nil)
                         self.closeAction?()
